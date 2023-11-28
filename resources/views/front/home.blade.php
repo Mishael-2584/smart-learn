@@ -4,7 +4,7 @@
     
 <!-- =======================
 Main Banner START -->
-<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ asset("eduport/assets/images/bg/03.jpg") }}); background-position: center; background-size: cover;">
+<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ secure_asset("eduport/assets/images/bg/03.jpg") }}); background-position: center; background-size: cover;">
 	<div class="bg-overlay bg-dark opacity-5"></div>
 	<!-- SVG decoration for curve -->
 	<figure class="position-absolute bottom-0 left-0 w-100 d-md-block mb-n3 z-index-9">
@@ -67,13 +67,13 @@ Client START -->
 				<div class="tiny-slider">
 					<div class="tiny-slider-inner" data-arrow="false" data-dots="false" data-gutter="80" data-items-xl="6" data-items-lg="5" data-items-md="4" data-items-sm="3" data-items-xs="2" data-autoplay="2000">
 						<!-- Slide item START -->
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/coca-cola.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/android.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/envato.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/microsoft.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/netflix.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/google.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/linkedin.svg") }}" alt="client-logo"></div>
+						<div class="item"> <img class="grayscale" src="{{ secure_asset("eduport/assets/images/client/coca-cola.svg") }}" alt="client-logo"></div>
+						<div class="item"> <img class="grayscale" src="{{ secure_asset("eduport/assets/images/client/android.svg") }}" alt="client-logo"></div>
+						<div class="item"> <img class="grayscale" src="{{ secure_asset("eduport/assets/images/client/envato.svg") }}" alt="client-logo"></div>
+						<div class="item"> <img class="grayscale" src="{{ secure_asset("eduport/assets/images/client/microsoft.svg") }}" alt="client-logo"></div>
+						<div class="item"> <img class="grayscale" src="{{ secure_asset("eduport/assets/images/client/netflix.svg") }}" alt="client-logo"></div>
+						<div class="item"> <img class="grayscale" src="{{ secure_asset("eduport/assets/images/client/google.svg") }}" alt="client-logo"></div>
+						<div class="item"> <img class="grayscale" src="{{ secure_asset("eduport/assets/images/client/linkedin.svg") }}" alt="client-logo"></div>
 						<!-- Slide item END -->
 					</div>
 				</div>
@@ -94,7 +94,7 @@ About START -->
 				<!-- Title -->
 				<h2>Find Out More About us, <span class="text-warning">SMARTLEARN</span> insides.</h2>
 				<!-- Image -->
-				<img src="{{ asset("eduport/assets/images/about/03.jpg") }}" class="rounded-2" alt="">
+				<img src="{{ secure_asset("eduport/assets/images/about/03.jpg") }}" class="rounded-2" alt="">
 			</div>
 			<div class="col-lg-7">
 				<div class="row g-4">
@@ -149,7 +149,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/17.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/17.jpg") }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -179,7 +179,7 @@ Trending courses START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/09.jpg") }}" alt="avatar">
+								<img class="avatar-img rounded-circle" src="{{ secure_asset("eduport/assets/images/avatar/09.jpg") }}" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -203,7 +203,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/18.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/18.jpg") }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -233,7 +233,7 @@ Trending courses START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/07.jpg") }}" alt="avatar">
+								<img class="avatar-img rounded-circle" src="{{ secure_asset("eduport/assets/images/avatar/07.jpg") }}" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -257,7 +257,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/21.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/21.jpg") }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -287,7 +287,7 @@ Trending courses START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/05.jpg") }}" alt="avatar">
+								<img class="avatar-img rounded-circle" src="{{ secure_asset("eduport/assets/images/avatar/05.jpg") }}" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -311,7 +311,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/20.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/20.jpg") }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -341,7 +341,7 @@ Trending courses START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/02.jpg") }}" alt="avatar">
+								<img class="avatar-img rounded-circle" src="{{ secure_asset("eduport/assets/images/avatar/02.jpg") }}" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -365,7 +365,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/15.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/15.jpg") }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -395,7 +395,7 @@ Trending courses START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/11.jpg") }}" alt="avatar">
+								<img class="avatar-img rounded-circle" src="{{ secure_asset("eduport/assets/images/avatar/11.jpg") }}" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -419,7 +419,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/14.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/14.jpg") }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -449,7 +449,7 @@ Trending courses START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/12.jpg") }}" alt="avatar">
+								<img class="avatar-img rounded-circle" src="{{ secure_asset("eduport/assets/images/avatar/12.jpg") }}" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -525,7 +525,7 @@ Video divider START -->
 
 			<div class="col-lg-5 position-relative mt-4 mt-lg-0">
 				<!-- Image -->
-				<img src="{{ asset("eduport/assets/images/about/04.jpg") }}" class="border border-5 border-white rounded-2" alt="">
+				<img src="{{ secure_asset("eduport/assets/images/about/04.jpg") }}" class="border border-5 border-white rounded-2" alt="">
 				<div class="position-absolute top-50 start-50 translate-middle">
 					<!-- Video link -->
 					<a href="https://www.youtube.com/embed/tXHviS-4ygo" class="btn text-danger btn-round btn-white-shadow btn-lg mb-0" data-glightbox="" data-gallery="video-tour">
@@ -556,7 +556,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/21.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/21.jpg") }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -583,7 +583,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/16.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/16.jpg") }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -610,7 +610,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/18.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/18.jpg") }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -637,7 +637,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/17.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/17.jpg") }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -664,7 +664,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/19.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ secure_asset("eduport/assets/images/courses/4by3/19.jpg") }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -724,13 +724,13 @@ Newsletter START -->
 
 					<!-- Icon logos START -->
 					<div class="p-2 bg-white shadow rounded-3 rotate-74 position-absolute top-0 start-0 ms-3 mt-5 d-none d-sm-block">
-						<img src="{{ asset("eduport/assets/images/client/science.svg") }}" class="h-40px" alt="Icon">
+						<img src="{{ secure_asset("eduport/assets/images/client/science.svg") }}" class="h-40px" alt="Icon">
 					</div>
 					<div class="p-1 bg-white shadow rounded-3 rotate-74 position-absolute top-0 end-0 mt-5 me-5 d-none d-sm-block">
-						<img src="{{ asset("eduport/assets/images/client/angular.svg") }}" class="h-30px" alt="Icon">
+						<img src="{{ secure_asset("eduport/assets/images/client/angular.svg") }}" class="h-30px" alt="Icon">
 					</div>
 					<div class="p-2 bg-white shadow rounded-3 rotate-130 position-absolute bottom-0 start-50 ms-5 mb-2 d-none d-lg-block">
-						<img src="{{ asset("eduport/assets/images/client/figma.svg") }}" class="h-20px" alt="Icon">
+						<img src="{{ secure_asset("eduport/assets/images/client/figma.svg") }}" class="h-20px" alt="Icon">
 					</div>
 					<!-- Icon logos END -->
 
@@ -763,13 +763,13 @@ Newsletter END -->
 
 @section('scripts')
     <!-- Bootstrap JS -->
-<script src="{{ asset("eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+<script src="{{ secure_asset("eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
 
 <!-- Vendors -->
-<script src="{{ asset("eduport/assets/vendor/tiny-slider/tiny-slider.js") }}"></script>
-<script src="{{ asset("eduport/assets/vendor/glightbox/js/glightbox.js") }}"></script>
+<script src="{{ secure_asset("eduport/assets/vendor/tiny-slider/tiny-slider.js") }}"></script>
+<script src="{{ secure_asset("eduport/assets/vendor/glightbox/js/glightbox.js") }}"></script>
 <script src="https://kit.fontawesome.com/201e2d289f.js" crossorigin="anonymous"></script>
 
 <!-- Template Functions -->
-<script src="{{ asset("eduport/assets/js/functions.js") }}"></script>
+<script src="{{ secure_asset("eduport/assets/js/functions.js") }}"></script>
 @endsection
