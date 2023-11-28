@@ -2,8 +2,8 @@
 
 <script src="https://kit.fontawesome.com/201e2d289f.js" crossorigin="anonymous"></script>
 <!-- General JS Scripts -->
-<script src="{{ secure_asset("codiepie/assets/bundles/lib.vendor.bundle.js") }}"></script>
-<script src="{{ secure_asset("codiepie/js/CodiePie.js") }}"></script>
+<script src="{{ asset("codiepie/assets/bundles/lib.vendor.bundle.js") }}"></script>
+<script src="{{ asset("codiepie/js/CodiePie.js") }}"></script>
 
 <!-- JS Libraies -->
 {{-- <script src="{{ asset("codiepie/assets/modules/cleave-js/dist/cleave.min.js") }}"></script>
@@ -17,11 +17,11 @@
 <script src="{{ asset("codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js") }}"></script> --}}
 
 <!-- Page Specific JS File -->
-<script src="{{ secure_asset("codiepie/js/page/forms-advanced-forms.js") }}"></script>
+<script src="{{ asset("codiepie/js/page/forms-advanced-forms.js") }}"></script>
 
 <!-- Template JS File -->
-<script src="{{ secure_asset("codiepie/js/scripts.js") }}"></script>
-<script src="{{ secure_asset("codiepie/js/custom.js") }}"></script>   
+<script src="{{ asset("codiepie/js/scripts.js") }}"></script>
+<script src="{{ asset("codiepie/js/custom.js") }}"></script>   
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
