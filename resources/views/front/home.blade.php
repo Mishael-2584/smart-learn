@@ -4,7 +4,7 @@
     
 <!-- =======================
 Main Banner START -->
-<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ asset("eduport/assets/images/bg/03.jpg") }}); background-position: center; background-size: cover;">
+<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ asset('eduport/assets/images/bg/03.jpg') }}); background-position: center; background-size: cover;">
 	<div class="bg-overlay bg-dark opacity-5"></div>
 	<!-- SVG decoration for curve -->
 	<figure class="position-absolute bottom-0 left-0 w-100 d-md-block mb-n3 z-index-9">
@@ -37,8 +37,8 @@ Main Banner START -->
 					</div>
 					
 					<!-- Title -->
-					<h1 class="text-white display-5">Unlock the power of <span class="text-warning">virtual learning</span></h1>
-					<p class="text-white">Join our community of learners and expirienced lecturers and learn at your convinience.</p>
+					<h1 class="text-white display-5">Empower Your Online <span class="text-warning">Learning Experience</span></h1>
+					<p class="text-white"> Smart-Learn is your key to a smarter and more efficient learning ecosystem.</p>
 					
 					<div class="d-sm-flex align-items-center mt-4">
 						<!-- Button -->
@@ -58,34 +58,9 @@ Main Banner START -->
 Main Banner END -->
 
 <!-- =======================
-Client START -->
-<section class="pb-0 pb-md-5">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-12">
-				<!-- Slider START -->
-				<div class="tiny-slider">
-					<div class="tiny-slider-inner" data-arrow="false" data-dots="false" data-gutter="80" data-items-xl="6" data-items-lg="5" data-items-md="4" data-items-sm="3" data-items-xs="2" data-autoplay="2000">
-						<!-- Slide item START -->
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/coca-cola.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/android.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/envato.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/microsoft.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/netflix.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/google.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/linkedin.svg") }}" alt="client-logo"></div>
-						<!-- Slide item END -->
-					</div>
-				</div>
-				<!-- Slider END -->
-			</div>
-		</div>
-	</div>
-</section>
-<!-- =======================
-Client END -->
 
-<!-- =======================
+
+
 About START -->
 <section>
 	<div class="container">
@@ -94,7 +69,7 @@ About START -->
 				<!-- Title -->
 				<h2>Find Out More About us, <span class="text-warning">SMARTLEARN</span> insides.</h2>
 				<!-- Image -->
-				<img src="{{ asset("eduport/assets/images/about/03.jpg") }}" class="rounded-2" alt="">
+				<img src="{{ asset('eduport/assets/images/about/03.jpg') }}" class="rounded-2" alt="">
 			</div>
 			<div class="col-lg-7">
 				<div class="row g-4">
@@ -102,25 +77,25 @@ About START -->
 					<div class="col-sm-6">
 						<div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-2"><i class="fas fa-user-tie fs-5"></i></div>
 						<h5 class="mt-2">Learn with Experts</h5>
-						<p class="mb-0">In no impression assistance contrasted Manners she wishing justice hastily new anxious At discovery objection we</p>
+						<p class="mb-0">Elevate your learning with industry experts from diferent parts of the world that will guide you through courses designed for real-world success</p>
 					</div>
 					<!-- Item -->
 					<div class="col-sm-6">
 						<div class="icon-lg bg-info bg-opacity-10 text-info rounded-2"><i class="fas fa-book fs-5"></i></div>
-						<h5 class="mt-2">Learn Anything</h5>
-						<p class="mb-0">Smile spoke total few great had never their too Amongst moments do in arrived at my replied Fat weddings believed prospect</p>
+						<h5 class="mt-2">Explore Diverse Subjects</h5>
+						<p class="mb-0">Dive into a world of knowledge with our diverse courses spanning technology, arts, business, and sciences</p>
 					</div>
 					<!-- Item -->
 					<div class="col-sm-6">
 						<div class="icon-lg bg-success bg-opacity-10 text-success rounded-2"><i class="bi bi-alarm-fill fs-5"></i></div>
 						<h5 class="mt-2">Flexible Learning</h5>
-						<p class="mb-0">Denote simple fat denied add worthy little use As some he so high down am week Conduct denied add worthy little use As</p>
+						<p class="mb-0">Learn on your terms – anytime, anywhere. Our platform adapts to your schedule for seamless, flexible learning</p>
 					</div>
 					<!-- Item -->
 					<div class="col-sm-6">
 						<div class="icon-lg bg-purple bg-opacity-10 text-purple rounded-2"><i class="fas fa-university fs-5"></i></div>
-						<h5 class="mt-2">Industrial Standards</h5>
-						<p class="mb-0">Pleasure and so read the was hope entire first decided the so must have as on was want up of to traveling so all</p>
+						<h5 class="mt-2">Industry-Aligned Standards</h5>
+						<p class="mb-0">Smart-Learn is committed to providing courses that align with and exceed industry standards, ensuring that what you learn is relevant, valuable, and applicable in your chosen field.</p>
 					</div>		
 				</div>
 			</div>
@@ -138,7 +113,7 @@ Trending courses START -->
 		<div class="row">
 			<div class="col-lg-8 mb-4">
 				<h2 class="mb-0">Our <span class="text-warning">Featured</span> Courses</h2>
-				<p class="mb-0">Check out the most 🔥 courses in the market</p>
+				<p class="mb-0">Check out some of the available courses</p>
 			</div>
 		</div>
 
@@ -149,49 +124,28 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/17.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/17.jpg') }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
 							<div class="card-element-hover d-flex justify-content-end">
 								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
+									<i class="fas fa-home text-danger"></i>
 								</a>
 							</div>
 						</div>
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">9.1k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.5</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/09.jpg") }}" alt="avatar">
-							</div>
+						<!-- Title -->
+						<h5 class="card-title"><a href="#">Computer Science</a></h5>
+						<!-- Badge -->
+						<div class="d-flex justify-content-between align-items-center mb-0">
+							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> School of computing and Engineering Sc. </a>
 						</div>
 						<!-- Divider -->
 						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">The Complete Digital Marketing Course - 12 Courses in 1</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Personal Development </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$140</h3>
-						</div>
+						<div><p>Learn the principles of programming and much more. Become a computer scientes from home</p></div>
 					</div>
 				</div>
 			</div>	
@@ -203,52 +157,31 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/18.jpg") }}" class="card-img-top" alt="course image">
-						</div>
+							<img src="{{ asset('eduport/assets/images/courses/4by3/18.jpg') }}" class="card-img-top" alt="course image">						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
 							<div class="card-element-hover d-flex justify-content-end">
 								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
+									<i class="fas fa-home text-danger"></i>
 								</a>
 							</div>
 						</div>
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">2.5k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.6</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/07.jpg") }}" alt="avatar">
-							</div>
+						<!-- Title -->
+						<h5 class="card-title"><a href="#">Business administration</a></h5>
+						<!-- Badge -->
+						<div class="d-flex justify-content-between align-items-center mb-0">
+							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> School of Management Sciences </a>
 						</div>
 						<!-- Divider -->
 						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Fundamentals of Business Analysis</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Business Development </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$160</h3>
-						</div>
+						<div><p>In this course you will learn to manage your busness and much more</p></div>
 					</div>
 				</div>
-			</div>
+			</div>	
+
 			<!-- Card Item END -->
 
 			<!-- Card Item START -->
@@ -257,52 +190,30 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/21.jpg") }}" class="card-img-top" alt="course image">
-						</div>
+							<img src="{{ asset('eduport/assets/images/courses/4by3/18.jpg') }}" class="card-img-top" alt="course image">						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
 							<div class="card-element-hover d-flex justify-content-end">
 								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
+									<i class="fas fa-home text-danger"></i>
 								</a>
 							</div>
 						</div>
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">6k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.8</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/05.jpg") }}" alt="avatar">
-							</div>
+						<!-- Title -->
+						<h5 class="card-title"><a href="#">Business administration</a></h5>
+						<!-- Badge -->
+						<div class="d-flex justify-content-between align-items-center mb-0">
+							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> School of Management Sciences </a>
 						</div>
 						<!-- Divider -->
 						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Google Ads Training: Become a PPC Expert</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> SEO </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$226</h3>
-						</div>
+						<div><p>In this course you will learn to manage your busness and much more</p></div>
 					</div>
 				</div>
-			</div>
+			</div>	
 			<!-- Card Item END -->
 
 			<!-- Card Item START -->
@@ -324,36 +235,15 @@ Trending courses START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">15k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.8</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/02.jpg") }}" alt="avatar">
-							</div>
+						<!-- Title -->
+						<h5 class="card-title"><a href="#">Business administration</a></h5>
+						<!-- Badge -->
+						<div class="d-flex justify-content-between align-items-center mb-0">
+							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> School of Management Sciences </a>
 						</div>
 						<!-- Divider -->
 						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Behavior, Psychology and Care Training</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Lifestyle </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$342</h3>
-						</div>
+						<div><p>In this course you will learn to manage your busness and much more</p></div>
 					</div>
 				</div>
 			</div>
@@ -365,7 +255,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/15.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/15.jpg') }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -378,36 +268,15 @@ Trending courses START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">8k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.6</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/11.jpg") }}" alt="avatar">
-							</div>
+						<!-- Title -->
+						<h5 class="card-title"><a href="#">Business administration</a></h5>
+						<!-- Badge -->
+						<div class="d-flex justify-content-between align-items-center mb-0">
+							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> School of Management Sciences </a>
 						</div>
 						<!-- Divider -->
 						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Microsoft Excel - Excel from Beginner to Advanced</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Technology </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$245</h3>
-						</div>
+						<div><p>In this course you will learn to manage your busness and much more</p></div>
 					</div>
 				</div>
 			</div>
@@ -419,7 +288,7 @@ Trending courses START -->
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/14.jpg") }}" class="card-img-top" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/14.jpg') }}" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
@@ -432,36 +301,15 @@ Trending courses START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.0</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/12.jpg") }}" alt="avatar">
-							</div>
+						<!-- Title -->
+						<h5 class="card-title"><a href="#">Business administration</a></h5>
+						<!-- Badge -->
+						<div class="d-flex justify-content-between align-items-center mb-0">
+							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> School of Management Sciences </a>
 						</div>
 						<!-- Divider -->
 						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Twitter Marketing & Twitter Ads For Beginners</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Technology </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$199</h3>
-						</div>
+						<div><p>In this course you will learn to manage your busness and much more</p></div>
 					</div>
 				</div>
 			</div>
@@ -525,7 +373,7 @@ Video divider START -->
 
 			<div class="col-lg-5 position-relative mt-4 mt-lg-0">
 				<!-- Image -->
-				<img src="{{ asset("eduport/assets/images/about/04.jpg") }}" class="border border-5 border-white rounded-2" alt="">
+				<img src="{{ asset('eduport/assets/images/about/04.jpg') }}" class="border border-5 border-white rounded-2" alt="">
 				<div class="position-absolute top-50 start-50 translate-middle">
 					<!-- Video link -->
 					<a href="https://www.youtube.com/embed/tXHviS-4ygo" class="btn text-danger btn-round btn-white-shadow btn-lg mb-0" data-glightbox="" data-gallery="video-tour">
@@ -556,7 +404,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/21.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/21.jpg') }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -567,7 +415,7 @@ Event START -->
 						</div>
 
 						<!-- Card body -->
-						<div class="card-body px-2">
+						<div class='card-body px-2'>
 							<!-- Title -->
 							<h5 class="card-title"><a href="#">Global Education Fall Meeting for Everyone</a></h5>
 							<!-- Address and button -->
@@ -583,7 +431,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/16.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/16.jpg') }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -610,7 +458,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/18.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/18.jpg') }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">

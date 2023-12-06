@@ -17984,6 +17984,7 @@ textarea.form-control-lg {
   right: 1rem;
   position: absolute;
 }
+
 @media (min-width: 576px) {
   .navbar-expand-sm .navbar-top {
     z-index: 1100 !important;

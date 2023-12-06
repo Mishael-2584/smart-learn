@@ -18,10 +18,10 @@
 				<div class="dropdown me-3">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdownLanguage" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-globe me-2"></i>Language</a>
 					<div class="dropdown-menu mt-2 min-w-auto shadow" aria-labelledby="dropdownLanguage">
-						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset("eduport/assets/images/flags/uk.svg") }}" alt="">English</a>
-						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset("eduport/assets/images/flags/sp.svg") }}" alt="">Español</a>
-						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset("eduport/assets/images/flags/fr.svg") }}" alt="">Français</a>
-						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset("eduport/assets/images/flags/gr.svg") }}" alt="">Deutsch</a>
+						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset('eduport/assets/images/flags/uk.svg') }}" alt="">English</a>
+						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset('eduport/assets/images/flags/sp.svg') }}" alt="">Español</a>
+						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset('eduport/assets/images/flags/fr.svg') }}" alt="">Français</a>
+						<a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="{{ asset('eduport/assets/images/flags/gr.svg') }}" alt="">Deutsch</a>
 					</div>
 				</div>
 
