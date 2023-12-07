@@ -4,11 +4,7 @@
     
 <!-- =======================
 Main Banner START -->
-<<<<<<< Updated upstream
-<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ asset("eduport/assets/images/bg/03.jpg") }}); background-position: center; background-size: cover;">
-=======
 <section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ asset('eduport/assets/images/bg/05.jpg') }}); background-position: center; background-size: cover;">
->>>>>>> Stashed changes
 	<div class="bg-overlay bg-dark opacity-5"></div>
 	<!-- SVG decoration for curve -->
 	<figure class="position-absolute bottom-0 left-0 w-100 d-md-block mb-n3 z-index-9">
