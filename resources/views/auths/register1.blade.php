@@ -10,7 +10,7 @@
 	<meta name="description" content="Eduport, Education and Course Theme">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{ asset("eduport/assets/images/favicon.ico") }}">
+	<link rel="shortcut icon" href="{{ asset('eduport/assets/images/favicon.ico') }}">
 
 	<!-- Google Font -->
 	{{-- <link rel="preconnect" href="https://fonts.googleapis.com"> --}}
@@ -18,11 +18,11 @@
 	{{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap"> --}}
 
 	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/font-awesome/css/all.min.css") }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/bootstrap-icons/bootstrap-icons.css") }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/vendor/font-awesome/css/all.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
 
 	<!-- Theme CSS -->
-	<link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/css/style.css") }}">
+	<link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/css/style.css') }}">
 
 </head>
 
@@ -40,18 +40,18 @@
 						<!-- Title -->
 						<div class="text-center">
 							<!-- SVG Image -->
-						<img src="{{ asset("codiepie/assets/img/smartlearn-logo/svg/smartlearn-high-resolution-logo-white-transparent.svg") }}" class="mt-5" alt="">
-							<p class="mb-0 h6 fw-light"!</p>
+						<img src="{{ asset('codiepie/assets/img/smartlearn-logo/svg/smartlearn-high-resolution-logo-white-transparent.svg') }}" class="mt-5" alt="">
+							
 						</div>
 						{{-- <!-- SVG Image --> --}}
-						{{-- <img src="{{ asset("codiepie/assets/img/smartlearn-logo/svg/smartlearn-high-resolution-logo-white-transparent.svg") }}" class="mt-5" alt=""> --}}
+						{{-- <img src="{{ asset('codiepie/assets/img/smartlearn-logo/svg/smartlearn-high-resolution-logo-white-transparent.svg') }}" class="mt-5" alt=""> --}}
 						<!-- Info -->
 						<div class="d-sm-flex mt-5 align-items-center justify-content-center">
 							<ul class="avatar-group mb-2 mb-sm-0">
-								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/01.jpg") }}" alt="avatar"></li>
-								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/02.jpg") }}" alt="avatar"></li>
-								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/03.jpg") }}" alt="avatar"></li>
-								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/04.jpg") }}" alt="avatar"></li>
+								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset('eduport/assets/images/avatar/01.jpg') }}" alt="avatar"></li>
+								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset('eduport/assets/images/avatar/02.jpg') }}" alt="avatar"></li>
+								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset('eduport/assets/images/avatar/03.jpg') }}" alt="avatar"></li>
+								<li class="avatar avatar-sm"><img class="avatar-img rounded-circle" src="{{ asset('duport/assets/images/avatar/04.jpg') }}" alt="avatar"></li>
 							</ul>
 							<!-- Content -->
 							<p class="mb-0 h6 fw-light ms-0 ms-sm-3"> Join Our Community Today and learn something new.</p>
@@ -64,7 +64,7 @@
 					<div class="row my-5">
 						<div class="col-sm-10 col-xl-8 m-auto">
 							<!-- Title -->
-							<img src="{{ asset("eduport/assets/images/element/03.svg") }}" class="h-40px mb-2" alt="">
+							<img src="{{ asset('eduport/assets/images/element/03.svg') }}" class="h-40px mb-2" alt="">
 							<h2>Sign up for your account!</h2>
 							<p class="lead mb-4">Nice to see you! Please Sign up with your account.</p>
 						
@@ -138,7 +138,7 @@
 
 							<!-- Sign up link -->
 							<div class="mt-4 text-center">
-								<span>Already have an account?<a href="sign-in.html"> Sign in here</a></span>
+								<span>Already have an account?<a href="{{route('login')}}"> Sign in here</a></span>
 							</div>
 						</div>
 					</div>
@@ -153,10 +153,10 @@
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 <script src="https://kit.fontawesome.com/201e2d289f.js" crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
-{{-- <script src="{{ asset("eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script> --}}
+{{-- <script src="{{ asset('eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script> --}}
 
 <!-- Template Functions -->
-{{-- <script src="{{ asset("eduport/assets/js/functions.js") }}"></script> --}}
+{{-- <script src="{{ asset('eduport/assets/js/functions.js') }}"></script> --}}
 
 </body>
 </html>

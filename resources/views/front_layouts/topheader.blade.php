@@ -1,4 +1,4 @@
-<div class="navbar-top navbar-dark bg-light d-none d-xl-block py-2 mx-2 mx-md-4 rounded-bottom-4">
+<div class="navbar-top navbar-dark d-none d-xl-block py-2 mx-2 mx-md-4 rounded-bottom-4">
 	<div class="container">
 		<div class="d-lg-flex justify-content-lg-between align-items-center">
 			<!-- Navbar top Left-->

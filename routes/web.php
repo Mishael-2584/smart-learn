@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('auths.login');
-})->name('login');
+Route::get('/login', function () { return view('auths.login');})->name('login');
 
 Route::post('/submitlogin', [AuthenticationController::class, 'submitlogin'])->name('submitlogin');
 
@@ -46,10 +44,6 @@ Route::middleware('admin')->group( function () {
         Route::get('/newschool', function () { return view('admin.newschool'); })->name('newschool');
         Route::post('/post_school', [SchoolController::class, 'postschool'])->name('postschool');
         Route::get('/schoollist', [SchoolController::class, 'schoollist'])->name('schoollist');
-        
-
-
-
     });
 });
 
@@ -73,11 +67,6 @@ Route::group(['middleware' => 'lecturer'], function () {
         Route::get('', function () {
             return view('lecturer.dashboard');
         })->name('lecturerdashboard');
-
-
-
-
-
     });
 });
 

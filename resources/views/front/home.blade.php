@@ -4,7 +4,11 @@
     
 <!-- =======================
 Main Banner START -->
+<<<<<<< Updated upstream
 <section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ asset("eduport/assets/images/bg/03.jpg") }}); background-position: center; background-size: cover;">
+=======
+<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url({{ asset('eduport/assets/images/bg/05.jpg') }}); background-position: center; background-size: cover;">
+>>>>>>> Stashed changes
 	<div class="bg-overlay bg-dark opacity-5"></div>
 	<!-- SVG decoration for curve -->
 	<figure class="position-absolute bottom-0 left-0 w-100 d-md-block mb-n3 z-index-9">
@@ -724,13 +728,13 @@ Newsletter START -->
 
 					<!-- Icon logos START -->
 					<div class="p-2 bg-white shadow rounded-3 rotate-74 position-absolute top-0 start-0 ms-3 mt-5 d-none d-sm-block">
-						<img src="{{ asset("eduport/assets/images/client/science.svg") }}" class="h-40px" alt="Icon">
+						<img src="{{ asset('eduport/assets/images/client/science.svg') }}" class="h-40px" alt="Icon">
 					</div>
 					<div class="p-1 bg-white shadow rounded-3 rotate-74 position-absolute top-0 end-0 mt-5 me-5 d-none d-sm-block">
-						<img src="{{ asset("eduport/assets/images/client/angular.svg") }}" class="h-30px" alt="Icon">
+						<img src="{{ asset('eduport/assets/images/client/angular.svg') }}" class="h-30px" alt="Icon">
 					</div>
 					<div class="p-2 bg-white shadow rounded-3 rotate-130 position-absolute bottom-0 start-50 ms-5 mb-2 d-none d-lg-block">
-						<img src="{{ asset("eduport/assets/images/client/figma.svg") }}" class="h-20px" alt="Icon">
+						<img src="{{ asset('eduport/assets/images/client/figma.svg') }}" class="h-20px" alt="Icon">
 					</div>
 					<!-- Icon logos END -->
 

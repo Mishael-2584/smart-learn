@@ -14,22 +14,22 @@
                         <p class="mb-0 h6 fw-light">Let's learn something new today!</p>
                     </div>
                     <!-- SVG Image -->
-                    <img src="{{ asset("eduport/assets/images/element/02.svg") }}" class="mt-5" alt="">
+                    <img src="{{ asset('eduport/assets/images/element/02.svg') }}" class="mt-5" alt="">
                     <!-- Info -->
                     <div class="d-sm-flex mt-5 align-items-center justify-content-center">
                         <!-- Avatar group -->
                         <ul class="avatar-group mb-2 mb-sm-0">
                             <li class="avatar avatar-sm">
-                                <img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/01.jpg") }}" alt="avatar">
+                                <img class="avatar-img rounded-circle" src="{{ asset('eduport/assets/images/avatar/01.jpg') }}" alt="avatar">
                             </li>
                             <li class="avatar avatar-sm">
-                                <img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/02.jpg") }}" alt="avatar">
+                                <img class="avatar-img rounded-circle" src="{{ asset('eduport/assets/images/avatar/02.jpg') }}" alt="avatar">
                             </li>
                             <li class="avatar avatar-sm">
-                                <img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/03.jpg") }}" alt="avatar">
+                                <img class="avatar-img rounded-circle" src="{{ asset('eduport/assets/images/avatar/03.jpg') }}" alt="avatar">
                             </li>
                             <li class="avatar avatar-sm">
-                                <img class="avatar-img rounded-circle" src="{{ asset("eduport/assets/images/avatar/04.jpg") }}" alt="avatar">
+                                <img class="avatar-img rounded-circle" src="{{ asset('eduport/assets/images/avatar/04.jpg') }}" alt="avatar">
                             </li>
                         </ul>
                         <!-- Content -->
@@ -112,7 +112,7 @@
 
                         <!-- Sign up link -->
                         <div class="mt-4 text-center">
-                            <span>Don't have an account? <a href="sign-up.html">Signup here</a></span>
+                            <span>Don't have an account? <a href="{{ route('studentssignup') }}">Signup here</a></span>
                         </div>
                     </div>
                 </div> <!-- Row END -->
@@ -124,14 +124,14 @@
 
 @section('scripts')
     <!-- Bootstrap JS -->
-<script src="{{ asset("eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+<script src="{{ asset('eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Vendors -->
-<script src="{{ asset("eduport/assets/vendor/tiny-slider/tiny-slider.js") }}"></script>
-<script src="{{ asset("eduport/assets/vendor/glightbox/js/glightbox.js") }}"></script>
+<script src="{{ asset('eduport/assets/vendor/tiny-slider/tiny-slider.js') }}"></script>
+<script src="{{ asset('eduport/assets/vendor/glightbox/js/glightbox.js') }}"></script>
 <script src="https://kit.fontawesome.com/201e2d289f.js" crossorigin="anonymous"></script>
 
 <!-- Template Functions -->
-{{-- <script src="{{ asset("eduport/assets/js/functions.js") }}"></script> --}}
+{{-- <script src="{{ asset('eduport/assets/js/functions.js') }}"></script> --}}
 @endsection
 

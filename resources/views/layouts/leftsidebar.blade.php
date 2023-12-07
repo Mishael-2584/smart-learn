@@ -4,8 +4,8 @@
 
     @if (Session::get('isAuthenticated')==true && Session::get('role')==4)
             <aside id="sidebar-wrapper">
-                <div class="sidebar-brand">
-                    <img src="{{ asset("codiepie/assets/img/smartlearn-logo/svg/logonew.svg") }}SL" alt="SMARTLEARN">
+                <div class="sidebar-brand p-4 mb-4">
+                    <img src="{{ asset('codiepie/assets/img/smartlearn-logo/svg/logonew.svg') }}" alt="SMARTLEARN" class="img-fluid">
                 </div>
                 <div class="sidebar-brand sidebar-brand-sm">
                     <a href="#">SL</a>

@@ -17986,7 +17986,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 576px) {
   .navbar-expand-sm .navbar-top {
-    z-index: 1100 !important;
+    z-index: 1100;
   }
   .navbar-expand-sm .navbar-brand .navbar-brand-item {
     height: 36px;
