@@ -28,12 +28,12 @@ return new class extends Migration
         Schema::dropIfExists('roles');
     }
 
-    public function run(): void
-    {
-        //
-        DB::table('roles')->insert(['title' =>'Super Admin']);
-        DB::table('roles')->insert(['title' =>'Admin']);
-        DB::table('roles')->insert(['title' =>'Lecturer']);
-        DB::table('roles')->insert(['title' =>'Student']);
-    }
+    // public function run(): void
+    // {
+    //     //
+    //     DB::table('roles')->insert(['title' =>'Super Admin']);
+    //     DB::table('roles')->insert(['title' =>'Admin']);
+    //     DB::table('roles')->insert(['title' =>'Lecturer']);
+    //     DB::table('roles')->insert(['title' =>'Student']);
+    // }
 };

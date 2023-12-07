@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('imgpath')->nullable();
             $table->string('course_code')->nullable();
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('major_id')->nullable();
             $table->boolean('isGEDS');
             $table->timestamps();

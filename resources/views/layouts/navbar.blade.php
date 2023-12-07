@@ -197,8 +197,26 @@
             </div>
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ asset("codiepie/assets/img/avatar/avatar-1.png") }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Michelle Green</div></a>
+            <figure class="avatar mr-2 bg-purple text-white" data-initial="{{ strtoupper(substr($user->name, 0, 1)) }}{{ strtoupper(substr(strstr($user->name, ' '), 1, 1)) }}"></figure>
+            <div class="d-sm-none d-lg-inline-block">
+                Hi, @isset($user){{$user->name}}@endisset
+                @if(isset($user) && ($user->role->id == 3 || $user->role->id == 4) && ($user->verified == 2))
+                    <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
+                        <i class="fas fa-check-circle fa-lg text-success"></i>
+                    </span>
+                @elseif(isset($user) && ($user->role->id == 3||$user->role->id == 4) && ($user->verified == 1))
+                    
+                    <span class="badge badge-warning rounded-circle p-0" style="background-color: transparent;" title="Pending Approval">
+                        <i class="fas fa-clock fa-lg text-warning"></i>
+                    </span>
+
+                @elseif(isset($user) && ($user->role->id == 3||$user->role->id == 4) && ($user->verified == 0))
+                    <span class="badge badge-danger rounded-circle p-0" style="background-color: transparent;" title="Not Verified">
+                        <i class="fas fa-times-circle fa-lg text-danger"></i>
+                    </span>
+                @endif
+            </div>
+            </a>
             <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-title">Logged in 5 min ago</div>
             <a href="features-profile.html" class="dropdown-item has-icon">

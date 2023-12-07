@@ -35,11 +35,11 @@ return new class extends Migration
         Schema::dropIfExists('admins');
     }
 
-    public function run(): void
-    {
-        //
-        DB::table('admins')->insert(['name' => 'Admin1', 'email' => 'worancha2584@admin.com', 'password' => bcrypt('Holybible1221$'), 'role_id' => 2]);
-    }
+    // public function run(): void
+    // {
+    //     //
+    //     DB::table('admins')->insert(['name' => 'Admin1', 'email' => 'worancha2584@admin.com', 'password' => bcrypt('Holybible1221$'), 'role_id' => 2]);
+    // }
 
 
 };

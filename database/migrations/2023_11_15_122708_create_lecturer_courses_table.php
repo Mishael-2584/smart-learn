@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\table;
+
 return new class extends Migration
 {
     /**
@@ -20,6 +22,7 @@ return new class extends Migration
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->string('meet_url')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         
             $table->foreign('lecturer_id')->references('id')->on('lecturers')->onDelete('cascade');
