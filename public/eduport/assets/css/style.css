@@ -17984,6 +17984,9 @@ textarea.form-control-lg {
   right: 1rem;
   position: absolute;
 }
+.navbar-top{
+  background-color: #E1E1E3;
+}
 @media (min-width: 576px) {
   .navbar-expand-sm .navbar-top {
     z-index: 1100;
