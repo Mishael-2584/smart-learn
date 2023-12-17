@@ -12,6 +12,7 @@ use Lcobucci\JWT\Signer\Key\InMemory;
 
 
 
+
 class JitsiController extends Controller
 {
     //
@@ -47,8 +48,12 @@ class JitsiController extends Controller
         // $privateKeyPath = env('JWT_PRIVATE_KEY_PATH');
         // $publicKeyPath = env('JWT_PUBLIC_KEY_PATH');
 
-        $priKeypath = Storage::path('public/keys/jitsi.pk');
-        $pubKeypath = Storage::path('public/keys/jitsi.pub');
+        
+
+        
+
+        $priKeypath = public_path('keys/jitsi.pk');
+        $pubKeypath = public_path('keys/jitsi.pub');
 
         $privateKey = InMemory::file($priKeypath);
         $publicKey = InMemory::file($pubKeypath);
