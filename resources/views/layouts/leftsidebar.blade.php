@@ -190,7 +190,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('enrollcourse') }}">Course Enrollment</a></li>
                         </ul>
-                        <li><a href="myclasses.html"><i class="fas fa-chalkboard-teacher"></i> <span>My Classes</span></a></li>
+                        <li><a href="{{ route('myclasses') }}"><i class="fas fa-chalkboard-teacher"></i> <span>My Classes</span></a></li>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>My Students</span></a>
@@ -272,7 +272,7 @@
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-chalkboard-user"></i> <span>Lecturers</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link beep beep-sidebar" href="{{ route('pendinglecturers')}}">Pending Lecturers</a></li>
-                                <li><a class="nav-link" href="components-article.html">Approvals</a></li>
+                                <li><a class="nav-link" href="{{ route('enrollmentapprovals')}}">Course Approvals</a></li>
 
                             </ul>
                         </li>

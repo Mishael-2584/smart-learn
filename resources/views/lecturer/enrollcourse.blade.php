@@ -72,7 +72,7 @@
                                                 <div class="article-details">
                                                     <p>{{$course->title}}</p>
                                                     <div class="article-cta">
-                                                        <a href="#" class="btn btn-primary">Enroll</a>
+                                                        <a href="{{ route('lecturerenrollgedscourse', $course->id)}}" class="btn btn-primary">Enroll</a>
                                                     </div>
                                                 </div>
                                             </article>
@@ -99,7 +99,7 @@
                                                 <div class="article-details">
                                                     <p>{{$course->title}}</p>
                                                     <div class="article-cta">
-                                                        <a href="#" class="btn btn-primary">Enroll</a>
+                                                        <a href="{{ route('lecturerenrolluniquecourse', $course->id)}}" class="btn btn-primary">Enroll</a>
                                                     </div>
                                                 </div>
                                             </article>

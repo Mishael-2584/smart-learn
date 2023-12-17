@@ -8,7 +8,7 @@
     <section class="section">
         @include('layouts.error')
         <div class="section-header">
-            <h1>Enroll For Departmental Course</h1>
+            <h1>Enroll For GEDS Course</h1>
         </div>
 
         <div class="section-body">
@@ -17,21 +17,16 @@
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('enrolldepartmental', $coursedept->id) }}" method="POST">
-                                @csrf     
-                                <div class="form-group">
-                                    <label for="coursecode">Course Code:</label>
-                                    <input type="text" name="coursecode" id="coursecode" value="{{$coursedept->course->course_code}}" class="form-control" disabled>
-                                </div>
-                                
+                            <form action="{{ route('enrollunique', $course->id) }}" method="POST">
+                                @csrf                                     
                                 <div class="form-group">
                                     <label for="title">Course Title:</label>
-                                    <input type="text" name="title" id="title" value="{{$coursedept->course->title}}" class="form-control" disabled>
+                                    <input type="text" name="title" id="title" value="{{$course->title}}" class="form-control" disabled>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description"> Course Description:</label>
-                                    <input type="text" name="description" id="description" value="{{$coursedept->course->description}}" class="form-control" disabled>
+                                    <input type="text" name="description" id="description" value="{{$course->description}}" class="form-control" disabled>
                                 </div>
                             
                                 <div class="form-group">
@@ -69,7 +64,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group" id="link-container">
                                             <label for="meet-link">Meet Link:</label><br>
-                                            <input class="form-control" type="text" name="meet-link" id="meet-link" value="{{$coursedept->course->meet_url}}" placeholder="Enter custom link here" disabled>
+                                            <input class="form-control" type="text" name="meet-link" id="meet-link" value="{{$course->meet_url}}" placeholder="Enter custom link here" disabled>
                                         </div>
                                     </div>
                                 </div>

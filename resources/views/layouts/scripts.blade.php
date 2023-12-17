@@ -6,11 +6,11 @@
 <script src="{{ asset("codiepie/js/CodiePie.js") }}"></script>
 
 <!-- JS Libraies -->
-<script src="{{ asset("codiepie/assets/modules/cleave-js/dist/cleave.min.js") }}"></script>
+{{-- <script src="{{ asset("codiepie/assets/modules/cleave-js/dist/cleave.min.js") }}"></script> --}}
 
-<script src="{{ asset("codiepie/assets/modules/jquery-pwstrength/jquery.pwstrength.min.js") }}"></script>
-<script src="{{ asset("codiepie/assets/modules/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
-<script src="{{ asset("codiepie/assets/modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js") }}"></script>
+{{-- <script src="{{ asset("codiepie/assets/modules/jquery-pwstrength/jquery.pwstrength.min.js") }}"></script> --}}
+{{-- <script src="{{ asset("codiepie/assets/modules/bootstrap-daterangepicker/daterangepicker.js") }}"></script> --}}
+{{-- <script src="{{ asset("codiepie/assets/modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js") }}"></script> --}}
 <script src="{{ asset("codiepie/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js") }}"></script>
 <script src="{{ asset("codiepie/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js") }}"></script>
 {{-- <script src="{{ asset("codiepie/assets/modules/select2/dist/js/select2.full.min.js") }}"></script> --}}
@@ -19,7 +19,8 @@
 <!-- Page Specific JS File -->
 <script src="{{ asset("codiepie/js/page/forms-advanced-forms.js") }}"></script>
 
-<script src="{{ asset("codiepie/assets/modules/cleave-js/dist/addons/cleave-phone.us.js") }}"></script>
+{{-- <script src="{{ asset("codiepie/assets/modules/cleave-js/dist/addons/cleave-phone.us.js") }}"></script>
+--}}
 
 <!-- Template JS File -->
 <script src="{{ asset("codiepie/js/scripts.js") }}"></script>

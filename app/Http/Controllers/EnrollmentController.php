@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\DepartmentCourse;
 use App\Models\Enrollment;
 use App\Models\LecturerCourse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
@@ -30,21 +32,129 @@ class EnrollmentController extends Controller
 
     } 
 
+    public function lecturerenrollgedscourse($courseId)
+    {
+        $course = Course::where('id', $courseId)->first();
+        return view('lecturer.enrollgedscourse', compact('course'));
+    }
+
+    public function lecturerenrolluniquecourse($courseId){
+
+        $course = Course::where('id', $courseId)->first();
+        if($course){
+            return view('lecturer.enrolluniquecourse', compact('course'));
+        }
+
+        return view('lecturer.enrolluniquecourse');
+        
+    }
+
+    public function enrollunique(Request $request, $courseId)
+    {
+        $carbonSTime = Carbon::parse($request->input('start-time'));
+        $start_time = $carbonSTime->format('H:i:s');
+        $carbonETime = Carbon::parse($request->input('end-time'));
+        $end_time = $carbonETime->format('H:i:s');
+
+        $uc = LecturerCourse::create([
+            'lecturer_id' => session()->get('id'),
+            'course_id' => $courseId,
+            'department_courses_id' => null,
+            'day' => $request->input('day'),
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'meet_url' => null,
+        ]);
+
+        if($uc){
+
+            if($request->input('link-type') == 'generate'){
+                $base_url = "https://meet.jit.si/"; // Replace with your Jitsi instance URL
+                $room_name = uniqid(); // Generate a unique room name using PHP uniqid() function
+                $url = $base_url . $room_name;
+                $uc->meet_url = $url;
+                
+            }
+            else{
+                $uc->meet_url = $request->input('meet-url');
+            }
+
+            $saved = $uc->save();
+            if($saved){
+                return redirect()->route('myclasses')->with('success', 'Successfully Applied, Pending Admin Approval');
+            }
+            
+
+        }
+        else{
+
+            return back()->with('error', 'Course not enrolled');
+        }
+
+    }
+
+    public function enrollgeds(Request $request, $courseId)
+    {
+        $carbonSTime = Carbon::parse($request->input('start-time'));
+        $start_time = $carbonSTime->format('H:i:s');
+        $carbonETime = Carbon::parse($request->input('end-time'));
+        $end_time = $carbonETime->format('H:i:s');
+
+        $gc = LecturerCourse::create([
+            'lecturer_id' => session()->get('id'),
+            'course_id' => $courseId,
+            'department_courses_id' => null,
+            'day' => $request->input('day'),
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'meet_url' => null,
+        ]);
+
+        if($gc){
+
+            if($request->input('link-type') == 'generate'){
+                $base_url = "https://meet.jit.si/"; // Replace with your Jitsi instance URL
+                $room_name = uniqid(); // Generate a unique room name using PHP uniqid() function
+                $url = $base_url . $room_name;
+                $gc->meet_url = $url;
+                
+            }
+            else{
+                $gc->meet_url = $request->input('meet-url');
+            }
+
+            $saved = $gc->save();
+            if($saved){
+                return redirect()->route('myclasses')->with('success', 'Successfully Applied, Pending Admin Approval');
+            
+            }
+            
+
+        }
+        else{
+
+            return back()->with('error', 'Course not enrolled');
+        }
+
+    }
+
     public function enrolldepartmental(Request $request, $courseId)
     {
     
+        $carbonSTime = Carbon::parse($request->input('start-time'));
+        $start_time = $carbonSTime->format('H:i:s');
+        $carbonETime = Carbon::parse($request->input('end-time'));
+        $end_time = $carbonETime->format('H:i:s');
 
-        dd($courseId);
 
         $lc = LecturerCourse::create([
-            'department_courses_id' => $courseId,
             'lecturer_id' => session()->get('id'),
             'course_id' => null,
+            'department_courses_id' => $courseId,
             'day' => $request->input('day'),
-            'start_time' => $request->input('start-time'),
-            'end_time' => $request->input('end-time'),
-            'meet_url' => $request->input('meet-link'),
-            'status' => 0,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'meet_url' => null,
         ]);
 
         if($lc){
@@ -67,7 +177,17 @@ class EnrollmentController extends Controller
 
 
                $saved = $ct->save();
+
+               if($saved){
+                return redirect()->route('myclasses')->with('success', 'Successfully Applied, Pending Admin Approval');
+               }
+               else{
+                return back()->with('error', 'Failed to generate link!');
+               }
             
+        }
+        else{
+            return back()->with('error', 'Failed to enroll for course!');
         }
 
 

@@ -10,7 +10,7 @@ class LecturerCourse extends Model
 {
     use HasFactory;
 
-    // protected $table = 'lecturer_courses';
+    protected $table = 'lecturer_courses';
     protected $fillable = ['day', 'start_time', 'end_time', 'meet_url', 'lecturer_id', 'course_id', 'status', 'department_courses_id'];
 
     public function lecturer()
@@ -25,6 +25,6 @@ class LecturerCourse extends Model
 
     public function departmentcourse()
     {
-        return $this->belongsTo(DepartmentCourse::class);
+        return $this->belongsTo(DepartmentCourse::class, 'department_courses_id');
     }
 }

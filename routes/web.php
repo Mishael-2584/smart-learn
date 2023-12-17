@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\JitsiController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\LecturerCourseController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Middleware\LecturerMiddleware;
+use App\Models\LecturerCourse;
 use Illuminate\Support\Facades\Route;
 
 
@@ -71,6 +75,11 @@ Route::middleware('admin')->group( function () {
         Route::get('pendinglecturers', [LecturerController::class, 'pendinglecturers'])->name('pendinglecturers');
         Route::post('approvelecturers', [LecturerController::class, 'approvelecturers'])->name('approvelecturers');
 
+        Route::get('/enrollmentapprovals', [AdminController::class, 'enrollmentapprovals'])->name('enrollmentapprovals');
+
+        Route::post('/approvecourses', [AdminController::class, 'approvecourses'])->name('approvecourses');
+
+        
 
 
     });
@@ -103,6 +112,16 @@ Route::group(['middleware' => 'lecturer'], function () {
             Route::get('/enrollcourse', [LecturerController::class, 'enrollcourse'])->name('enrollcourse');
             Route::get('/lecturer_enrollcourse/{courseId}', [EnrollmentController::class, 'lecturerenrollcourse'])->name('lecturerenrollcourse');
             Route::post('/enrolldepartmental/{courseId}', [EnrollmentController::class, 'enrolldepartmental'])->name('enrolldepartmental');
+            Route::get('/myclasses', [CourseController::class, 'myclasses'])->name('myclasses');
+            Route::get('/enrollgedscourse/{courseId}', [EnrollmentController::class, 'lecturerenrollgedscourse'])->name('lecturerenrollgedscourse');
+            Route::post('/enrollgeds/{courseId}', [EnrollmentController::class, 'enrollgeds'])->name('enrollgeds');
+            Route::get('/enrolluniquecourse/{courseId}', [EnrollmentController::class, 'lecturerenrolluniquecourse'])->name('lecturerenrolluniquecourse');
+            Route::post('/enrollunique/{courseId}', [EnrollmentController::class, 'enrollunique'])->name('enrollunique');
+            
+            Route::get('/lectureropencourse/{lcId}', [LecturerCourseController::class, 'lectureropencourse'])->name('lectureropencourse');
+            Route::get('/jitsimeeting/{lcId}', [JitsiController::class, 'generatetoken'])->name('jitsimeeting');
+
+
             
         });
 

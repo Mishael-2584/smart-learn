@@ -25,7 +25,7 @@
 
 
 <!-- Template CSS -->
-<link rel="stylesheet" href="{{ asset("codiepie/assets/css/css") }}">
+
 <link rel="stylesheet" href="{{ asset("codiepie/assets/css/style.min.css") }}">
 <link rel="stylesheet" href="{{ asset("codiepie/assets/css/components.min.css") }}">
 

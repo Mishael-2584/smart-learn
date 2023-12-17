@@ -15,6 +15,14 @@ class LecturerCourseController extends Controller
         //
     }
 
+    public function lectureropencourse($lcId){
+
+        $lc = LecturerCourse::find($lcId);
+        if ($lc){
+            return view('lecturer.courseroom', compact('lc'));
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */

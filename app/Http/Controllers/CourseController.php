@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\DepartmentCourse;
+use App\Models\LecturerCourse;
 use App\Models\School;
 use Exception;
 use Illuminate\Http\Request;
@@ -17,6 +18,21 @@ class CourseController extends Controller
     public function index()
     {
         //
+    }
+
+    public function myclasses(){
+
+        $lecturerId = session()->get('id');
+        $lcs = LecturerCourse::where('lecturer_id', $lecturerId)->where('course_id', null)->get();
+        $gcs = LecturerCourse::where('lecturer_id', $lecturerId)->where('course_id', '!=', null)->get();
+        if(isset($lcs) || isset($gcs)){
+            // dd($lcs);
+            return view('lecturer.mycourses', compact('lcs', 'gcs'));
+        }
+        else{
+            return view('lecturer.mycourses');
+        }
+
     }
 
     public function courselist(){

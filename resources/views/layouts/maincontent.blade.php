@@ -1,7 +1,7 @@
 @extends('layouts.body')
 
 @section('content')
- <div class="main-content">
+<div class="main-content">
     <section class="section">
         <div class="section-header">
             <h1>Blank Page</h1>
