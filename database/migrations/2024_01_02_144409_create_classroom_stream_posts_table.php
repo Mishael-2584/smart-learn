@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enrollments', function (Blueprint $table) {
+        Schema::create('classroom_stream_posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('lecturer_course_id');
-            $table->integer('status');
+            $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('lecturer_id')->nullable();
+            $table->longText('content'); // HTML content from Summernote
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('lecturer_course_id')->references('id')->on('lecturer_courses')->onDelete('cascade');
-
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enrollments');
+        Schema::dropIfExists('classroom_stream_posts');
     }
 };

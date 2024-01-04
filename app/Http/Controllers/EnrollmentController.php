@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\DepartmentCourse;
 use App\Models\Enrollment;
 use App\Models\LecturerCourse;
+use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -192,6 +193,51 @@ class EnrollmentController extends Controller
 
 
         
+    }
+
+
+    public function pendingstudents($lcId){
+
+        $er = Enrollment::where('lecturer_course_id', $lcId)->where('status', 1)->get();
+        if ($er){
+
+            $lc = LecturerCourse::where('id', $lcId)->first();
+            return view('lecturer.pendingstudents', compact('er', 'lc'));
+        }
+        else{
+            return view('lecturer.pendingstudents');
+        }
+
+
+    }
+
+
+    public function approvestudents(Request $request){
+        
+
+        
+        $selectedStudentsArray = explode(',', $request->input('selectedStudents', []));
+        
+        foreach ($selectedStudentsArray as $studentId) {
+            $student = Student::find($studentId);
+            
+            if ($student) {
+                // Update the lecturer's status to approved
+                $er = Enrollment::where('student_id', $student->id)->first();
+
+                $er->status = 2;
+                $saved = $er->save();
+                
+                
+                
+            }
+        }
+        if (!$saved) {
+            return back()->with('error', 'Failed to approve students.');
+        }
+        else{
+            return back()->with('success', '.'.count($selectedStudentsArray).' students approved successfully.');
+        }
     }
 
     /**

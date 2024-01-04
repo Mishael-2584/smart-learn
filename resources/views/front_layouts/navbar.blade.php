@@ -33,12 +33,7 @@
 						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
 							<!-- Dropdown submenu -->
 							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Course</a>
-								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="course-grid.html">Course Grid Classic</a></li>
-									<li> <a class="dropdown-item" href="course-grid-2.html">Course Grid Minimal</a></li>
-									
-								</ul>
+								<a class="dropdown-item" href="#">Courses</a>
 							</li>
 
 							<!-- Dropdown submenu -->
@@ -52,48 +47,6 @@
 							<li> <a class="dropdown-item" href="instructor-list.html">Instructor List</a></li>
 							<li> <a class="dropdown-item" href="instructor-single.html">Instructor Single</a></li>
 							<li> <a class="dropdown-item" href="faq.html">FAQs</a></li>
-							<li> <a class="dropdown-item" href="error-404.html">Error 404</a></li>
-							<li> <a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
-						</ul>
-					</li>
-
-					<!-- Nav item 3 Account -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="accounntMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accounts</a>
-						<ul class="dropdown-menu" aria-labelledby="accounntMenu">
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#"><i class="fas fa-user-tie fa-fw me-1"></i>Instructor</a>
-								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="instructor-dashboard.html"><i class="bi bi-grid-fill fa-fw me-1"></i>Dashboard</a> </li>
-									<li> <a class="dropdown-item" href="instructor-manage-course.html"><i class="bi bi-basket-fill fa-fw me-1"></i>Courses</a> </li>
-									<li> <a class="dropdown-item" href="instructor-create-course.html"><i class="bi bi-file-earmark-plus-fill fa-fw me-1"></i>Create Course</a> </li>
-									<li> <a class="dropdown-item" href="course-added.html"><i class="bi bi-file-check-fill fa-fw me-1"></i>Course Added</a> </li>
-									<li> <a class="dropdown-item" href="instructor-earning.html"><i class="fas fa-chart-line fa-fw me-1"></i>Earnings</a> </li>
-									<li> <a class="dropdown-item" href="instructor-studentlist.html"><i class="fas fa-user-graduate fa-fw me-1"></i>Students</a> </li>
-									<li> <a class="dropdown-item" href="instructor-order.html"><i class="bi bi-cart-check-fill fa-fw me-1"></i>Orders</a> </li>
-									<li> <a class="dropdown-item" href="instructor-review.html"><i class="bi bi-star-fill fa-fw me-1"></i>Reviews</a> </li>
-									<li> <a class="dropdown-item" href="instructor-payout.html"><i class="fas fa-wallet fa-fw me-1"></i>Payout</a> </li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-								<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#"><i class="fas fa-user-graduate fa-fw me-1"></i>Student</a>
-								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="student-dashboard.html"><i class="bi bi-grid-fill fa-fw me-1"></i>Dashboard</a> </li>
-									<li> <a class="dropdown-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-1"></i>My Subscriptions</a> </li>
-									<li> <a class="dropdown-item" href="student-course-list.html"><i class="bi bi-basket-fill fa-fw me-1"></i>Courses</a> </li>
-									<li> <a class="dropdown-item" href="student-payment-info.html"><i class="bi bi-credit-card-2-front-fill fa-fw me-1"></i>Payment Info</a> </li>
-									<li> <a class="dropdown-item" href="student-bookmark.html"><i class="fas bi-cart-check-fill fa-fw me-1"></i>Wishlist</a> </li>
-								</ul>
-							</li>
-							
-							<li> <a class="dropdown-item" href="#"><i class="fas fa-user-cog fa-fw me-1"></i>Admin (Coming Soon)</a> </li>
-							<li> <hr class="dropdown-divider"></li>
-							<li> <a class="dropdown-item" href="instructor-edit-profile.html"><i class="fas fa-fw fa-edit me-1"></i>Edit Profile</a> </li>
-							<li> <a class="dropdown-item" href="instructor-setting.html"><i class="fas fa-fw fa-cog me-1"></i>Settings</a> </li>
-							<li> <a class="dropdown-item" href="instructor-delete-account.html"><i class="fas fa-fw fa-trash-alt me-1"></i>Delete Profile</a> </li>
 						</ul>
 					</li>
 
@@ -103,20 +56,17 @@
                         <ul class="dropdown-menu" aria-labelledby="pagesMenu">
                             <!-- Dropdown submenu -->
                             <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                            <li> <a class="dropdown-item" href="{{ route('lecturersignup') }}">Sign Up For Lecturers </a></li>
+                            
 
                             <!-- Dropdown submenu -->
                             <li class="dropdown-submenu dropend">
-                                <a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
+                                <a class="dropdown-item dropdown-toggle" href="#">Sign Up</a>
                                 <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-                                    <li> <a class="dropdown-item" href="{{ route('studentssignup') }}">Sign Up</a></li>
-                                    <li> <a class="dropdown-item" href="forgot-password.html">Forgot Password</a></li>
+                                    <li> <a class="dropdown-item" href="{{ route('studentssignup') }}">Sign Up For Students</a></li>
+									<li> <a class="dropdown-item" href="{{ route('lecturersignup') }}">Sign Up For Lecturers </a></li>
                                 </ul>
                             </li>
-
                             <li> <a class="dropdown-item" href="faq.html">FAQs</a></li>
-                            <li> <a class="dropdown-item" href="error-404.html">Error 404</a></li>
-                            <li> <a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
                         </ul>
                     </li>
 					

@@ -60,6 +60,7 @@ class AuthenticationController extends Controller
         $users = Student::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'matric_no' => $request->input('matric'),
             'password' => bcrypt($request->input('password')),
             'role_id' => 4, 
         ]);

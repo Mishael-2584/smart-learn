@@ -200,17 +200,17 @@
             <figure class="avatar mr-2 bg-purple text-white" data-initial="{{ strtoupper(substr($user->name, 0, 1)) }}{{ strtoupper(substr(strstr($user->name, ' '), 1, 1)) }}"></figure>
             <div class="d-sm-none d-lg-inline-block">
                 Hi, @isset($user){{$user->name}}@endisset
-                @if(isset($user) && ($user->role->id == 3 || $user->role->id == 4) && ($user->verified == 2))
+                @if(isset($user) && ($user->role->id == 3 || $user->role->id == 4) && (($user->status == 2) ||($user->verified == 2)))
                     <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
                         <i class="fas fa-check-circle fa-lg text-success"></i>
                     </span>
-                @elseif(isset($user) && ($user->role->id == 3||$user->role->id == 4) && ($user->verified == 1))
+                @elseif(isset($user) && ($user->role->id == 3||$user->role->id == 4) && (($user->status == 1) ||($user->verified == 1)))
                     
                     <span class="badge badge-warning rounded-circle p-0" style="background-color: transparent;" title="Pending Approval">
                         <i class="fas fa-clock fa-lg text-warning"></i>
                     </span>
 
-                @elseif(isset($user) && ($user->role->id == 3||$user->role->id == 4) && ($user->verified == 0))
+                @elseif(isset($user) && ($user->role->id == 3||$user->role->id == 4) && (($user->status == 0) || ($user->verified == 0)))
                     <span class="badge badge-danger rounded-circle p-0" style="background-color: transparent;" title="Not Verified">
                         <i class="fas fa-times-circle fa-lg text-danger"></i>
                     </span>

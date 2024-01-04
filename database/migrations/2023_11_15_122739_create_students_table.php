@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('matric_no')->nullable()->unique();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('major_id')->nullable();
             $table->string('level')->nullable();
             $table->string('group')->nullable();
+            $table->integer('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
 

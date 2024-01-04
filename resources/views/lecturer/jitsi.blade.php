@@ -30,22 +30,12 @@
       interfaceConfigOverwrite: {
         
       },
-      // jwt: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6InZwYWFzLW1hZ2ljLWNvb2tpZS05YmNmM2EyOTQzYWU0ODNiYTMyMWYwN2I4ZGRjOTMyNC8xNzNlYzcifQ.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MDI1NjE0MzIuNTczODg5LCJleHAiOjE3MDI1NzIyMzIuNTczODg5LCJuYmYiOjE3MDI1NjE0MzIuNTczODg5LCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtOWJjZjNhMjk0M2FlNDgzYmEzMjFmMDdiOGRkYzkzMjQiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOiJ0cnVlIiwib3V0Ym91bmQtY2FsbCI6InRydWUiLCJzaXAtb3V0Ym91bmQtY2FsbCI6ImZhbHNlIiwidHJhbnNjcmlwdGlvbiI6InRydWUiLCJyZWNvcmRpbmciOiJ0cnVlIn0sInVzZXIiOnsiaGlkZGVuLWZyb24tcmVjb3JkZXIiOiJmYWxzZSIsIm1vZGVyYXRvciI6InRydWUiLCJuYW1lIjoiTWlzaGFlbCBHZWJyZSBXb3JhbmNoYSIsImlkIjoxLCJlbWFpbCI6Im0xc2hhM2x3M2xkb0BnbWFpbC5jb20ifSwicm9vbSI6eyJyZWdleCI6dHJ1ZX19LCJyb29tIjoiKiJ9.OM7rrPn6Skxw_tHTUhmzeDfcBN8Z6ZwBlCzbZIuWx1p77CV-c_B7stl-h2vbOTweNdPFViDFJ2zXbnMQAelyXYSo4eqSMnqXFLG0hNP6pv8w6sg1_N2GtCl4GmWb_5WT_RpbWwP1MffTddd70PS-C1Tu6S6sziP1u0YyHNdxo8J_tu1-y1jd4vpw7yTGZ05CTSJf2orctM5Hn8VCgx93_91Sy4X0bTm5OvW-67Iofd-dS_TGVpUwKuM0Ih329UoBY8wxG0vFzS3EgQEB1DKW0_3oXSxq3QucOfq3hz6RlMEw2VfbMXTdsP0aqc-m_yqk03Xrcv6TzjPiGQMu8wcgTA',
       jwt: '{{$jwt}}'
     };
     
     
     
     options = Object.assign(options, {
-        // configOverwrite: {
-        //     deploymentInfo: {
-        //         userRolesBasedOnToken: true
-        //     },
-        //     startWithVideoMuted: true,
-        //     startWithAudioMuted: true,
-        //     enableUserRolesBasedOnToken: true,
-            
-        // },
         interfaceConfigOverwrite: {
             TOOLBAR_BUTTONS: [
                 'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
@@ -61,19 +51,85 @@
     
     
     const api = new JitsiMeetExternalAPI(domain, options);
-
-    
-    //     api.executeCommand('toggleLobby', false);
-      @if($lc->departmentcourse != null)
-          api.executeCommand('subject', '{{!! $lc->departmentcourse->course->title !!}}');
-      @else 
-          api.executeCommand('subject', '{{!! $lc->course->title !!}}');
       
-      @endif
+
+      let attendance = {};
+
+    api.on('participantJoined', (participant) => {
+        if (!participant.isLocal) {
+            const email = participant.email; // Assuming 'email' is the property for the participant's email
+            if (!attendance[email]) {
+                attendance[email] = {
+                    name: participant.displayName || participant.id,
+                    email: email, // Store the email as well
+                    sessions: []
+                };
+            }
+            attendance[email].sessions.push({
+                joinTime: new Date().toISOString(),
+                leftTime: null
+            });
+        }
+    });
     
-      api.addEventListener('videoConferenceLeft', () => {
-          window.location.href = '{{ route('lectureropencourse', ['lcId' => $lc->id]) }}';
-      });
+    api.on('participantLeft', (participant) => {
+        const email = participant.email; // Assuming 'email' is the property for the participant's email
+        const participantSessions = attendance[email] && attendance[email].sessions;
+        if (participantSessions) {
+            const currentSession = participantSessions[participantSessions.length - 1];
+            if (currentSession && !currentSession.leftTime) {
+                currentSession.leftTime = new Date().toISOString();
+                currentSession.disconnectReason = participant.disconnectReason || "Unknown reason";
+            }
+        }
+    });
+    
+    // ... (rest of your code for videoConferenceJoined and videoConferenceLeft)
+    
+    // When compiling attendance data, this part remains the same
+
+    let hasJoinedMeeting = false;
+
+    api.on('videoConferenceJoined', () => {
+        hasJoinedMeeting = true;
+    });
+
+    api.on('videoConferenceLeft', () => {
+
+      if(hasJoinedMeeting) {
+        
+        // At the end of the call, compile the attendance data into a JSON file
+        const attendanceArray = Object.values(attendance).map(participant => {
+            return {
+                name: participant.name,
+                email: participant.email, // Including the email in the compiled data
+                sessions: participant.sessions
+            };
+        });
+        
+
+        // Convert the array to a JSON string
+        const attendanceJSON = JSON.stringify(attendanceArray, null, 2); // Pretty print the JSON
+
+        // Trigger a download of the JSON file
+        const blob = new Blob([attendanceJSON], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `attendance-${options.roomName}-${new Date().toISOString()}.json`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Redirect after the download is triggered
+        window.location.href = '{{ route('lectureropencourse', ['lcId' => $lc->id]) }}';
+
+        // Reset the attendance for the next call
+        attendance = {};
+        hasJoinedMeeting = false;
+
+
+      }
+    });
 
 
 </script>

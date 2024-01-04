@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ClassroomStreamPostController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LecturerCourseController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\StudentController;
 use App\Http\Middleware\LecturerMiddleware;
 use App\Models\LecturerCourse;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +40,7 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout
 
 Route::get('/redirect', [AuthenticationController::class, 'redirect'])->name('redirect');
 
-Route::get('/student_signup', function () { return view('auths.register1'); })->name('studentssignup');
+Route::get('/student_signup', function () { return view('auths.studentregister'); })->name('studentssignup');
 Route::post('/student_submit', [AuthenticationController::class, 'studentssubmit'])->name('studentssubmit');
 
 Route::get('/lecturer_signup', function () { return view('auths.lecturerregister'); })->name('lecturersignup');
@@ -79,6 +81,10 @@ Route::middleware('admin')->group( function () {
 
         Route::post('/approvecourses', [AdminController::class, 'approvecourses'])->name('approvecourses');
 
+        Route::post('/approveStudents', [AdminController::class, 'approveStudents'])->name('adminapproveStudents');
+
+        Route::get('/adminpendingstudents', [AdminController::class, 'adminpendingstudents'])->name('adminpendingstudents');
+
         
 
 
@@ -90,9 +96,37 @@ Route::middleware('admin')->group( function () {
 Route::middleware('student')->group(function () {   
     Route::prefix('student')->group(function () {
 
-        Route::get('', function () {
-            return view('student.dashboard');
-        })->name('studentdashboard');
+        Route::get('', [StudentController::class, 'dashboard'])->name('studentdashboard');
+        Route::get('/status', [StudentController::class, 'status'])->name('studentstatus');
+        Route::match(['get', 'post'], '/studentprofileinfo', [StudentController::class, 'studentprofileinfo'])->name('studentprofileinfo');
+        Route::post('/updatestudentprofileinfo', [StudentController::class, 'updatestudentprofileinfo'])->name('updatestudentprofileinfo');
+
+
+        Route::group(['middleware' => 'verifyStudent'], function () {
+            
+            
+            Route::get('/student_enrollcourse', [StudentController::class, 'studentenrollcourse'])->name('studentenrollcourse');
+            Route::get('/studentenrolldept/{lcId}', [StudentController::class, 'studentenrolldept'])->name('studentenrolldept');
+            Route::get('/studentenrollgeds/{lcId}', [StudentController::class, 'studentenrollgeds'])->name('studentenrollgeds');
+            Route::get('/studentenrollunique/{lcId}', [StudentController::class, 'studentenrollunique'])->name('studentenrollunique');
+
+            Route::post('/submitstudentenrolldept/{lcId}', [StudentController::class, 'submitstudentenrolldept'])->name('submitstudentenrolldept');
+            Route::post('/submitstudentenrollgeds/{lcId}', [StudentController::class, 'submitstudentenrollgeds'])->name('submitstudentenrollgeds');
+            Route::post('/submitstudentenrollunique/{lcId}', [StudentController::class, 'submitstudentenrollunique'])->name('submitstudentenrollunique');
+
+            Route::get('/mystudentclasses', [StudentController::class, 'mystudentclasses'])->name('mystudentclasses');
+            Route::get('/studentopencourse/{eId}', [StudentController::class, 'studentopencourse'])->name('studentopencourse');
+
+            Route::get('/jitsimeetingstudent/{eId}', [JitsiController::class, 'jitsimeetingstudent'])->name('jitsimeetingstudent');
+
+            
+            
+
+
+
+            
+
+        });
 
     });
 });
@@ -120,6 +154,22 @@ Route::group(['middleware' => 'lecturer'], function () {
             
             Route::get('/lectureropencourse/{lcId}', [LecturerCourseController::class, 'lectureropencourse'])->name('lectureropencourse');
             Route::get('/jitsimeeting/{lcId}', [JitsiController::class, 'generatetoken'])->name('jitsimeeting');
+
+            Route::get('/pendingstudents/{erId}', [EnrollmentController::class, 'pendingstudents'])->name('pendingstudents');
+            
+            Route::post('/approvestudents', [EnrollmentController::class, 'approvestudents'])->name('approvestudents');
+
+            Route::get('/lectpendingopencourse', [LecturerCourseController::class, 'lectpendingopencourse'])->name('lectpendingopencourse');
+            // Route::get('/lecturerapprovestudents', [EnrollmentController::class, 'lecturerapprovestudents'])->name('lecturerapprovestudents');
+
+
+            Route::post('/lecturerpost/{lcId}', [ClassroomStreamPostController::class, 'lecturerpost'])->name('lecturerpost');
+            
+            Route::post('/lecturerpostedit/{pId}', [ClassroomStreamPostController::class, 'lecturerpostedit'])->name('lecturerpostedit');
+            
+            Route::delete('/lecturer/post/{id}', [ClassroomStreamPostController::class, 'lecturerpostdelete'])->name('lecturerpostdelete');
+            
+
 
 
             

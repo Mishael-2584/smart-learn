@@ -112,7 +112,7 @@
 
                         <!-- Sign up link -->
                         <div class="mt-4 text-center">
-                            <span>Don't have an account? <a href="sign-up.html">Signup here</a></span>
+                            <span>Don't have an account? <a href="{{ route('studentssignup') }}">Signup here</a></span>
                         </div>
                     </div>
                 </div> <!-- Row END -->
