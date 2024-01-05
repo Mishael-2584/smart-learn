@@ -76,7 +76,7 @@
                         <br>
                         <div class="profile-widget-contact-item">
                           <div class="profile-widget-contact-label"><strong>Course Of Study:</strong></div>
-                          <div class="profile-widget-contact-value">{{ $student->major->title }}</div>
+                          <div class="profile-widget-contact-value">{{ optional($student->major)->title }}</div>
                         </div>
                         <br>
                         <div class="profile-widget-contact-item">
