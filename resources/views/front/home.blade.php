@@ -58,34 +58,6 @@ Main Banner START -->
 Main Banner END -->
 
 <!-- =======================
-Client START -->
-<section class="pb-0 pb-md-5">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-12">
-				<!-- Slider START -->
-				<div class="tiny-slider">
-					<div class="tiny-slider-inner" data-arrow="false" data-dots="false" data-gutter="80" data-items-xl="6" data-items-lg="5" data-items-md="4" data-items-sm="3" data-items-xs="2" data-autoplay="2000">
-						<!-- Slide item START -->
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/coca-cola.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/android.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/envato.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/microsoft.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/netflix.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/google.svg") }}" alt="client-logo"></div>
-						<div class="item"> <img class="grayscale" src="{{ asset("eduport/assets/images/client/linkedin.svg") }}" alt="client-logo"></div>
-						<!-- Slide item END -->
-					</div>
-				</div>
-				<!-- Slider END -->
-			</div>
-		</div>
-	</div>
-</section>
-<!-- =======================
-Client END -->
-
-<!-- =======================
 About START -->
 <section>
 	<div class="container">

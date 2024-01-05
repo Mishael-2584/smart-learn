@@ -267,7 +267,7 @@
 <script>
     $(document).on('click', '.delete-post', function(e) {
         e.preventDefault();
-        var postId = $(this).attr('id').split('-')[2]; // If the id is 'delete-item-{{$p->id}}', the index should be 2
+        var postId = $(this).attr('id').split('-')[2]; 
         var deleteUrl = deletePostUrlTemplate.replace(':id', postId);
     
         
