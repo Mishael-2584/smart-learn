@@ -656,7 +656,7 @@ Newsletter END -->
 
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <!-- Bootstrap JS -->
 <script src="{{ asset('eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -667,6 +667,6 @@ Newsletter END -->
 
 <!-- Template Functions -->
 <script src="{{ asset('eduport/assets/js/functions.js') }}"></script>
-@endsection
+@endsection --}}
 
 
