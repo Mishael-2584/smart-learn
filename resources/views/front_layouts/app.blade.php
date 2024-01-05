@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Webestica.com">
-	<meta name="description" content="Eduport- LMS, Education and Course Theme">
+	<meta name="description" content="SmartLearn- Your go to Learning Classroom">
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="{{ asset("eduport/assets/images/favicon.ico") }}">
