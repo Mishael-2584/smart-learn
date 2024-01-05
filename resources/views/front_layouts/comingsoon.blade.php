@@ -10,7 +10,7 @@
 	<meta name="description" content="Eduport- LMS, Education and Course Theme">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset("eduport/assets/images/favicon.ico") }}">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,12 +18,12 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
 
 	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/font-awesome/css/all.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/bootstrap-icons/bootstrap-icons.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/aos/aos.css") }}">
 
 	<!-- Theme CSS -->
-	<link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/css/style.css") }}">
 
 </head>
 
@@ -50,15 +50,15 @@
 		<div class="row g-5 align-items-center justify-content-center">
 			<div class="col-lg-5">
 				<!-- Title -->
-				<h1 class="mt-4 mt-lg-0">We are building something awesome!</h1>
+				<h1 class="mt-4 mt-lg-0">We are building something awesome!<br> <b> @ SMARTLEARN!</b></h1>
 				<!-- info -->
-				<p>Hey you! Eduport is coming. We are doing our best to launch our website and we will be back soon.</p>
+                <p>We are currently working on the website. We will be back soon to launch fully. Thank you.</p>
 				<!-- Progress bar -->
 				<div class="overflow-hidden mt-4">
 					<p class="mb-1 h6 fw-light text-start">Launch progress</p>
 					<div class="progress progress-md progress-percent-bg bg-light">
-						<div class="progress-bar progress-bar-striped bg-blue aos" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:85%">
-							<span class="progress-percent text-white">85%</span>
+						<div class="progress-bar progress-bar-striped bg-blue aos" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+							<span class="progress-percent text-white">60% Completed</span>
 						</div>
 					</div>
 				</div>
@@ -75,11 +75,12 @@
 						</div>
 					</div>
 				</form>
+                <br>
 			</div>
 
 			<div class="col-lg-7 text-center">
 				<!-- Image -->
-				<img src="assets/images/element/coming-soon.svg" class="h-300px h-sm-400px h-md-500px h-xl-700px" alt="">
+                <img src="{{ asset("eduport/assets/images/element/coming-soon.svg") }}" class="h-300px h-sm-400px h-md-500px h-xl-700px" alt="">
 			</div>
 		</div>
 	</div>
@@ -87,17 +88,21 @@
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
 
+@include('front_layouts.footer')
+
 <!-- Back to top -->
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
 <!-- Bootstrap JS -->
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset("eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
 
 <!-- Vendors -->
-<script src="assets/vendor/aos/aos.js"></script>
+<script src="{{ asset("eduport/assets/vendor/aos/aos.js") }}"></script>
 
 <!-- Template Functions -->
-<script src="assets/js/functions.js"></script>
+<script src="{{ asset("eduport/assets/js/functions.js") }}"></script>
+
+<script src="https://kit.fontawesome.com/201e2d289f.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

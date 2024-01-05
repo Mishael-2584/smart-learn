@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
 
 	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/font-awesome/css/all.min.css") }}">
+	{{-- <link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/font-awesome/css/all.min.css") }}"> --}}
 	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/bootstrap-icons/bootstrap-icons.css") }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/tiny-slider/tiny-slider.css") }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/glightbox/css/glightbox.css") }}">
@@ -53,7 +53,7 @@ Footer END -->
 <!-- Back to top -->
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
-@yield('scripts')
+@include('front_layouts.scripts')
 
 </body>
 </html>

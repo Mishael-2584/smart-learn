@@ -32,6 +32,9 @@ Route::get('/login', function () { return view('auths.login'); })->name('login')
 
 Route::post('/submitlogin', [AuthenticationController::class, 'submitlogin'])->name('submitlogin');
 
+//comingsoon route
+Route::get('/comingsoon', function () { return view('front_layouts.comingsoon'); })->name('comingsoon');
+
 
 
 Route::get('/', function () { return view('front.home'); })->name('front');

@@ -1,7 +1,5 @@
 <div class="main-sidebar sidebar-style-2">
 
-
-
     @if (Session::get('isAuthenticated')==true && Session::get('role')==4)
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
@@ -27,13 +25,14 @@
                             <li><a class="nav-link" href="{{ route('studentenrollcourse') }}">Course Enrollment</a></li>
                         </ul>
                         <li><a href="{{ route('mystudentclasses') }}"><i class="fas fa-chalkboard-teacher"></i><span>My Classes</span></a></li>
+                        <li><a href="{{ route('comingsoon') }}"><i class="fas fa-calendar"></i><span>My Schedule</span></a></li>
                     </li>
                     <li class="menu-header">Options</li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Profile Settings</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('studentprofileinfo') }}">Profile Info</a></li>
-                            <li><a class="nav-link" href="components-avatar.html">Profile Status</a></li>
+                            <li><a class="nav-link" href="{{ route('comingsoon') }}">Profile Status</a></li>
                         </ul>
                         <a href="{{ route('logout') }}" class="nav-link"><i class="fas fa-power-off"></i> <span>Logout</span></a>
                     </li>
@@ -66,27 +65,19 @@
                         </ul>
                         <li><a href="{{ route('myclasses') }}"><i class="fas fa-chalkboard-teacher"></i> <span>My Classes</span></a></li>
                     </li>
+                    <li><a href="{{ route('comingsoon') }}"><i class="fas fa-calendar"></i><span>My Schedule</span></a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>My Students</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('lectpendingopencourse') }}">Pending Students</a></li>
-                            <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar"></i> <span>Schedule</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="modules-calendar.html">Calendar</a></li>
-                            <li><a class="nav-link" href="modules-chartjs.html">ChartJS</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>SL - Classroom</span></a></li>
                     <li class="menu-header">Options</li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Profile Settings</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('lecturerprofileinfo') }}">Profile Info</a></li>
-                            <li><a class="nav-link" href="components-avatar.html">Profile Status</a></li>
+                            <li><a class="nav-link" href="{{ route('comingsoon') }}">Profile Status</a></li>
                         </ul>
                         <a href="{{ route('logout') }}" class="nav-link"><i class="fas fa-power-off"></i> <span>Logout</span></a>
                     </li>
@@ -154,16 +145,16 @@
                             <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Students</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('adminpendingstudents') }} ">Pending Students</a></li>
-                                <li><a class="nav-link" href="forms-editor.html">Editor</a></li>
-                                <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
+                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Editor</a></li>
+                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Validation</a></li>
                             </ul>
                         </li>
                         
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i> <span>Settings</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="features-profile.html">Profile</a></li>
-                                <li><a class="nav-link" href="features-settings.html">Settings</a></li>
+                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Profile</a></li>
+                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Settings</a></li>
                             </ul>
                         </li>
                     </ul>

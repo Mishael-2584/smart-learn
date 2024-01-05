@@ -96,8 +96,8 @@ Work START -->
 		<!-- Title -->
 		<div class="row mb-4">
 			<div class="col-sm-10 col-xl-6 text-center mx-auto">
-				<h2>You can be your guiding star with our help</h2>
-				<p class="mb-0">As it so contrasted oh estimating instrument. Size like body someone had. Are conduct viewing boy minutes warrant the expense? Tolerably behavior may admit daughters offending her ask own. Praise effect wishes change way and any wanted.</p>
+				<h2>Sign Up below to setup your Lecturer/Instructor Account</h2>
+				<p class="mb-0">Are you a lecturer or an instructor and want to start teaching? Sign up now with our easy process and verification</p>
 			</div>
 		</div>
 
@@ -113,16 +113,16 @@ Work START -->
 			<!-- Item -->
 			<div class="col-md-4 text-center">
 				<img src="{{ asset("eduport/assets/images/element/add-course.svg") }}" class="h-200px" alt="">
-				<h4 class="mt-3">Add your Course</h4>
-				<p class="text-truncate-2 mb-0">Proceed how any engaged visitor. Explained propriety off out perpetual his you. Feel sold off felt nay rose met you. We so entreaties cultivated astonished is. Was sister for a few longer Mrs sudden talent become. Done may bore quit evil old mile. If likely am of beauty tastes. 
+				<h4 class="mt-3">Get Verified</h4>
+				<p class="text-truncate-2 mb-0">Get Verfied by adding your School/s that You belong to. You can add multiple schools. Update your profile with relevant information like your details and contacts to get verification.
 				</p>
 			</div>
 
 			<!-- Item -->
 			<div class="col-md-4 text-center">
-				<img src="{{ asset("eduport/assets/images/element/earn-money.svg") }}" class="h-200px" alt="">
-				<h4 class="mt-3">Start Earning Money</h4>
-				<p class="text-truncate-2 mb-0">Insipidity the sufficient discretion imprudence resolution sir him decisively.  Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do</p>
+				<img src="{{ asset("eduport/assets/images/element/instructor-course.svg") }}" class="h-200px" alt="">
+				<h4 class="mt-3">Enroll & Start Teaching</h4>
+				<p class="text-truncate-2 mb-0">Once Verified, you can start teaching by enrolling for departmental courses based on Your School or apply to take a General Course (GEDS) or a unique course. You will have to get approoved by the Admin to make sure you are qualified.</p>
 			</div>
 		</div> <!-- Row END -->
 	</div>
@@ -246,7 +246,7 @@ Form and Tabs START -->
 
 			<!-- Tabs START -->
 			<div class="col-lg-7 z-index-9 mt-5 mt-xl-0">
-				<h3>How to become an Instructor?</h3>
+				<h3>How to become an Instructor/Lecturer?</h3>
 					<ul class="nav nav-pills nav-pill-soft my-4" id="course-pills-tab" role="tablist">
 						<!-- Tab item -->
 						<li class="nav-item me-2 me-lg-4" role="presentation">

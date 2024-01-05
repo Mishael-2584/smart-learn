@@ -652,6 +652,7 @@ Newsletter START -->
 </section>
 <!-- =======================
 Newsletter END -->
+<br>
 
 @endsection
 
@@ -667,3 +668,5 @@ Newsletter END -->
 <!-- Template Functions -->
 <script src="{{ asset('eduport/assets/js/functions.js') }}"></script>
 @endsection
+
+
