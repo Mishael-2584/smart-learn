@@ -10,7 +10,7 @@
 	<meta name="description" content="SmartLearn- Your go to Learning Classroom">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{ asset("eduport/assets/images/favicon.ico") }}">
+	<link rel="shortcut icon" href="{{ asset('eduport/assets/images/favicon.ico') }}">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,13 +18,13 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
 
 	<!-- Plugins CSS -->
-	{{-- <link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/font-awesome/css/all.min.css") }}"> --}}
-	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/bootstrap-icons/bootstrap-icons.css") }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/tiny-slider/tiny-slider.css") }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/vendor/glightbox/css/glightbox.css") }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/vendor/font-awesome/css/all.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/vendor/tiny-slider/tiny-slider.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/vendor/glightbox/css/glightbox.css') }}">
 
 	<!-- Theme CSS -->
-	<link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset("eduport/assets/css/style.css") }}">
+	<link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset('eduport/assets/css/style.css') }}">
 
 </head>
 

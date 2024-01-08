@@ -36,9 +36,22 @@
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item" href="{{ route('comingsoon') }}">Courses</a>
 							</li>
+							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Instructor List</a></li>
+							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
+						</ul>
+					</li>
+<<<<<<< HEAD
 
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
+					<!-- Nav item  Get Started -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Get Started</a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesMenu">
+                            <!-- Dropdown submenu -->
+                            <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                            
+
+                            <!-- Dropdown submenu -->
+                            <li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">About</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
 									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">About Us</a></li>
@@ -75,7 +88,7 @@
 			<!-- Main navbar END -->
 
 			<!-- Login btn -->
-				<a href="{{ route('login') }}" class="btn btn-outline-primary"> login</a>
+				<a href="{{ route('login') }}" class="btn btn-outline-purple d-lg-flex d-none"> login</a>
 			
 
 		</div>

@@ -10,8 +10,8 @@
 <title>Blank Page &mdash; SMARTLEARN </title>
 
 <!-- General CSS Files -->
-<link rel="stylesheet" href="{{ asset("codiepie/assets/modules/bootstrap/css/bootstrap.min.css") }}">
-{{-- <link rel="stylesheet" href="{{ asset("codiepie/assets/modules/fontawesome/css/all.min.css") }}"> --}}
+<link rel="stylesheet" href="{{ asset('codiepie/assets/modules/bootstrap/css/bootstrap.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('codiepie/assets/modules/fontawesome/css/all.min.css') }}"> --}}
 
 <!-- CSS Libraries -->
 <link rel="stylesheet" href="{{ asset("codiepie/assets/modules/datatables/datatables.min.css") }}">
