@@ -46,7 +46,7 @@
                     <div class="col-sm-10 col-xl-8 m-auto">
                         <!-- Title -->
                         <span class="mb-0 fs-1">👋</span>
-                        <h1 class="fs-2">Login into Eduport!</h1>
+                        <h1 class="fs-2">Login into SMARTLEARN!</h1>
                         <p class="lead mb-4">Nice to see you! Please log in with your account.</p>
 
                         <!-- Form START -->

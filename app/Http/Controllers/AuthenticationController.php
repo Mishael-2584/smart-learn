@@ -24,7 +24,8 @@ class AuthenticationController extends Controller
             $user = Auth::user();
             
             if (session()->get('role')===4) {
-                return redirect()->route('studentdashboard');
+                // $user = Student::find(session()->get('id'));
+                return redirect()->route('studentdashboard', compact('user'));
                 
             } elseif (session()->get('role')===3) {
                 return redirect()->route('lecturerdashboard');
@@ -59,6 +60,7 @@ class AuthenticationController extends Controller
         $users = Student::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'matric_no' => $request->input('matric'),
             'password' => bcrypt($request->input('password')),
             'role_id' => 4, 
         ]);

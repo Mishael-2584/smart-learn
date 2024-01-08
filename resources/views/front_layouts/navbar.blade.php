@@ -34,29 +34,41 @@
 						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
 							<!-- Dropdown submenu -->
 							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Course</a>
-								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="course-grid.html">Course Grid Classic</a></li>
-									<li> <a class="dropdown-item" href="course-grid-2.html">Course Grid Minimal</a></li>
-									
-								</ul>
+								<a class="dropdown-item" href="{{ route('comingsoon') }}">Courses</a>
 							</li>
 
 							<!-- Dropdown submenu -->
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">About</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="about.html">About Us</a></li>
-									<li> <a class="dropdown-item" href="contact-us.html">Contact Us</a></li>
+									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">About Us</a></li>
+									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Contact Us</a></li>
 								</ul>
 							</li>
-							<li> <a class="dropdown-item" href="instructor-single.html">How to Apply</a></li>
-							<li> <a class="dropdown-item" href="instructor-list.html">Become a Teacher</a></li>
-							<li> <a class="dropdown-item" href="faq.html">FAQs</a></li>
+							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Instructor List</a></li>
+							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
 						</ul>
 					</li>
 
+					<!-- Nav item  Get Started -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Get Started</a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesMenu">
+                            <!-- Dropdown submenu -->
+                            <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                            
 
+                            <!-- Dropdown submenu -->
+                            <li class="dropdown-submenu dropend">
+                                <a class="dropdown-item dropdown-toggle" href="#">Sign Up</a>
+                                <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+                                    <li> <a class="dropdown-item" href="{{ route('studentssignup') }}">Sign Up For Students</a></li>
+									<li> <a class="dropdown-item" href="{{ route('lecturersignup') }}">Sign Up For Lecturers </a></li>
+                                </ul>
+                            </li>
+                            <li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
+                        </ul>
+                    </li>
 					
 				</ul>
 			</div>

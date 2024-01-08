@@ -105,9 +105,9 @@ Footer START -->
 										<i class="fas fa-globe me-2"></i>Language
 									</a>
 									<ul class="dropdown-menu min-w-auto" aria-labelledby="languageSwitcher">
-										<li><a class="dropdown-item me-4 text-body" href="#"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
-										<li><a class="dropdown-item me-4 text-body" href="#"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German </a></li>
-										<li><a class="dropdown-item me-4 text-body" href="#"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
+										<li><a class="dropdown-item me-4 text-body" href="#"><img class="fa-fw me-2" src="{{ asset("eduport/assets/images/flags/uk.svg") }}" alt="">English</a></li>
+										<li><a class="dropdown-item me-4 text-body" href="#"><img class="fa-fw me-2" src="{{ asset("eduport/assets/images/flags/gr.svg") }}" alt="">German </a></li>
+										<li><a class="dropdown-item me-4 text-body" href="#"><img class="fa-fw me-2" src="{{ asset("eduport/assets/images/flags/sp.svg") }}" alt="">French</a></li>
 									</ul>
 								</div>
 							</li>
