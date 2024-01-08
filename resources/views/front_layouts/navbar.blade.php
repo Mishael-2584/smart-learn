@@ -55,15 +55,13 @@
 							<li> <a class="dropdown-item" href="faq.html">FAQs</a></li>
 						</ul>
 					</li>
-
-
-					
+	
 				</ul>
 			</div>
 			<!-- Main navbar END -->
 
 			<!-- Login btn -->
-				<a href="{{ route('login') }}" class="btn btn-outline-primary"> login</a>
+				<a href="{{ route('login') }}" class="btn btn-outline-purple d-lg-flex d-none"> login</a>
 			
 
 		</div>

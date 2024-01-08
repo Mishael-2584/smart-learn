@@ -33,6 +33,8 @@ Route::post('/student_submit', [AuthenticationController::class, 'studentssubmit
 
 Route::get('/lecturer_signup', function () { return view('auths.lecturerregister'); })->name('lecturersignup');
 Route::post('/lecturer_submit', [AuthenticationController::class, 'staffsubmit'])->name('lecturersubmit');
+Route::get('/classroom', function () { return view('classroom'); })->name('classroom');
+
 
 
 
@@ -52,9 +54,8 @@ Route::middleware('admin')->group( function () {
 Route::middleware('student')->group(function () {   
     Route::prefix('student')->group(function () {
 
-        Route::get('', function () {
-            return view('student.dashboard');
-        })->name('studentdashboard');
+        Route::get('', function () { return view('student.dashboard'); })->name('studentdashboard');
+        Route::get('studentclassroom', function () { return view('student.class'); })->name('studentclassroom');
 
     });
 });

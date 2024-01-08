@@ -530,7 +530,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/17.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/17.jpg') }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
@@ -557,7 +557,7 @@ Event START -->
 					<div class="card">
 						<div class="position-relative">
 							<!-- Image -->
-							<img src="{{ asset("eduport/assets/images/courses/4by3/19.jpg") }}" class="card-img" alt="course image">
+							<img src="{{ asset('eduport/assets/images/courses/4by3/19.jpg') }}" class="card-img" alt="course image">
 							<!-- Overlay -->
 							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
 								<div class="w-100 mt-auto">
