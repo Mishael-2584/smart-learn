@@ -25,7 +25,6 @@
 				<ul class="navbar-nav navbar-nav-scroll mx-auto">
 					<!-- Nav item 1 HOME -->
 					<li class="nav-link"><a class="nav-link-active" href="{{ route('front') }}">HOME</a></li>
-					<li class="nav-link"><a class="nav-link" href="{{ route('lecturersignup') }}">Lecture Sign Up</a></li>
 					
 
 					<!-- Nav item 2 Pages -->
@@ -40,7 +39,7 @@
 							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
 						</ul>
 					</li>
-<<<<<<< HEAD
+
 
 					<!-- Nav item  Get Started -->
                     <li class="nav-item dropdown">
@@ -63,25 +62,6 @@
 						</ul>
 					</li>
 
-					<!-- Nav item  Get Started -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Get Started</a>
-                        <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                            <!-- Dropdown submenu -->
-                            <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                            
-
-                            <!-- Dropdown submenu -->
-                            <li class="dropdown-submenu dropend">
-                                <a class="dropdown-item dropdown-toggle" href="#">Sign Up</a>
-                                <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-                                    <li> <a class="dropdown-item" href="{{ route('studentssignup') }}">Sign Up For Students</a></li>
-									<li> <a class="dropdown-item" href="{{ route('lecturersignup') }}">Sign Up For Lecturers </a></li>
-                                </ul>
-                            </li>
-                            <li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
-                        </ul>
-                    </li>
 					
 				</ul>
 			</div>
