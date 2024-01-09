@@ -75,24 +75,14 @@ class CourseController extends Controller
             DB::beginTransaction();
             // dd($request->all());
             // Create a new course
-
-            // $course = Course::create([
-            //     'imgpath' => $request->imgpath,
-            //     'course_code' => $request->code,
-            //     'title' => $request->title,
-            //     'description' => $request->description,
-            //     'isGEDS' => 0,
-            // ]);
-
-            $course = Course::all();
-            $course->imgpath = $request->imgpath;
-            $course->course_code = $request->code;
-            $course->title = $request->title;
-            $course->description = $request->description;
-            $course->isGEDS = 0;
-            $save = $course->save();
-
-            dd($save);
+            $course = Course::create([
+                'imgpath' => $request->imgpath,
+                'course_code' => $request->code,
+                'title' => $request->title,
+                'description' => $request->description,
+                'isGEDS' => 0,
+            ]);
+    
             // Check if course creation is successful
             if ($course) {
                 $departmentCourse = DepartmentCourse::create([
@@ -110,7 +100,7 @@ class CourseController extends Controller
                 }
             } else {
                 DB::rollBack();
-                return back()->with('error', 'Course not created');
+                return back()->with('error', 'Course not created!');
             }
         } catch (Exception $e) {
             DB::rollBack();

@@ -160,7 +160,18 @@
                                                                 <button type="submit" id="save-button-{{$p->id}}" class="btn btn-success edit-buttons">Save Changes</button>
                                                                 <button type="button" id="close-button-{{$p->id}}" class="btn btn-secondary edit-buttons">Close</button>
                                                             </form>
+                                                            <br>
+                                                            <a href="#commentsModal" data-toggle="modal">View Comments</a>
                                                         </div>
+
+
+                                                         
+
+
+
+
+
+
                                                         @endif
                                                     
                                                     
@@ -168,10 +179,13 @@
                                                 @endforeach
                                                 @endisset
                                             </div>
+                                                    
                                                                                                               
                                         </div>
                                     
                                     </div>
+
+                                          
                                     <div class="tab-pane fade" id="submissions" role="tabpanel" aria-labelledby="submissions-tab">
                                     
 
@@ -247,6 +261,46 @@
     </div>
 
 </div>
+
+        <!-- Modal for comments -->
+        <div class="modal fade comment" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="commentsModalLabel">Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Comments list -->
+                <div class="comments-list">
+                  <!-- Individual comment -->
+                  <div class="comment-item" style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="user-initials-circle">{{ $p->lecturer->initials }}</div>
+                    <div class="comment-content" style="margin-left: 8px;">
+                      <strong>{{ $p->lecturer->name }}</strong>
+                      <p>{! $p->content !}</p>
+                      <small>{{ $p->updated_at }}</small>
+                    </div>
+                  </div>
+                  <!-- More comments -->
+                </div>
+              </div>
+              <div class="modal-footer">
+                <!-- Add comment form -->
+                
+                <form method="POST" action="{{ route('postcommentl', $p->id) }}" id="commentForm" style="width: 100%;">
+                   @csrf 
+                  <input type="text" class="comment-input" placeholder="Write a comment..." class="form-control" />
+                  <button class="btn btn-primary" type="submit">Post Comment</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 @endsection
 
 
@@ -288,6 +342,66 @@
             });
         }
     });
+$(document).ready(function() {
+    $('#commentForm').submit(function(e) {
+        e.preventDefault();
+
+        // Get the comment text from the input field with class 'comment-input'
+        var commentText = $(this).find('.comment-input').val();
+        var postId = "{{ $p->id }}" 
+
+        
+
+        if (commentText.trim() === '') {
+            alert('Please write a comment.');
+            return;
+        }
+
+        // Prepare the data to be sent in the AJAX request
+        var formData = {
+            comment: commentText,
+            _token: {{ csrf_token() }},
+            // Include any other data your controller may need
+        };
+
+        
+
+        // Send the AJAX request to the server
+        $.ajax({
+            type: 'POST',
+            url: 'lecturer/postcomment/' + postId, // Append the post ID to the route
+            data: formData, 
+            success: function(response) {
+                // Append the comment only after successful server-side processing
+                // The 'response' variable should contain the data returned from the server
+                var initials = response.initials || "XX";
+                var name = response.name || "John Doe";
+                var currentDate = new Date(response.date).toLocaleString();
+
+                var newComment = `
+                    <div class="comment-item" style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div class="user-initials-circle">${initials}</div>
+                        <div class="comment-content" style="margin-left: 8px;">
+                            <strong>${name}</strong>
+                            <p>${commentText}</p>
+                            <small>${currentDate}</small>
+                        </div>
+                    </div>
+                `;
+
+                $('.comments-list').append(newComment);
+            },
+            error: function(xhr, status, error) {
+                // Handle any errors that occurred during the request
+                
+                alert('Error adding comment: ' + error);
+            }
+        });
+
+        // Clear the input field
+        $(this).find('.comment-input').val('');
+    });
+});
 </script>
 <script>
 function openEditor(event, content, postId) {
@@ -403,6 +517,52 @@ function openEditor(event, content, postId) {
     display: none;
     }
     
+    /* Comments modal styling */
+    .comment-item {
+      display: flex;
+      align-items: flex-start;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .user-initials-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #555;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+    }
+    
+    .comment-content {
+      flex-grow: 1;
+    }
+    
+    .comment-content strong {
+      display: block;
+    }
+    
+    .comment-content p {
+      margin-bottom: 0px;
+    }
+    
+    #commentForm {
+      display: flex;
+      width: 100%;
+    }
+    
+    #commentForm input[type="text"] {
+      margin-right: 8px;
+      flex-grow: 1;
+    }
+    
+    #commentForm button {
+      white-space: nowrap;
+    }
   </style>
     
 @endsection

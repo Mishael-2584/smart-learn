@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ClassroomStreamPostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
@@ -173,6 +174,8 @@ Route::group(['middleware' => 'lecturer'], function () {
             Route::post('/lecturerpostedit/{pId}', [ClassroomStreamPostController::class, 'lecturerpostedit'])->name('lecturerpostedit');
             
             Route::delete('/lecturer/post/{id}', [ClassroomStreamPostController::class, 'lecturerpostdelete'])->name('lecturerpostdelete');
+            //postcommentl route
+            Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcommentl');
             
 
 
