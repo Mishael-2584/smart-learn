@@ -71,19 +71,28 @@ class CourseController extends Controller
     public function postcourse(Request $request)
     {
 
-        
         try {
             DB::beginTransaction();
             // dd($request->all());
             // Create a new course
-            $course = Course::create([
-                'imgpath' => $request->imgpath,
-                'course_code' => $request->code,
-                'title' => $request->title,
-                'description' => $request->description,
-                'isGEDS' => 0,
-            ]);
-    
+
+            // $course = Course::create([
+            //     'imgpath' => $request->imgpath,
+            //     'course_code' => $request->code,
+            //     'title' => $request->title,
+            //     'description' => $request->description,
+            //     'isGEDS' => 0,
+            // ]);
+
+            $course = Course::all();
+            $course->imgpath = $request->imgpath;
+            $course->course_code = $request->code;
+            $course->title = $request->title;
+            $course->description = $request->description;
+            $course->isGEDS = 0;
+            $save = $course->save();
+
+            dd($save);
             // Check if course creation is successful
             if ($course) {
                 $departmentCourse = DepartmentCourse::create([
