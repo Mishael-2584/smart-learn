@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassroomStreamPost;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,28 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function postcomment(Request $request, $pId)
     {
         //
+        $post = ClassroomStreamPost::find($pId);
+        
+        $comment = $post->comments()->create([
+            'content' => $request->input('content'),
+        ]);
+
+
+        if ($comment) {
+            return response()->json($comment);
+        }
+        else{
+            return response()->json(['error' => 'Something went wrong'], 500);
+
+        }
+
+
+
+        
+
     }
 
     /**

@@ -25,4 +25,9 @@ class ClassroomStreamPost extends Model
 
         return $this->belongsTo(LecturerCourse::class, 'lecturer_course_id');
     }
+
+    //has many relationship with comment model
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

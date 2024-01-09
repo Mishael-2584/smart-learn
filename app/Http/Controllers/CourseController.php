@@ -83,6 +83,8 @@ class CourseController extends Controller
                 'description' => $request->description,
                 'isGEDS' => 0,
             ]);
+
+            
     
             // Check if course creation is successful
             if ($course) {
@@ -101,7 +103,7 @@ class CourseController extends Controller
                 }
             } else {
                 DB::rollBack();
-                return back()->with('error', 'Course not created');
+                return back()->with('error', 'Course not created!');
             }
         } catch (Exception $e) {
             DB::rollBack();
