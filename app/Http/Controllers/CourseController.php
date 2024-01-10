@@ -15,10 +15,14 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+  // Example in a Laravel controller
+public function index()
+{
+    $randomColorIndex = rand(1, 4); // Generate a random number between 1 and 4
+
+    return view('lecturer.mycourses', compact('randomColorIndex'));
+}
+
 
     public function myclasses(){
 
@@ -71,25 +75,17 @@ class CourseController extends Controller
     public function postcourse(Request $request)
     {
 
-
-        $course = Course::create([
-            'imgpath' => $request->imgpath,
-            'course_code' => $request->code,
-            'title' => $request->title,
-            'description' => $request->description,
-            'isGEDS' => 0,
-        ]);
-        
-
-        dd($course);
-        
         try {
             DB::beginTransaction();
             // dd($request->all());
             // Create a new course
-            
-
-            
+            $course = Course::create([
+                'imgpath' => $request->imgpath,
+                'course_code' => $request->code,
+                'title' => $request->title,
+                'description' => $request->description,
+                'isGEDS' => 0,
+            ]);
     
             // Check if course creation is successful
             if ($course) {

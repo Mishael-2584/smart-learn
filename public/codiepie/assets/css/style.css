@@ -1,0 +1,287 @@
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: #066ac9;
+  --bs-white: #fff;
+  --bs-secondary: #9a9ea4;
+  --bs-success: #0cbc87;
+  --bs-info: #17a2b8;
+  --bs-warning: #f7c32e;
+  --bs-danger: #d6293e;
+  --bs-light: #f5f7f9;
+  --bs-dark: #24292d;
+  --bs-orange: #fd7e14;
+  --bs-purple: #6f42c1;
+  --bs-blue: #1d3b53;
+  --bs-primary-rgb: 6, 106, 201;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-secondary-rgb: 154, 158, 164;
+  --bs-success-rgb: 12, 188, 135;
+  --bs-info-rgb: 23, 162, 184;
+  --bs-warning-rgb: 247, 195, 46;
+  --bs-danger-rgb: 214, 41, 62;
+  --bs-light-rgb: 245, 247, 249;
+  --bs-dark-rgb: 36, 41, 45;
+  --bs-orange-rgb: 253, 126, 20;
+  --bs-purple-rgb: 111, 66, 193;
+  --bs-blue-rgb: 29, 59, 83;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+  --bs-body-color-rgb: 116, 117, 121;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-body-font-family: Roboto, sans-serif;
+  --bs-body-font-size: 0.9375rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+  --bs-body-color: #747579;
+  --bs-body-bg: #fff;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+
+.bg-success {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+}
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+.card > hr {
+  margin-right: 0;
+  margin-left: 0;
+}
+.card > .list-group {
+  border-top: inherit;
+  border-bottom: inherit;
+}
+.card > .list-group:first-child {
+  border-top-width: 0;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.card > .list-group:last-child {
+  border-bottom-width: 0;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.card > .card-header + .list-group,
+.card > .list-group + .card-footer {
+  border-top: 0;
+}
+
+.card-body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding: 1rem 1.25rem;
+}
+
+.card-title {
+  margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+  margin-top: -0.25rem;
+  margin-bottom: 0;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+}
+
+.card-link + .card-link {
+  margin-left: 1.25rem;
+}
+
+.card-header {
+  padding: 1rem 1rem;
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 0 solid rgba(0, 0, 0, 0.1);
+}
+.card-header:first-child {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.shadow {
+  -webkit-box-shadow: 0px 0px 40px rgba(29, 58, 83, 0.15) !important;
+          box-shadow: 0px 0px 40px rgba(29, 58, 83, 0.15) !important;
+}
+
+.card:hover .card-overlay-hover:before {
+  opacity: 0.5;
+}
+
+.rounded-top {
+  border-top-left-radius: 0.325rem !important;
+  border-top-right-radius: 0.325rem !important;
+}
+.overflow-hidden {
+  overflow: hidden !important;
+}
+.card, .overflow-hidden {
+  will-change: transform;
+}
+.card-overlay-hover:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #24292d;
+  display: block;
+}
+.overflow-visible {
+  overflow: visible !important;
+}
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+}
+.card .card-img-overlay {
+  z-index: 2;
+}
+.card-metro .card-img-overlay {
+  z-index: 2;
+}
+
+.card:hover .card-element-hover {
+  visibility: visible;
+  margin-top: 0px;
+  opacity: 1;
+}
+.card-body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding: 1rem 1.25rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.85em;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+.badge:empty {
+  display: none;
+}
+
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+.bg-purple {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-purple-rgb), var(--bs-bg-opacity)) !important;
+}
+.bg-opacity-10 {
+  --bs-bg-opacity: 0.1;
+}
+.text-purple {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-purple-rgb), var(--bs-text-opacity)) !important;
+}
+.text-muted {
+  --bs-text-opacity: 1;
+  color: #cfd3d7 !important;
+}
+.g-4,
+.gy-4 {
+  --bs-gutter-y: 1.5rem;
+}
+
+/* Add this in your CSS file */
+.card-color-primary {
+  background-color: #007bff; /* Bootstrap primary color */
+}
+
+.card-color-success {
+  background-color: #28a745; /* Bootstrap success color */
+}
+
+.card-color-dark {
+  background-color: #343a40; /* Bootstrap dark color */
+}
+
+.card-color-white {
+  background-color: #fff; /* White color */
+}
+
+.text-light {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
+}
+
+a {
+  color: #066ac9;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+  color: #066ac9;
+}

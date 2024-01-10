@@ -16,7 +16,6 @@
             </div>
             <h2 class="section-title">Add a new course</h2>
             <p class="section-lead">Fill the form to add a new course</p>
-
             <div class="row">
                 <div class="col-12 col-sm-12 col-lg-12">
                     <div class="card">
@@ -29,27 +28,61 @@
                             <div class="tab-content" id="myTabContent2">
                                 <div class="tab-pane fade show active" id="departmental-courses" role="tabpanel" aria-labelledby="departmental-courses-tab">
                                     <!-- Content for Departmental Courses tab -->
-                                    
                                     <div class="row">
+                                        @php
+                                            $availableColors = ['bg-primary', 'bg-success', 'bg-white', 'bg-dark'];
+                                        @endphp
+
                                         @foreach ($coursedeps as $c)
-                                          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                            <article class="article">
-                                                <div class="article-header">
+
+                                        <div class="col-md-4 col-xl-3">
+                                                        <div class="card p-2 shadow h-100 ">
+                                                            <div class="rounded-top overflow-hidden">
+                                                                <div class="card-overlay-hover">
+                                                                    <!-- Image -->
+                                                                    <img id="backgroundimage" src="{{ $c->course->imgpath }}" class="card-img-top" alt="course image">
+                                                                </div>
+                                                                <!-- Hover element -->
+                                                                <div class="card-img-overlay">
+                                                                    <div class=" d-flex justify-content-end">
+                                                                        <div class="dropdown">
+                                                                        <a href="#" class=" text-center " role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <!-- <i class="fas fa-ellipsis-h text-dark icon-md bg-white rounded-circle"></i> -->
+                                                                            <div class="article-cta">
+                                                                                <a href="{{ route('lecturerenrollcourse', $c->course->id)}}" class="btn btn-primary">Enroll</a>
+                                                                            </div>
+                                                                            <ul class="dropdown-menu me-3">
+                                                                                <li><a class="dropdown-item  text-purple" href="">Open</a></li>
+                                                                                <li><a class="dropdown-item  text-purple" href="#">Unenroll</a></li>
+                                                                                <li><a class="dropdown-item  text-purple" href="#">Report</a></li>
+                                                                            </ul>
+
+
+                                                                        </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Card body -->
+                                                            <div
+                                                            @php
+                                                                $randomColor = $availableColors[array_rand($availableColors)];
+                                                            @endphp
+                                                            class="card-body {{ $randomColor }}">
+                                                                <!-- Title -->
+                                                                <h5 id="heading" class="card-title"><a href="{{ route('lecturersignup') }} " class="text-{{ $randomColor == 'bg-white' ? 'dark' : 'light' }}">{{$c->course->course_code}} {{$c->course->title}}</a></h5>
+                                                                <!-- Badge -->
+                                                                <div class="d-flex justify-content-between align-items-center mb-0">
+                                                                    <a href="#" class="badge bg-purple bg-opacity-10 text-purple me-2"><i class="fas fa-circle small fw-bold"></i> 2023/2024 </a>
+                                                                </div>
+                                                                <!-- Divider -->
+                                                                <hr>
+                                                                <div><p class="text-muted">Bill Medina</p></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>	
                                                     
-                                                    <div class="article-image" id="backgroundimage" data-background="{{ $c->course->imgpath }}" url=""></div>
-                                                    
-                                                </div>
-                                                <div class="article-title">
-                                                    <h4 id="heading">{{$c->course->course_code}}</h4>
-                                                </div>
-                                                <div class="article-details">
-                                                    <p>{{$c->course->title}}</p>
-                                                    <div class="article-cta">
-                                                        <a href="{{ route('lecturerenrollcourse', $c->course->id)}}" class="btn btn-primary">Enroll</a>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </div>  
+                                                    <!-- Card Item END -->
                                         @endforeach
                                         
                                     </div>
@@ -83,7 +116,7 @@
                                 </div>
                                 </div>
                                 <div class="tab-pane fade" id="unique-courses" role="tabpanel" aria-labelledby="unique-courses-tab">
-                                    <!-- Content for Unique Courses tab -->
+                                    Content for Unique Courses tab
                                     <div class="row"> 
                                         @foreach ($uniquecourses as $course)
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
@@ -113,6 +146,7 @@
                     </div>
                 </div>
             </div>
+            			
         </div>
     </section>
 </div> 
@@ -120,6 +154,9 @@
 @endsection
 
 
-@section('scripts')
-    
-@endsection
+
+
+
+
+
+
