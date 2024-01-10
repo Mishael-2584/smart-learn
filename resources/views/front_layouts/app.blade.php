@@ -10,7 +10,8 @@
 	<meta name="description" content="SmartLearn- Your go to Learning Classroom">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{ asset('eduport/assets/images/favicon.ico') }}">
+	<link rel="shortcut icon" href="{{ asset('eduport/assets/images/favicon.svg') }}">
+
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">

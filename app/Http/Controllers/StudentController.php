@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassroomStreamPost;
 use App\Models\Enrollment;
 use App\Models\LecturerCourse;
 use App\Models\Major;
@@ -206,13 +207,18 @@ class StudentController extends Controller
         // $lc = LecturerCourse::find($eId->lecturercourse->id);
         $en = Enrollment::where('id', $eId)->first();
         $lc = LecturerCourse::where('id', $en->lecturercourse->id)->first();
+        $po = ClassroomStreamPost::where('lecturer_course_id', $lc->id)
+        ->orderBy('created_at', 'desc') // Order by creation time, newest first
+        ->get();
         $er = Enrollment::where('lecturer_course_id', $en->lecturercourse->id)->where('status', 2)->get();
 
         
         if ($lc || $er){
-            return view('student.courseroom', compact('lc', 'er', 'en'));
+            return view('student.courseroom', compact('lc', 'er', 'en', 'po'));
         }
     }
+
+    
     /**
      * Show the form for creating a new resource.
      */

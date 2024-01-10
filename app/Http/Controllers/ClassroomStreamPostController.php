@@ -61,6 +61,53 @@ class ClassroomStreamPostController extends Controller
         }
     }
 
+
+    public function studentpost(Request $request, $lcId)
+    {
+
+        $post = ClassroomStreamPost::create([
+            'lecturer_course_id' => $lcId,
+            'student_id' => session('id'),
+            'content' => $request->input('content'),
+        ]);
+
+        if ($post) {
+
+            
+            return back()->with('success', 'Post created successfully!', ['post' => $post]);
+        }
+        else{
+
+            return back()->with('error', 'Something went wrong!');
+        }
+
+    }
+
+
+    public function studentpostedit(Request $request, $pId){
+    
+        $post = ClassroomStreamPost::find($pId);
+        $post->content = $request->input('editcontent');
+        $saved = $post->save(); 
+    
+        if($saved){
+            return back()->with('success', 'Post updated successfully!');
+        }
+        else{
+            return back()->with('error', 'Something went wrong!');
+        }
+    }
+
+    public function studentpostdelete($id)
+    {
+        $post = ClassroomStreamPost::findOrFail($id);
+        if ($post->delete()) {
+            return response()->json(['message' => 'Post deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Something went wrong!'], 500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
