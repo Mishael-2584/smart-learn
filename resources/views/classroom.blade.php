@@ -29,7 +29,7 @@ Trending courses START -->
 								<a href="#" class=" text-center " role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="fas fa-ellipsis-h text-dark icon-md bg-white rounded-circle"></i>
 									<ul class="dropdown-menu me-3">
-										<li><a class="dropdown-item  text-purple" href="{{ route('studentclassroom') }}">Open</a></li>
+										<li><a class="dropdown-item  text-purple" href="">Open</a></li>
 										<li><a class="dropdown-item  text-purple" href="#">Unenroll</a></li>
 										<li><a class="dropdown-item  text-purple" href="#">Report</a></li>
 									</ul>
@@ -361,13 +361,19 @@ Trending courses END -->
 
 @section('scripts')
     <!-- Bootstrap JS  -->
-<script src="{{ asset('eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<!-- <script src="{{ asset('eduport/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script> -->
 
 <!-- Vendors -->
-<script src="{{ asset('eduport/assets/vendor/tiny-slider/tiny-slider.js') }}"></script>
+<!-- <script src="{{ asset('eduport/assets/vendor/tiny-slider/tiny-slider.js') }}"></script>
 <script src="{{ asset('eduport/assets/vendor/glightbox/js/glightbox.js') }}"></script>
-<script src="https://kit.fontawesome.com/201e2d289f.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/201e2d289f.js" crossorigin="anonymous"></script> -->
 
 <!-- Template Functions -->
 <!-- <script src="{{ asset('eduport/assets/js/functions.js') }}"></script> -->
 @endsection
+
+
+
+
+
+
