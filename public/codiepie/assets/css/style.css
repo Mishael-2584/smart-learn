@@ -214,9 +214,7 @@
           flex: 1 1 auto;
   padding: 1rem 1.25rem;
 }
-.card-title {
-  margin-bottom: 0.5rem;
-}
+
 .badge {
   display: inline-block;
   padding: 0.35em 0.65em;
@@ -257,7 +255,6 @@
   --bs-gutter-y: 1.5rem;
 }
 
-/* Card colors*/
 /* Add this in your CSS file */
 .card-color-primary {
   background-color: #007bff; /* Bootstrap primary color */
@@ -275,3 +272,16 @@
   background-color: #fff; /* White color */
 }
 
+.text-light {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
+}
+
+a {
+  color: #066ac9;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+  color: #066ac9;
+}

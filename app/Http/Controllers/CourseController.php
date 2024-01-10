@@ -15,10 +15,14 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+  // Example in a Laravel controller
+public function index()
+{
+    $randomColorIndex = rand(1, 4); // Generate a random number between 1 and 4
+
+    return view('lecturer.mycourses', compact('randomColorIndex'));
+}
+
 
     public function myclasses(){
 

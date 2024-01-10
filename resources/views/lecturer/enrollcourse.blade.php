@@ -29,6 +29,10 @@
                                 <div class="tab-pane fade show active" id="departmental-courses" role="tabpanel" aria-labelledby="departmental-courses-tab">
                                     <!-- Content for Departmental Courses tab -->
                                     <div class="row">
+                                        @php
+                                            $availableColors = ['bg-primary', 'bg-success', 'bg-white', 'bg-dark'];
+                                        @endphp
+
                                         @foreach ($coursedeps as $c)
 
                                         <div class="col-md-4 col-xl-3">
@@ -60,9 +64,13 @@
                                                                 </div>
                                                             </div>
                                                             <!-- Card body -->
-                                                            <div class="card-body bg-success">
+                                                            <div
+                                                            @php
+                                                                $randomColor = $availableColors[array_rand($availableColors)];
+                                                            @endphp
+                                                            class="card-body {{ $randomColor }}">
                                                                 <!-- Title -->
-                                                                <h5 id="heading" class="card-title"><a href="{{ route('lecturersignup') }}">{{$c->course->course_code}} {{$c->course->title}}</a></h5>
+                                                                <h5 id="heading" class="card-title"><a href="{{ route('lecturersignup') }} " class="text-{{ $randomColor == 'bg-white' ? 'dark' : 'light' }}">{{$c->course->course_code}} {{$c->course->title}}</a></h5>
                                                                 <!-- Badge -->
                                                                 <div class="d-flex justify-content-between align-items-center mb-0">
                                                                     <a href="#" class="badge bg-purple bg-opacity-10 text-purple me-2"><i class="fas fa-circle small fw-bold"></i> 2023/2024 </a>
@@ -73,6 +81,7 @@
                                                             </div>
                                                         </div>
                                                     </div>	
+                                                    
                                                     <!-- Card Item END -->
                                         @endforeach
                                         
