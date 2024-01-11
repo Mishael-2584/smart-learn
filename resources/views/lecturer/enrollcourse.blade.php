@@ -77,7 +77,7 @@
                                                                 </div>
                                                                 <!-- Divider -->
                                                                 <hr>
-                                                                <div><p class="text-muted">Bill Medina</p></div>
+                                                                <div><p class="text-muted">Bill Medina E.</p></div>
                                                             </div>
                                                         </div>
                                                     </div>	
