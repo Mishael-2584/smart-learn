@@ -72,7 +72,7 @@
                                                                 <h5 id="heading" class="card-ttle"><a href="{{ route('lecturersignup') }} " class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">{{$c->course->course_code}} {{$c->course->title}}</a></h5>
                                                                 <!-- Badge -->
                                                                 <div class="d-flex justify-content-between align-items-center mb-0">
-                                                                    <a href="#" class="badge bg-purple bg-opacity-10 text-purple me-2"><i class="fas fa-circle small fw-bold"></i> 2023/2024 </a>
+                                                                    <a href="#" class="badge bg-purple bg-opacity-{{ $randomColor == 'bg-dark' || $randomColor == 'bg-primary' ? '' : '10' }} text-{{ $randomColor == 'bg-dark' || $randomColor == 'bg-primary' ? 'light' : 'purple' }} me-2"><i class="fas fa-circle small fw-bold"></i> 2023/2024 </a>
                                                                 </div>
                                                             </div>
                                                         </div>
