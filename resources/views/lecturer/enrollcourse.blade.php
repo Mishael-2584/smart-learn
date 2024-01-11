@@ -32,21 +32,24 @@
                                         @php
                                             $availableColors = ['bg-primary', 'bg-success', 'bg-white', 'bg-dark'];
                                         @endphp
+                                        @foreach ($coursedeps as $index => $c)
+                                        @php
+                                        $colorIndex = $index % count($availableColors);
+                                        $colorClass = $availableColors[$colorIndex];
+                                        @endphp
 
-                                        @foreach ($coursedeps as $c)
-
-                                        <div class="col-md-4 col-xl-3">
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                                         <div class="card p-2 shadow h-100 ">
                                                             <div class="rounded-top overflow-hidden">
                                                                 <div class="card-overlay-hover">
                                                                     <!-- Image -->
-                                                                    <img id="backgroundimage" src="{{ $c->course->imgpath }}" class="card-img-top" alt="course image">
+                                                                    <img id="backgroundimage" src="{{ $c->course->imgpath }}" class="card-img-top" alt="course image" style="max-height: {{ (850 / count($coursedeps)) . 'px' }}">
                                                                 </div>
                                                                 <!-- Hover element -->
                                                                 <div class="card-img-overlay">
-                                                                    <div class=" d-flex justify-content-end">
+                                                                    <div class="d-flex justify-content-end">
                                                                         <div class="dropdown">
-                                                                        <a href="#" class=" text-center " role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <a href="#" class="text-center " role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                             <!-- <i class="fas fa-ellipsis-h text-dark icon-md bg-white rounded-circle"></i> -->
                                                                             <div class="article-cta">
                                                                                 <a href="{{ route('lecturerenrollcourse', $c->course->id)}}" class="btn btn-primary">Enroll</a>
@@ -64,23 +67,16 @@
                                                                 </div>
                                                             </div>
                                                             <!-- Card body -->
-                                                            <div
-                                                            @php
-                                                                $randomColor = $availableColors[array_rand($availableColors)];
-                                                            @endphp
-                                                            class="card-body {{ $randomColor }}">
+                                                            <div class="card-body {{ $colorClass }}">
                                                                 <!-- Title -->
-                                                                <h5 id="heading" class="card-title"><a href="{{ route('lecturersignup') }} " class="text-{{ $randomColor == 'bg-white' ? 'dark' : 'light' }}">{{$c->course->course_code}} {{$c->course->title}}</a></h5>
+                                                                <h5 id="heading" class="card-ttle"><a href="{{ route('lecturersignup') }} " class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">{{$c->course->course_code}} {{$c->course->title}}</a></h5>
                                                                 <!-- Badge -->
                                                                 <div class="d-flex justify-content-between align-items-center mb-0">
                                                                     <a href="#" class="badge bg-purple bg-opacity-10 text-purple me-2"><i class="fas fa-circle small fw-bold"></i> 2023/2024 </a>
                                                                 </div>
-                                                                <!-- Divider -->
-                                                                <hr>
-                                                                <div><p class="text-muted">Bill Medina</p></div>
                                                             </div>
                                                         </div>
-                                                    </div>	
+                                        </div>	
                                                     
                                                     <!-- Card Item END -->
                                         @endforeach
@@ -95,6 +91,7 @@
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                             <article class="article">
                                                 <div class="article-header">
+                                                    
                                                     
                                                     <div class="article-image" id="backgroundimage" data-background="{{ $course->imgpath }}" url=""></div>
                                                     
