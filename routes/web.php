@@ -125,11 +125,13 @@ Route::middleware('student')->group(function () {
 
             Route::get('/jitsimeetingstudent/{eId}', [JitsiController::class, 'jitsimeetingstudent'])->name('jitsimeetingstudent');
 
-            
-            
+            Route::post('/studentpost/{lcId}', [ClassroomStreamPostController::class, 'studentpost'])->name('studentpost');
+            Route::post('/studentpostedit/{pId}', [ClassroomStreamPostController::class, 'studentpostedit'])->name('studentpostedit');
+            Route::delete('/student/post/{id}', [ClassroomStreamPostController::class, 'studentpostdelete'])->name('studentpostdelete');
 
-
-
+            Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcommentstudent');
+            Route::get('/getcomments/{pId}', [CommentController::class, 'getcomment'])->name('getcommentstudent');
+            Route::delete('/deletecomments/{cId}', [CommentController::class, 'commentdelete'])->name('commentdelete');
             
 
         });
@@ -175,7 +177,9 @@ Route::group(['middleware' => 'lecturer'], function () {
             
             Route::delete('/lecturer/post/{id}', [ClassroomStreamPostController::class, 'lecturerpostdelete'])->name('lecturerpostdelete');
             //postcommentl route
-            Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcommentl');
+            Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcomment');
+            Route::get('/getcomments/{pId}', [CommentController::class, 'getcomment'])->name('getcomment');
+            Route::delete('/deletecomments/{cId}', [CommentController::class, 'commentdelete'])->name('commentdelete');
             
 
 

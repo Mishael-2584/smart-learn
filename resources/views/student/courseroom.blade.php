@@ -9,7 +9,12 @@
             <div class="col-12 mb-4 blurry-background">
                 <div class="hero-inner blurry-overlay">
                     <!-- Your content goes here -->
+                    @if ($lc->departmentcourse)
                     <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
+                    @else
+                        <h1>{{$lc->course->course_code}} - {{$lc->course->title}}</h1>
+                    @endif
+                    
                     
                     
                 </div>
@@ -41,6 +46,7 @@
                                     </a>
                                 </li>
                             </ul>
+
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
                                     <div class="row">
@@ -72,19 +78,22 @@
                                                     <h4>Announce Something to the Class</h4>
                                                 </div>
                                                 <div class="card-body">
+                                                  <form action="{{ route('studentpost', $lc->id) }}" method="POST">
+                                                      @csrf
                                                    <div class="form-group row mb-4">
                                                        <div class="col-sm-12 col-md-12 col-lg-12">
-                                                           <textarea class="summernote"></textarea>
+                                                           <textarea class="summernote" name="content"></textarea>
                                                            
                                                        </div>
                                                    </div>
                                                    <div class="form-group row mb-4">
                                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                                        <div class="col-sm-10 col-md-7 col-lg-3 ml-auto ">
-                                                           <button type="button" class="btn btn-primary">Post</button>
+                                                           <button type="submit" class="btn btn-primary">Post</button>
                                                            <button type="button" class="btn btn-secondary">Cancel</button>
                                                        </div>
                                                    </div>
+                                                  </form>
                                                 </div>
                                             </div>  
 
@@ -94,14 +103,100 @@
                                     
                                     <div class="row">
                                         <div class="col-12 col-lg-8 ml-auto">
-                                            <div class="card">
-                                    
-                                                <div class="card-body custom-rounded-border bg-light">
-                                                    <p>NOTHING HAS BEEN POSTED</p>
-                                                </div>
-                                    
+                                            @isset($po)
+                                                
+                                            
+                                            @foreach ($po as $p)
+                                            <div class="card custom-rounded-border bg-light">
+                                                
+                                                    @if ($p->student)
+                                                    <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
+                                                        <div id="info-section-{{$p->id}}" class="section">
+                                                            <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div class="circle">{{ $p->student->initials }}</div>
+                                                                    <div style="margin-left: 8px;">
+                                                                        <strong>{{ $p->student->name }}</strong>
+                                                                        <br>
+                                                                        <small>{{ $p->updated_at }}</small>
+                                                                    </div>
+                                                                </div>
+                                                                @if ($p->student->id == Session::get('id'))
+                                                                <div class="dropdown" style="padding: 4px; border-radius: 4px;">
+                                                                    <div class="dropdown" data-toggle="dropdown">
+                                                                        <i class="fa-sharp fa-solid fa-ellipsis-vertical rounded" style="padding: 4px; border-radius: 4px; border: 1px solid #ccc;"></i>
+                                                                    </div>
+                                                                    <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-{{$p->id}}">
+                                                                        <a href="#" class="dropdown-item has-icon" id="edit-item-{{$p->id}}" onclick="openEditor(event, <?php echo htmlspecialchars(json_encode($p->content)); ?>, '<?php echo $p->id; ?>'); return false;">
+                                                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                                        </a>
+                                                                        <a class="dropdown-item delete-post" id="delete-item-{{$p->id}}" href="#"><i class="fas fa-trash"></i> Delete</a>
+                                                                    </div>
+                                                                </div>                       
+                                                                @endif                                                     
+                                                            </div>        
+                                                            <hr>
+                                                            <div class="section-body" id="section-body-{{$p->id}}">
+                                                                {!! $p->content !!}
+                                                            </div>
+                                                        </div>
+                                                        <form id="editor-form-{{$p->id}}" action="{{ route('studentpostedit', $p->id) }}" method="post">
+                                                            @csrf
+                                                            <input id="editor-content-{{$p->id}}" type="hidden" name="editcontent" id="editor-content-{{$p->id}}">
+                                                            <div id="summernote-{{$p->id}}" class="form-group row mb-4" style="display: none;">
+                                                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                    <input type="hidden" name="content" id="editor-content-{{$p->id}}">
+                                                                    <!-- Ensure the ID here is unique and different from the DIV's ID -->
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" id="save-button-{{$p->id}}" class="btn btn-success edit-buttons">Save Changes</button>
+                                                            <button type="button" id="close-button-{{$p->id}}" class="btn btn-secondary edit-buttons">Close</button>
+                                                        </form>
+                                                        <br>
+                                                        <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
+                                                         
+                                                            
+                                                    </div>
+                                                        
+                                                    @else
+                                                        
+                                                    
+                                                    <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
+                                                        <div id="info-section-{{$p->id}}" class="section">
+                                                            <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div class="circle">{{ $p->lecturer->initials }}</div>
+                                                                    <div style="margin-left: 8px;">
+                                                                        <strong>{{ $p->lecturer->name }}</strong>
+                                                                        <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
+                                                                            <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
+                                                                        </span><br>
+                                                                        <small>{{ $p->updated_at }}</small>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>        
+                                                            <hr>
+                                                            <div class="section-body" id="section-body-{{$p->id}}">
+                                                                {!! $p->content !!}
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <br>
+                                                        <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
+                                                         <!-- Modal for comments -->
+                                                            
+                                                    </div>
+                                                    @endif                                                                                      
                                             </div>
+                                            
+                                            @endforeach
+                                            @endisset
+                                            
                                         </div>
+                                                    
+                                                                                                              
                                     </div>
                                 
                                 </div>
@@ -188,6 +283,31 @@
 
 </div>
 
+<div class="modal fade comments-modal" id="commentsModal-{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitle-{{ $p->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentsModalLabel">Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <!-- Add comment form -->
+                <form method="POST" action="#" id="commentForm" style="width: 100%;">
+                    @csrf 
+                    <input type="text" class="comment-input" placeholder="Write a comment..." class="form-control" />
+                    <input type="hidden" name="post-id" value="{{$p->id}}">
+                    <button class="btn btn-primary" type="submit">Post Comment</button>
+                </form>
+            </div>
+      </div>
+    </div>
+</div> 
+
 
 @endsection
 
@@ -202,6 +322,186 @@
 <script src="{{ asset('codiepie/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
 
+<script type="text/javascript">
+    var deletePostUrlTemplate = "{{ route('studentpostdelete', ['id' => ':id']) }}";
+    var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable
+</script>
+<script>
+    $(document).on('click', '.delete-post', function(e) {
+        e.preventDefault();
+        var postId = $(this).attr('id').split('-')[2]; 
+        var deleteUrl = deletePostUrlTemplate.replace(':id', postId);
+    
+        
+        if (confirm('Are you sure you want to delete this post?')) {
+            $.ajax({
+                url: deleteUrl,
+                type: 'DELETE',
+                data: {
+                    _token: token // Make sure this variable is defined
+                },
+                success: function(response) {
+                    alert(response.message);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert('Error occurred: ' + xhr.responseJSON.message);
+                }
+            });
+        }
+    });
+</script>
+<script>
+    $(document).ready(function() {
+    $(document).on('show.bs.modal', '.comments-modal', function(e) {
+      var button = $(e.relatedTarget);
+      var postId = button.data('post-id');
+
+      
+
+      $.ajax({
+        type: 'GET',
+        url: '/student/getcomments/' + postId,
+        success: function(response) {
+            // Populate modal body with fetched comments (which already contain the rendered HTML from 'commentsmodal.blade.php')
+            
+            var modal = $('.comments-modal'); 
+            modal.find('.modal-body').html(response);
+            
+        },
+        error: function(error) {
+            // Handle errors gracefully
+            $(this).find('.modal-body').html('<p class="error">Failed to fetch comments.</p>');
+        }
+      });
+
+
+    //   $(this).find('.modal-body').load('/commentsmodal'); // Fetch the modal content via AJAX
+
+      
+      // Attach a submit event handler to the form within the modal
+      $(this).find('form').off('submit').on('submit', function(event) {
+          event.preventDefault();
+  
+          // Get the comment text from the input field with class 'comment-input'
+          var commentText = $(this).find('.comment-input').val();
+          
+          // Check if the comment text is empty
+          if (commentText.trim() === '') {
+              alert('Please write a comment.');
+              return;
+          }
+  
+          // Prepare the data to be sent in the AJAX request
+          var formData = {
+              comment: commentText,
+              _token: token, // Ensure 'token' is defined somewhere in your script
+              // Include any other data your controller may need
+          };
+  
+          // Send the AJAX request to the server
+          $.ajax({
+              type: 'POST',
+              url: '/student/postcomment/' + postId, // Append the post ID to the route
+              data: formData,
+              success: function(response) {
+                  // Handle the successful response
+                    var initials = response.initials;
+                    var name = response.name;
+                    var currentDate = response.created_at;
+
+                    var newComment = `
+                        <div class="comment-item" style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <div class="user-initials-circle">${initials}</div>
+                            <div class="comment-content" style="margin-left: 8px;">
+                                <strong>${name}</strong>
+                                <p>${response.comment.content}</p>
+                                <small>${currentDate}</small>
+                            </div>
+                        </div>
+                    `;
+
+                    $('.comments-list').append(newComment);
+              },
+              error: function(error) {
+                  alert('Error occurred: ' + error.responseJSON.message);
+              }
+          });
+  
+          // Clear the input field
+          $(this).find('.comment-input').val('');
+      });
+  });
+});
+</script>
+<script>
+    function openEditor(event, content, postId) {
+        // Prevent the default anchor click behavior
+        event.preventDefault();
+    
+        // Find the corresponding elements for this postId
+        var $editor = $('#summernote-' + postId);
+        var $saveButton = $('#save-button-' + postId);
+        var $closeButton = $('#close-button-' + postId);
+    
+        // Load the content into the specific Summernote editor
+        $editor.summernote('code', content);
+    
+        // Show the save and close buttons for this post
+        $saveButton.show();
+        $closeButton.show();
+    
+        // Hide the existing content ('section-body') for this post
+        $('#info-section-' + postId + ' .section-body').hide();
+    
+        // // Show the Summernote editor container for this post
+        // $editor.show();
+    
+        // // Initialize Summernote if it has not been initialized
+        // if ($editor.summernote('isEmpty')) {
+        //     $editor.summernote({
+        //         // Add Summernote options here
+        //     });
+        // }
+    
+        // Optionally, scroll to the editor container to make sure it's in view
+        if ($editor.length > 0) {
+            $editor[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            console.error('Editor element not found for postId:', postId);
+        }
+    
+        // Event listener for the close button for this post
+        $closeButton.click(function() {
+            
+            $('#info-section-' + postId + ' .section-body').show();
+            $editor.summernote('reset');
+            $editor.summernote('destroy');
+            
+            $saveButton.hide();
+            $closeButton.hide();
+        });
+    
+        // Event listener for the save button for this post
+        $saveButton.click(function(event) {
+            event.preventDefault();
+    
+            // Get the content from the specific Summernote editor
+            var content = $editor.summernote('code');
+    
+            // Set the content to the hidden input for this post
+            $('#editor-content-' + postId).val(content);
+    
+            // Submit the form for this post
+            $('#editor-form-' + postId).submit();
+        });
+    }
+       
+       // Example usage:
+       // Assuming `$p->content` contains the content you want to load into `#summernote1`
+       // You would call this function when the edit button is clicked, passing the content as an argument.
+</script>
+    
 <style>
     #meet-link{
         margin-top: 0;
@@ -235,6 +535,68 @@
 
     .custom-rounded-border {
         border-radius: 1rem !important; /* Adjust as needed */
+    }
+
+    .circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .edit-buttons {
+    display: none;
+    }
+    
+    /* Comments modal styling */
+    .comment-item {
+      display: flex;
+      align-items: flex-start;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .user-initials-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #555;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+    }
+
+    .comment-content {
+      flex-grow: 1;
+    }
+    
+    .comment-content strong {
+      display: block;
+    }
+    
+    .comment-content p {
+      margin-bottom: 0px;
+    }
+    
+    #commentForm {
+      display: flex;
+      width: 100%;
+    }
+    
+    #commentForm input[type="text"] {
+      margin-right: 8px;
+      flex-grow: 1;
+    }
+    
+    #commentForm button {
+      white-space: nowrap;
     }
   </style>
     

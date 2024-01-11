@@ -15,22 +15,81 @@ class CommentController extends Controller
     {
         //
         $post = ClassroomStreamPost::find($pId);
+        if (session('role') == 4) {
+
+            $comment = $post->comments()->create([
+                'content' => $request->input('comment'),
+                'student_id' => session('id'),
+            ]);
+
+            if ($comment) {
+
+                // Load the student relationship if it's not already loaded
+                $comment->load('student');
+
+                return response()->json([
+                    'comment' => $comment,
+                    'initials' => $comment->student->getInitialsAttribute(),
+                    'name' => $comment->student->name,
+                    'created_at' => $comment->created_at->toDateTimeString(), // Format the date as string
+                ]);
+            } else {
+                return response()->json(['error' => 'Something went wrong'], 500);
+            }
+        } 
         
-        $comment = $post->comments()->create([
-            'content' => $request->input('content'),
-        ]);
+        else {
+                $comment = $post->comments()->create([
+                    'content' => $request->input('comment'),
+                    'lecturer_id' => session('id'),
+                ]);
+            
+
+            
+                if ($comment) {
+                
+                        // Load the lecturer relationship if it's not already loaded
+                    $comment->load('lecturer');
+                
+                    // Return the comment as a JSON response
+                    return response()->json([
+                        'comment' => $comment,
+                        'initials' => $comment->lecturer->getInitialsAttribute(),
+                        'name' => $comment->lecturer->name,
+                        'created_at' => $comment->created_at->toDateTimeString(), // Format the date as string
+                    ]);
+
+                }
+                else{
+                    return response()->json(['error' => 'Something went wrong'], 500);
+                
+                }
+
+            }
+    }
+
+    public function getcomment($postId)
+    {
+        $post = ClassroomStreamPost::with('comments')->findOrFail($postId);
+        $comments = $post->comments; // Access comments through the relationship
+
+        return view('lecturer.commentsmodal', compact('comments'));
+    }
+
+    public function commentdelete($cId){
 
 
-        if ($comment) {
-            return response()->json($comment);
-        }
-        else{
-            return response()->json(['error' => 'Something went wrong'], 500);
-
-        }
-
-
-
+        
+        
+            $comment = Comment::find($cId);
+            if ($comment->delete()) {
+                return response()->json([
+                    'message' => 'Comment deleted successfully',
+                    'deletedCommentId' => $comment->id
+                ]);
+            } else {
+                return response()->json(['message' => 'Something went wrong!'], 500);
+            }
         
 
     }

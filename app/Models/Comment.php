@@ -20,4 +20,12 @@ class Comment extends Model
         return $this->belongsTo(ClassroomStreamPost::class);
     }
 
+    public function student(){
+        return $this->belongsTo(Student::class);
+    }
+
+    public function lecturer(){
+        return $this->belongsTo(Lecturer::class);
+    }
+
 }
