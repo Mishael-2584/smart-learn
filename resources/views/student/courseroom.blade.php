@@ -283,6 +283,8 @@
 
 </div>
 
+
+@isset($p->id)
 <div class="modal fade comments-modal" id="commentsModal-{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitle-{{ $p->id }}" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -307,8 +309,7 @@
       </div>
     </div>
 </div> 
-
-
+@endisset
 @endsection
 
 @section('scripts')

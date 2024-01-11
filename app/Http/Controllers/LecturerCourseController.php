@@ -20,12 +20,18 @@ class LecturerCourseController extends Controller
     public function lectureropencourse($lcId){
 
         $lc = LecturerCourse::find($lcId);
-        $po = ClassroomStreamPost::where('lecturer_course_id', $lcId)
-                            ->orderBy('created_at', 'desc') // Order by creation time, newest first
-                            ->get();
         $er = Enrollment::where('lecturer_course_id', $lcId)->where('status', 2)->get();
         if ($lc || $er){
-            return view('lecturer.courseroom', compact('lc', 'er', 'po'));
+            $po = ClassroomStreamPost::where('lecturer_course_id', $lcId)
+                            ->orderBy('created_at', 'desc') // Order by creation time, newest first
+                            ->get();
+            if($po){
+                return view('lecturer.courseroom', compact('lc', 'er', 'po'));
+            }
+            else{
+                return view('lecturer.courseroom', compact('lc', 'er'));
+            }
+            
         }
     }
 
