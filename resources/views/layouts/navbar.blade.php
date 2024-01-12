@@ -90,10 +90,6 @@
                 <div class="dropdown-item-icon bg-primary text-white">
                     <i class="fas fa-code"></i>
                 </div>
-                <div class="dropdown-item-desc">
-                    Template update is available now!
-                    <div class="time text-primary">2 Min Ago</div>
-                </div>
                 </a>
                 <a href="#" class="dropdown-item">
                 <div class="dropdown-item-icon bg-info text-white">
@@ -116,19 +112,6 @@
                 <a href="#" class="dropdown-item">
                 <div class="dropdown-item-icon bg-danger text-white">
                     <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <div class="dropdown-item-desc">
-                    Low disk space. Let's clean it!
-                    <div class="time">17 Hours Ago</div>
-                </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                <div class="dropdown-item-icon bg-info text-white">
-                    <i class="fas fa-bell"></i>
-                </div>
-                <div class="dropdown-item-desc">
-                    Welcome to CodiePie template!
-                    <div class="time">Yesterday</div>
                 </div>
                 </a>
             </div>
