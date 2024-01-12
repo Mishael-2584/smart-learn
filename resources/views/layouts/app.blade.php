@@ -44,7 +44,6 @@
 	<!-- Theme CSS -->
 	<link id="style-switch" rel="stylesheet" type="text/css" href="{{ asset('codiepie/assets/css/style.css') }}">
 
- @yield('scripts')
 
 </head>
 
