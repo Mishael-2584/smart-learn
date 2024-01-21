@@ -7,21 +7,21 @@
     <div class="section">
         @include('layouts.error')
         <div class="row">
-            <div class="col-12 mb-4 blurry-background">
+            <div class="col-12 mb-4 blurry-background ">
+                <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="">
                 <div class="hero-inner blurry-overlay">
                     <!-- Your content goes here -->
-                    <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
-                    
-                    
+                    <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>                  
                 </div>
-
-            </div>
-            <div class="section-header col-12 col-sm-12" id="meet-link">
+                <div class=" col-12 col-sm-12" id="meet-link">
                 <div class="d-flex justify-content-end align-items-center">
                   <a href="{{route('jitsimeeting', $lc->id)}}" class="btn btn-primary btn-lg btn-icon"><i class="fas fa-sharp fa-regular fa-video"></i> Join Class</a>
                 </div>
                 
               </div>
+
+            </div>
+           
         </div>
     </div>
     <div class="section">
@@ -556,20 +556,29 @@ function openEditor(event, content, postId) {
       top: 0;
       bottom: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url({{ $lc->departmentcourse->course->imgpath }});
       background-size: cover;
-      background-position: center;
-      opacity: 0.5; /* Adjust the opacity value to your desired level */
-      z-index: -1;
+      /* width: 100%; */
+      /* height: contain; */
+      /* background-image: url({{ $lc->departmentcourse->course->imgpath }}); */
+      
+     
       border: 2px solid black;
-      height: 100px;
+      
+    }
+    img{
+        position: relative;
+        height: 200px;
+        width: 100%;
+        background-position: center;
+         /* Adjust the opacity value to your desired level */
+        z-index: -1;
     }
   
     .blurry-overlay {
       position: relative;
       z-index: 1;
+      background-color: black;
+      opacity: 0.5;
     }
 
     .custom-rounded-border {
