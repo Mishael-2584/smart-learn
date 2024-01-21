@@ -38,6 +38,7 @@
        
       },
       userInfo: {
+        email: '{{$e->student->email}}',
         displayName: '{{$displayName}}', // Set the display name for the participant
       },
       

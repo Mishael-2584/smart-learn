@@ -15,7 +15,7 @@
 <script src="{{ asset("codiepie/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js") }}"></script>
 {{-- <script src="{{ asset("codiepie/assets/modules/select2/dist/js/select2.full.min.js") }}"></script> --}}
 <script src="{{ asset("codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js") }}"></script>
-
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
 <!-- Page Specific JS File -->
 <script src="{{ asset("codiepie/js/page/forms-advanced-forms.js") }}"></script>
 
