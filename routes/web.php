@@ -50,7 +50,7 @@ Route::post('/student_submit', [AuthenticationController::class, 'studentssubmit
 
 Route::get('/lecturer_signup', function () { return view('auths.lecturerregister'); })->name('lecturersignup');
 Route::post('/lecturer_submit', [AuthenticationController::class, 'staffsubmit'])->name('lecturersubmit');
-Route::get('/classroom', function () { return view('classroom'); })->name('classroom');
+Route::get('/lecturer/topic', function () { return view('lecturer.assignment'); })->name('assignment');
 
 
 
@@ -188,9 +188,12 @@ Route::group(['middleware' => 'lecturer'], function () {
 
             Route::match(['get', 'post'], '/lecturerquizmanagement', [QuizController::class, 'saveQuiz'])->name('saveQuiz');
             
-
-
-
+            //create content routs
+            // Route::get('/lecturer/assignment', 'ContentController@showAssignmentForm')->name('lecturer.assignment');
+            // Route::get('/lecturer/quiz', 'ContentController@showQuizForm')->name('lecturer.quiz');
+            // Route::get('/lecturer/question', 'ContentController@showQuestionForm')->name('lecturer.question');
+            // Route::get('/lecturer/learning-material', 'ContentController@showLearningMaterialForm')->name('lecturer.learningMaterial');
+            // Route::get('/lecturer/topic', 'ContentController@showTopicForm')->name('lecturer.topic');
             
         });
 
