@@ -11,6 +11,7 @@ use App\Http\Controllers\JitsiController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LecturerCourseController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\LecturerMiddleware;
@@ -176,10 +177,16 @@ Route::group(['middleware' => 'lecturer'], function () {
             Route::post('/lecturerpostedit/{pId}', [ClassroomStreamPostController::class, 'lecturerpostedit'])->name('lecturerpostedit');
             
             Route::delete('/lecturer/post/{id}', [ClassroomStreamPostController::class, 'lecturerpostdelete'])->name('lecturerpostdelete');
-            //postcommentl route
+            
             Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcomment');
             Route::get('/getcomments/{pId}', [CommentController::class, 'getcomment'])->name('getcomment');
             Route::delete('/deletecomments/{cId}', [CommentController::class, 'commentdelete'])->name('commentdelete');
+
+            
+            Route::post('/lectureraddquizform/{lcId}', [QuizController::class, 'lectureraddquizform'])->name('lectureraddquizform');
+            Route::get('/lecturerquizdetail/{qId}', [QuizController::class, 'lecturerquizdetail'])->name('lecturerquizdetail');
+
+            Route::match(['get', 'post'], '/lecturerquizmanagement', [QuizController::class, 'saveQuiz'])->name('saveQuiz');
             
 
 

@@ -32,7 +32,7 @@
                             <div class="card-body">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item"><a class="nav-link active" id="stream-tab" data-toggle="tab" href="#stream" role="tab" aria-controls="stream" aria-selected="true">STREAM</a></li>
-                                    <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab" href="#submissions" role="tab" aria-controls="submissions" aria-selected="false">SUBMISSIONS</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab" href="#submissions" role="tab" aria-controls="submissions" aria-selected="false">COURSEWORK</a></li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="students-tab" data-toggle="tab" href="#students" role="tab" aria-controls="students" aria-selected="false">
                                             STUDENTS
@@ -231,10 +231,93 @@
 
                                           
                                     <div class="tab-pane fade" id="submissions" role="tabpanel" aria-labelledby="submissions-tab">
-                                    
+                                        <div class="row">
+                                            <div class="col-12 col-sm-7 col-lg-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-3 col-sm-12 col-md-4 col-lg-2">
+                                                                <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
+                                                                    <li class="nav-item"><a class="nav-link active" id="quizzes-lecturer" data-toggle="tab" href="#quizzes" role="tab" aria-controls="home" aria-selected="true">QUIZZES</a></li>
+                                                                    <li class="nav-item"><a class="nav-link" id="assignments-lecturer" data-toggle="tab" href="#assignments" role="tab" aria-controls="profile" aria-selected="false">ASSIGNMENTS</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-9 col-sm-12 col-md-8 col-lg-10">
+                                                            <div class="tab-content no-padding" id="myTab2Content">
+                                                                <div class="tab-pane fade show active" id="quizzes" role="tabpanel" aria-labelledby="quizzes-lecturer">
+                                                                    <div class="card">
+                                                                            <div class="card-header">
+                                                                                <h4>{{$lc->departmentcourse->course->course_code}} - Quiz List</h4>
+                                                                            </div>
+                                                                            <div class="card-body">
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table table-bordered table-md v_center">
+                                                                                        <tr>
+                                                                                            <th>#</th>
+                                                                                            <th>Quiz Title</th>
+                                                                                            <th>Created On</th>
+                                                                                            <th>Duration</th>
+                                                                                            <th>Start Date & Time</th>
+                                                                                            <th>Total Qns</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                        @isset($qz)                    
+                                                                                        @foreach ($qz as $index => $q)
+                                                                                        @php
+                                                                                            // Create a Carbon instance from the deadline
+                                                                                            $deadline = \Carbon\Carbon::parse($q->deadline);
+                                                                                                                                                                            
+                                                                                            // Subtract the time limit in minutes to get the start time
+                                                                                            $startTime = $deadline->copy()->subMinutes($q->time_limit);
+                                                                                        @endphp
+                                                                                        <tr>
+                                                                                            <td>{{ $index+1 }}</td>
+                                                                                            <td>{{ $q->title }}</td>
+                                                                                            <td>{{ $q->updated_at }}</td>
+                                                                                            <td>{{ $q->time_limit }} mins</td>
+                                                                                            <td>{{ $startTime->format('d/m/Y g:i A') }}</td>
+                                                                                            <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
+                                                                                            <td><a href="{{route('lecturerquizdetail', $q->id)}}" class="btn btn-secondary">View</a></td>
+                                                                                        </tr>       
+                                                                                        @endforeach     
+                                                                                        @endisset
+                                                                                        
+                                                                                
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="card-footer text-right">
+                                                                                <nav class="d-inline-block">            
+                                                                                    <ul class="pagination mb-0">
+                                                                                        <!-- Button trigger modal -->
+                                                                                        <li id="add-quiz-btn" class="btn btn-success" data-toggle="modal" data-target="#addQuizModal"><i class="fas fa-plus"></i> New Quiz</li>
 
+                                                                                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a></li>
+                                                                                        <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                                                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                                                                                    </ul>
+                                                                                </nav>
+                                                                            </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="assignments" role="tabpanel" aria-labelledby="assignments-lecturer">
 
+                                                                    
+                                                                
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
+
                                     <div class="tab-pane fade" id="students" role="tabpanel" aria-labelledby="students-tab">
 
                                         <div class="table-responsive">
@@ -309,6 +392,52 @@
 
 </div>
 
+
+
+<!-- Quiz Modal -->
+<div class="modal fade" id="addQuizModal" tabindex="-1" aria-labelledby="addQuizModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addQuizModalLabel">Add New Quiz</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="newQuizForm" action="{{ route('lectureraddquizform', $lc->id) }}" method="POST">
+        @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="quizTitle">Quiz Title</label>
+                  <input type="text" name="quizTitle" class="form-control" id="quizTitle" required>
+                </div>
+                <div class="form-group">
+                  <label for="quizDescription">Description (Quiz Label)</label>
+                  <textarea class="form-control" name="quizDescription" id="quizDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="quizTotalPoints">Total Points</label>
+                  <input type="number" name="quizTotalPoints" class="form-control" id="quizTotalPoints" required>
+                </div>
+                <div class="form-group">
+                  <label for="quizTime">Start Date & Time</label>
+                  <input type="datetime-local" name="quizTime" class="form-control" id="quizDeadline" required>
+                </div>
+                <div class="form-group">
+                  <label for="quizTimeLimit">Time Limit (minutes)</label>
+                  <input type="number" name="quizTimeLimit" class="form-control" id="quizTimeLimit" required>
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save Quiz</button>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 @isset($p->id)
 <div class="modal fade comments-modal" id="commentsModal-{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitle-{{ $p->id }}" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -348,6 +477,7 @@
 <script src="{{ asset('codiepie/assets/modules/codemirror/lib/codemirror.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
+<script src="{{ asset('codiepie/js/page/bootstrap-modal.js') }}"></script>
 <script type="text/javascript">
     var deletePostUrlTemplate = "{{ route('lecturerpostdelete', ['id' => ':id']) }}";
     var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable

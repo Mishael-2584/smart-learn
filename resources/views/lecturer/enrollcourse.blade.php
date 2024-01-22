@@ -39,7 +39,7 @@
                                         @endphp
 
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                                        <div class="card p-2 shadow h-100 ">
+                                                        <div class="card p-2 shadow h-100">
                                                             <div class="rounded-top overflow-hidden">
                                                                 <div class="card-overlay-hover">
                                                                     <!-- Image -->

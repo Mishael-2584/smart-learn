@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassroomStreamPost;
 use App\Models\Enrollment;
 use App\Models\LecturerCourse;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
 class LecturerCourseController extends Controller
@@ -25,11 +26,13 @@ class LecturerCourseController extends Controller
             $po = ClassroomStreamPost::where('lecturer_course_id', $lcId)
                             ->orderBy('created_at', 'desc') // Order by creation time, newest first
                             ->get();
+            
+            $qz = Quiz::where('lecturer_course_id', $lcId)->get();
             if($po){
-                return view('lecturer.courseroom', compact('lc', 'er', 'po'));
+                return view('lecturer.courseroom', compact('lc', 'er', 'po', 'qz'));
             }
             else{
-                return view('lecturer.courseroom', compact('lc', 'er'));
+                return view('lecturer.courseroom', compact('lc', 'er', 'qz'));
             }
             
         }
