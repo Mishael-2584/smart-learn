@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('choices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('question_id');
-            $table->string('option_mcq')->nullable();//A,B,C,D
+            $table->string('option_mcq')->nullable()->unique();//A,B,C,D
             $table->text('written_response');//Subjective Questions
-            $table->boolean('is_correct');
+            $table->boolean('is_correct')->nullable();
             $table->dateTime('time_limit')->nullable(); // Time limit for the question
             $table->timestamps();
         

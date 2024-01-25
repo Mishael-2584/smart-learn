@@ -19,11 +19,117 @@ class QuizController extends Controller
 
     public function lecturerquizdetail($qId){
         $quiz = Quiz::find($qId);
+        $questions = Question::with('choices')->where('quiz_id', $qId)->get();
 
-        return view('lecturer.setquiz', compact('quiz'));
+        if($questions){
+                // Prepare data for each question type
+                $data = [
+                    'mcq' => [],
+                    'short' => [],
+                    'truefalse' => [],
+                ];
+            
+                foreach ($questions as $question) {
+                    switch ($question->type) {
+                        case 'mcq':
+                            $correctChoice = $question->choices->filter(function ($choice) {
+                                return $choice->is_correct;
+                            })->first();
+                            $data['mcq'][] = [
+                                'id' => $question->id,
+                                'text' => $question->text,
+                                'choices' => $question->choices->map(function ($choice) {
+                                    return [
+                                        'option' => $choice->option_mcq,
+                                        'written_response' => $choice->written_response,
+                                    ];
+                                }),
+                                'answer' => $correctChoice->written_response,
+                            ];
+                            
+                            break;
+                        case 'short':
+                            $data['short'][] = [
+                                'id' => $question->id,
+                                'text' => $question->text,
+                                'answer' => $question->choices->first()->written_response,
+                            ];
+                            break;
+                        case 'truefalse':
+                            $data['truefalse'][] = [
+                                'id' => $question->id,
+                                'text' => $question->text,
+                                'answer' => $question->choices->first()->written_response,
+                            ];
+                            break;
+                    }
+                }
+            
+                // return response()->json($data);
+                return view('lecturer.setquiz', compact('quiz', 'questions', 'data'));
+
+        }
+
+        
 
 
     }
+
+    public function fetchQuizQuestions(Request $request)
+    {
+        $quizId = $request->input('quiz_id'); // Get quiz ID from request
+    
+        // Fetch questions with related choices
+        $questions = Question::with('choices')
+            ->where('quiz_id', $quizId)
+            ->get();
+    
+        // Prepare data for each question type
+        $data = [
+            'mcq' => [],
+            'short' => [],
+            'truefalse' => [],
+        ];
+    
+        foreach ($questions as $question) {
+            switch ($question->type) {
+                case 'mcq':
+                    $correctChoice = $question->choices->filter(function ($choice) {
+                        return $choice->is_correct;
+                    })->first();
+                    
+                    $data['mcq'][] = [
+                        'id' => $question->id,
+                        'text' => $question->text,
+                        'choices' => $question->choices->map(function ($choice) {
+                            return [
+                                'option' => $choice->option_mcq,
+                                'written_response' => $choice->written_response,
+                            ];
+                        }),
+                        'answer' => $correctChoice->id,
+                    ];
+                    break;
+                case 'short':
+                    $data['short'][] = [
+                        'id' => $question->id,
+                        'text' => $question->text,
+                        'answer' => $question->answer,
+                    ];
+                    break;
+                case 'truefalse':
+                    $data['truefalse'][] = [
+                        'id' => $question->id,
+                        'text' => $question->text,
+                        'answer' => $question->answer,
+                    ];
+                    break;
+            }
+        }
+    
+        return response()->json($data);
+    }
+
 
 
     public function lectureraddquizform($lcId, Request $request){
@@ -52,8 +158,9 @@ class QuizController extends Controller
         ]);
 
         if($saved){
+            $redirectUrl = route('lectureropencourse', ['lcId' => $lcId]) . '#submissions';
 
-            return back()->with('success', 'Quiz created successfully.');
+            return redirect($redirectUrl)->with('success', 'Quiz created successfully.');
         }
         else{
 
@@ -65,17 +172,13 @@ class QuizController extends Controller
     public function saveQuiz(Request $request) {
         // Decode the URL-encoded form data
         $formDataObject = $request->json()->all();
-        
-
-        return json_encode($formDataObject);
-
 
         // Validation rules
         $rules = [
             'quiz_id' => 'required|exists:quizzes,id',
             'questions' => 'required',
             'questions.*.title' => 'required|string',
-            'questions.*.type' => 'required|in:mcq,truefalse',
+            'questions.*.type' => 'required|in:mcq,truefalse,short',
             'questions.*.answer' => 'required',
             'questions.*.options' => 'required_if:questions.*.type,mcq|array',
             'questions.*.options.*' => 'sometimes|required|string',
@@ -92,139 +195,141 @@ class QuizController extends Controller
         try {
             $quizId = $formDataObject['quiz_id'];
             $quiz = Quiz::find($quizId);
-
-
-                      
+       
             foreach ($formDataObject['questions'] as $questionData) {
-                // Update or create question
-                $question = $quiz->questions()->create([
-                    'title' => $questionData['title'],
-                    'type' => $questionData['type'],
-                ]);
+                $questionId = $questionData['id'] ?? null; // Check for existing question ID
+                if (isset($questionId)) {
+                    
+                    $existingQuestionIds = $quiz->questions()->pluck('id')->toArray();
+                    $submittedQuestionIds = collect($formDataObject['questions'])
+                        ->filter(function ($question) {
+                            return isset($question['id']); // Only consider questions with IDs
+                        })
+                        ->map(function ($question) {
+                            return $question['id']; // Keep IDs of existing questions
+                        })
+                        ->all();
+                    
+                    // Identify questions to delete (existing but not submitted)
+                    $questionsToDelete = array_diff($existingQuestionIds, $submittedQuestionIds);
+                    
+                    // Delete identified questions using whereIn
+                    Question::whereIn('id', $questionsToDelete)->delete();
 
-                if ($questionData['type'] === 'mcq') {
-                    // Handle MCQ options
-                    foreach ($questionData['options'] as $optionKey => $optionValue) {
-                        $isCorrect = ($optionKey === $questionData['answer']);
-                        // Create or update the option
-                        $question->choices()->create([
-                            'option_mcq' => $optionKey,
-                            'written_response' => $optionValue,
-                            'is_correct' => $isCorrect,
+                    // Update existing question
+                    $question = Question::find($questionId);     
+                    $question->update([
+                        'text' => $questionData['title'],
+                        'type' => $questionData['type'],
+                        'quiz_id' => $quizId // Assign quiz ID explicitly
+                    ]);
+                    
+                    if ($questionData['type'] === 'mcq') {
+                        // Fetch existing choices, keyed by option_mcq for efficient comparison
+                        $existingChoices = $question->choices()->get()->keyBy('option_mcq');
+                    
+                        foreach ($questionData['options'] as $optionKey => $optionValue) {
+                            $isCorrect = ($optionKey === $questionData['answer']);
+                    
+                            // Check for existing choice with same option_mcq
+                            if (isset($existingChoices[$optionKey])) {
+                                $existingChoice = $existingChoices[$optionKey];
+                    
+                                // // Update only if content or correctness has changed
+                                if ($existingChoice->written_response !== $optionValue || $existingChoice->is_correct !== (int)$isCorrect) {
+                                    $existingChoice->update([
+                                        'option_mcq' => $optionKey,
+                                        'written_response' => $optionValue,
+                                        'is_correct' => (int)$isCorrect,
+                                    ]); 
+                                }
+                                else{
+                                    
+                                }
+                            } 
+                            
+                            else 
+                            {
+                                // // Create a new choice if it doesn't exist
+                                $question->choices()->create([
+                                    'option_mcq' => $optionKey,
+                                    'written_response' => $optionValue,
+                                    'is_correct' => (int)$isCorrect,
+                                ]);
+                            }
+                        }
+                    
+                        // Delete choices that weren't updated or created (not present in submitted options)
+                        $choicesToDelete = $existingChoices->filter(function ($choice) use ($questionData) {
+                            return !array_key_exists($choice->option_mcq, $questionData['options']);
+                        });
+
+                        $choicesToDelete->each->delete();
+                    }
+                    
+                    elseif ($questionData['type'] === 'short') {
+                        // Handle short answer type
+                        $question->choices()->update([
+                            'written_response' => $questionData['answer'], 
                         ]);
                     }
-                }
-
-                else {
-                    // Handle non-MCQ question types
-                    // Assuming the answer should be stored in 'written_response' for non-MCQs
-                    $question->update([
-                        'written_response' => $questionData['answer'],
-                    ]);
-                }
-            }
-
-            DB::commit();
-            return response()->json(['status' => 'success', 'message' => 'Quiz saved successfully.', 'data' => $quiz]);
-                
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json(['error' => true, 'message' => $e->getMessage()]);
-        }
-    }
-
-    public function savesQuiz(Request $request) {
-        
-        $formData = $request->all();
-
-         // Validation (you should expand this with actual validation rules)
-         $validatedData = $request->validate([
-             'title' => 'required|string',
-             'questions.*.title' => 'required|string',
-             'questions.*.options.*' => 'required|string',
-             'questions.*.answer' => 'required|string|size:1', // Ensure answer is a single character like 'A', 'B', etc.
-         ]);
-        
-         // Begin a transaction
-        DB::beginTransaction();
-
-        try {
-            // Check if it's an update or create operation
-            $quizId = $request->input('quiz_id');
-            if ($quizId) {
-                // Update operation
-                $quiz = Quiz::findOrFail($quizId);
-                $quiz->update([
-                    // ... (attributes for the quiz)
-                ]);
-            } else {
-                // Create operation
-                $quiz = Quiz::create([
-                    // ... (attributes for the quiz)
-                ]);
-            }
-
-            // Update or create questions and choices
-            foreach ($formData['questions'] as $questionData) {
-                // If question ID is provided, update, otherwise create a new question
-                $question = Question::updateOrCreate(
-                    ['id' => $questionData['id'] ?? null], // Pass null if 'id' is not set
-                    [
-                        'quiz_id' => $quiz->id,
-                        'number' => $questionData['number'],
-                        'text' => $questionData['text'],
-                        'type' => $questionData['type'],
-                        'points' => $questionData['points'],
-                        // ... (any other question attributes)
-                    ]
-                );
-
-                // Update or create choices for the question
-                if (isset($questionData['choices'])) {
-                    foreach ($questionData['choices'] as $choiceData) {
-                        $choice = Choice::updateOrCreate(
-                            ['id' => $choiceData['id'] ?? null], // Pass null if 'id' is not set
-                            [
-                                'question_id' => $question->id,
-                                'option_mcq' => $choiceData['option_mcq'],
-                                'written_response' => $choiceData['written_response'],
-                                'is_correct' => $choiceData['is_correct'],
-                                'time_limit' => $choiceData['time_limit'], // Handle this according to your input format
-                                // ... (any other choice attributes)
-                            ]
-                        );
+    
+                    else {
+                        // Handle trueFalse question types
+                        $question->choices()->update([
+                            'written_response' => $questionData['answer'],
+                        ]);
                     }
+                    if (!$question) {
+                        throw new \Exception('Question not found'); // Handle potential errors
+                    }
+                } 
+                
+                else 
+                {
+                    // Create new question
+                    $question = $quiz->questions()->create([
+                        'text' => $questionData['title'],
+                        'type' => $questionData['type'],
+                    ]);
+
+                    if ($questionData['type'] === 'mcq') {
+                        // Handle MCQ options
+                        foreach ($questionData['options'] as $optionKey => $optionValue) {
+                            $isCorrect = ($optionKey === $questionData['answer']);
+                            // Create or update the option
+                            $question->choices()->create([
+                                'option_mcq' => $optionKey,
+                                'written_response' => $optionValue,
+                                'is_correct' => $isCorrect,
+                            ]);
+                        }
+                    }
+    
+                    elseif ($questionData['type'] === 'short') {
+                        // Handle short answer type
+                        $question->choices()->create([
+                            'written_response' => $questionData['answer'], 
+                        ]);
+                    }
+    
+                    elseif ($questionData['type'] === 'truefalse') {
+                        // Handle trueFalse question types
+                        $question->choices()->create([
+                            'written_response' => $questionData['answer'],
+                        ]);
+                    }   
                 }
             }
 
-            // Step 1: Collect question and choice IDs from the request
-            $questionIds = collect($request->questions)->pluck('id')->filter()->all(); // Filter to remove null values
-            $choiceIds = collect($request->questions)->pluck('choices')->flatten(1)->pluck('id')->filter()->all();
-
-            // Step 2: Fetch current question and choice IDs from the database
-            $currentQuestionIds = $quiz->questions()->pluck('id')->all();
-            $currentChoiceIds = Question::whereIn('id', $currentQuestionIds)->with('choices')->get()->pluck('choices')->flatten()->pluck('id')->all();
-
-            // Step 3: Determine which questions and choices were removed
-            $questionsToDelete = array_diff($currentQuestionIds, $questionIds);
-            $choicesToDelete = array_diff($currentChoiceIds, $choiceIds);
-
-            // Step 4: Delete removed questions and choices
-            Question::destroy($questionsToDelete); // This will also cascade delete related choices
-            Choice::destroy($choicesToDelete);
-
-            // Commit the transaction
+            // Commit the changes
             DB::commit();
-
-            // Return success response
-            return response()->json(['success' => true, 'message' => 'Quiz saved successfully']);
-
-        } catch (\Exception $e) {
-            // An error occurred; rollback the transaction
-            DB::rollback();
-
-            // Return error response
-            return response()->json(['success' => false, 'message' => 'Failed to save the quiz', 'error' => $e->getMessage()]);
+            return response()->json(['status' => 'success', 'message' => 'Quiz saved successfully.', 'lcId' => $quiz->lecturer_course->id]);
+                
+        } 
+        catch (\Exception $e) {
+            // DB::rollback();
+            return response()->json(['error' => true, 'message' => $e->getMessage()]);
         }
     }
 

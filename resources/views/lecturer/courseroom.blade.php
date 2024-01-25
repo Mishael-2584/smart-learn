@@ -7,13 +7,14 @@
     <div class="section">
         @include('layouts.error')
         <div class="row">
-            <div class="col-12 mb-4 ">
+            <div class="col-12 mb-4">
                 <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="" class="banner-img">
-                <div class="hero-inner">
+                <div class="hero-inner col-12">
                     <!-- Your content goes here -->
                     <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
                 </div>
-                <div class=" col-12 col-sm-12" id="meet-link">
+                <br>
+                <div id="meet-link">
                     <div class="d-flex justify-content-end align-items-center">
                         <a href="{{route('jitsimeeting', $lc->id)}}"
                             class="btn btn-primary btn-lg btn-icon action-button"><i
@@ -34,10 +35,10 @@
                             <div class="card-body">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item"><a class="nav-link active" id="stream-tab" data-toggle="tab" href="#stream" role="tab" aria-controls="stream" aria-selected="true">STREAM</a></li>
-                                    <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab" href="#submissions" role="tab" aria-controls="submissions" aria-selected="false">COURSEWORK</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab" href="#submissions" role="tab" aria-controls="submissions" aria-selected="false">CLASS WORK</a></li>
                                     <li class="nav-item"><a class="nav-link" id="classwork-tab" data-toggle="tab"
                                         href="#classwork" role="tab" aria-controls="classwork"
-                                        aria-selected="false">CLASS WORK</a></li>
+                                        aria-selected="false">NEW <span><i class="fas fa-plus"></i></span></a></li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="students-tab" data-toggle="tab" href="#students" role="tab" aria-controls="students" aria-selected="false">
                                             STUDENTS
@@ -281,8 +282,8 @@
                                                         <div class="row">
                                                             <div class="col-3 col-sm-12 col-md-4 col-lg-2">
                                                                 <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
-                                                                    <li class="nav-item"><a class="nav-link active" id="quizzes-lecturer" data-toggle="tab" href="#quizzes" role="tab" aria-controls="home" aria-selected="true">QUIZZES</a></li>
-                                                                    <li class="nav-item"><a class="nav-link" id="assignments-lecturer" data-toggle="tab" href="#assignments" role="tab" aria-controls="profile" aria-selected="false">ASSIGNMENTS</a></li>
+                                                                    <li class="nav-item"><a class="nav-link active" id="quizzes-lecturer" data-toggle="tab" href="#quizzes" role="tab" aria-controls="home" aria-selected="true">MY QUIZZES</a></li>
+                                                                    <li class="nav-item"><a class="nav-link" id="assignments-lecturer" data-toggle="tab" href="#assignments" role="tab" aria-controls="profile" aria-selected="false">MY ASSIGNMENTS</a></li>
                                                                 </ul>
                                                             </div>
                                                             <div class="col-9 col-sm-12 col-md-8 col-lg-10">
@@ -290,7 +291,7 @@
                                                                 <div class="tab-pane fade show active" id="quizzes" role="tabpanel" aria-labelledby="quizzes-lecturer">
                                                                     <div class="card">
                                                                             <div class="card-header">
-                                                                                <h4>{{$lc->departmentcourse->course->course_code}} - Quiz List</h4>
+                                                                                <h4>{{$lc->departmentcourse->course->course_code}} - QUIZZES</h4>
                                                                             </div>
                                                                             <div class="card-body">
                                                                                 <div class="table-responsive">
@@ -378,9 +379,7 @@
                                                                 href="#"><i
                                                                     class="fas fa-clipboard text-primary"></i> <span
                                                                     class="ml-4">Assignment</span></a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-question-circle text-primary"></i> <span
-                                                                    class="ml-4">Quiz</span></a>
+                                                            <a class="dropdown-item" id="add-quiz-btn" data-toggle="modal" data-target="#addQuizModal"><i class="fas fa-question-circle text-primary"></i> <span class="ml-4">Quiz</span></a>
                                                             <a class="dropdown-item" href="#"><i
                                                                     class="fas fa-question text-primary"></i> <span
                                                                     class="ml-4">Question</span></a>
@@ -466,7 +465,7 @@
                                     
 
 
-                                </div>
+                                    </div>
 
 
 
@@ -583,6 +582,15 @@
             dom: 'Bfrtip',  // Add print button
 
         });
+    });
+    $(document).ready(function() {
+        if(window.location.hash) {
+            var hash = window.location.hash;
+            if(hash == '#submissions') {
+                // Code to open the 'submissions' tab
+                $('a[href="' + hash + '"]').tab('show');
+            }
+        }
     });
 </script>
 <script>

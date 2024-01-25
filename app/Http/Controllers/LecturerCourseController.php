@@ -29,10 +29,10 @@ class LecturerCourseController extends Controller
             
             $qz = Quiz::where('lecturer_course_id', $lcId)->get();
             if($po){
-                return view('lecturer.courseroom', compact('lc', 'er', 'po', 'qz'));
+                return view('lecturer.courseroom', compact('lc', 'er', 'po', 'qz', 'lcId'));
             }
             else{
-                return view('lecturer.courseroom', compact('lc', 'er', 'qz'));
+                return view('lecturer.courseroom', compact('lc', 'er', 'qz, lcId'));
             }
             
         }
