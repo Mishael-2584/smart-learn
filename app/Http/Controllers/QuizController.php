@@ -75,6 +75,22 @@ class QuizController extends Controller
 
     }
 
+    public function deleteQuiz($id){
+
+        $quiz = Quiz::find($id);
+        $deleted = $quiz->delete();
+
+        if($deleted){
+            return redirect()->back()->with('anchor', '#submissions')->with('success', 'Quiz deleted successfully');
+
+        }
+        else{
+            return redirect()->back()->with('anchor', '#submissions')->with('error', 'Failed to delete quiz');
+        }
+        
+
+    }
+
     public function fetchQuizQuestions(Request $request)
     {
         $quizId = $request->input('quiz_id'); // Get quiz ID from request

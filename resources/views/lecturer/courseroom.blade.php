@@ -295,7 +295,7 @@
                                                                             </div>
                                                                             <div class="card-body">
                                                                                 <div class="table-responsive">
-                                                                                    <table class="table table-bordered table-md v_center">
+                                                                                    <table class="table table-bordered table-md v_center col-12">
                                                                                         <tr>
                                                                                             <th>#</th>
                                                                                             <th>Quiz Title</th>
@@ -321,7 +321,10 @@
                                                                                             <td>{{ $q->time_limit }} mins</td>
                                                                                             <td>{{ $startTime->format('d/m/Y g:i A') }}</td>
                                                                                             <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
-                                                                                            <td><a href="{{route('lecturerquizdetail', $q->id)}}" class="btn btn-secondary">View</a></td>
+                                                                                            <td>
+                                                                                                <a href="{{route('lecturerquizdetail', $q->id)}}" class="btn btn-secondary">View</a>
+                                                                                                <a href="{{ route('lecturerdeletequiz', $q->id) }}" class="btn btn-danger"><span><i class="fas fa-trash"></i></span></a>
+                                                                                            </td>
                                                                                         </tr>       
                                                                                         @endforeach     
                                                                                         @endisset
@@ -592,6 +595,14 @@
             }
         }
     });
+    window.addEventListener('load', function() {
+        const anchor = sessionStorage.getItem('anchor');
+        if (anchor) {
+            window.location.hash = anchor;
+            sessionStorage.removeItem('anchor');
+        }
+    });
+
 </script>
 <script>
     $(document).on('click', '.delete-post', function (e) {
