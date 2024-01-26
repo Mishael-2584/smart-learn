@@ -172,11 +172,13 @@ class QuizController extends Controller
     public function saveQuiz(Request $request) {
         // Decode the URL-encoded form data
         $formDataObject = $request->json()->all();
+        // $quizId = $formDataObject['quiz_id'];
+        // $quiz = Quiz::find($quizId);
 
         // Validation rules
         $rules = [
             'quiz_id' => 'required|exists:quizzes,id',
-            'questions' => 'required',
+            'questions' => 'sometimes',
             'questions.*.title' => 'required|string',
             'questions.*.type' => 'required|in:mcq,truefalse,short',
             'questions.*.answer' => 'required',
@@ -195,135 +197,140 @@ class QuizController extends Controller
         try {
             $quizId = $formDataObject['quiz_id'];
             $quiz = Quiz::find($quizId);
-       
-            foreach ($formDataObject['questions'] as $questionData) {
-                $questionId = $questionData['id'] ?? null; // Check for existing question ID
-                if (isset($questionId)) {
-                    
-                    $existingQuestionIds = $quiz->questions()->pluck('id')->toArray();
-                    $submittedQuestionIds = collect($formDataObject['questions'])
-                        ->filter(function ($question) {
-                            return isset($question['id']); // Only consider questions with IDs
-                        })
-                        ->map(function ($question) {
-                            return $question['id']; // Keep IDs of existing questions
-                        })
-                        ->all();
-                    
-                    // Identify questions to delete (existing but not submitted)
-                    $questionsToDelete = array_diff($existingQuestionIds, $submittedQuestionIds);
-                    
-                    // Delete identified questions using whereIn
-                    Question::whereIn('id', $questionsToDelete)->delete();
 
-                    // Update existing question
-                    $question = Question::find($questionId);     
-                    $question->update([
-                        'text' => $questionData['title'],
-                        'type' => $questionData['type'],
-                        'quiz_id' => $quizId // Assign quiz ID explicitly
-                    ]);
-                    
-                    if ($questionData['type'] === 'mcq') {
-                        // Fetch existing choices, keyed by option_mcq for efficient comparison
-                        $existingChoices = $question->choices()->get()->keyBy('option_mcq');
-                    
-                        foreach ($questionData['options'] as $optionKey => $optionValue) {
-                            $isCorrect = ($optionKey === $questionData['answer']);
-                    
-                            // Check for existing choice with same option_mcq
-                            if (isset($existingChoices[$optionKey])) {
-                                $existingChoice = $existingChoices[$optionKey];
-                    
-                                // // Update only if content or correctness has changed
-                                if ($existingChoice->written_response !== $optionValue || $existingChoice->is_correct !== (int)$isCorrect) {
-                                    $existingChoice->update([
+                if(count($formDataObject['questions']) == 0){
+                    $quiz->questions()->delete();
+                }
+       
+                foreach ($formDataObject['questions'] as $questionData) {
+                    $questionId = $questionData['id'] ?? null; // Check for existing question ID
+                    if (isset($questionId)) {
+
+                        $existingQuestionIds = $quiz->questions()->pluck('id')->toArray();
+                        $submittedQuestionIds = collect($formDataObject['questions'])
+                            ->filter(function ($question) {
+                                return isset($question['id']); // Only consider questions with IDs
+                            })
+                            ->map(function ($question) {
+                                return $question['id']; // Keep IDs of existing questions
+                            })
+                            ->all();
+                        
+                        // Identify questions to delete (existing but not submitted)
+                        $questionsToDelete = array_diff($existingQuestionIds, $submittedQuestionIds);
+                        
+                        // Delete identified questions using whereIn
+                        Question::whereIn('id', $questionsToDelete)->delete();
+
+                        // Update existing question
+                        $question = Question::find($questionId);     
+                        $question->update([
+                            'text' => $questionData['title'],
+                            'type' => $questionData['type'],
+                            'quiz_id' => $quizId // Assign quiz ID explicitly
+                        ]);
+
+                        if ($questionData['type'] === 'mcq') {
+                            // Fetch existing choices, keyed by option_mcq for efficient comparison
+                            $existingChoices = $question->choices()->get()->keyBy('option_mcq');
+                        
+                            foreach ($questionData['options'] as $optionKey => $optionValue) {
+                                $isCorrect = ($optionKey === $questionData['answer']);
+                            
+                                // Check for existing choice with same option_mcq
+                                if (isset($existingChoices[$optionKey])) {
+                                    $existingChoice = $existingChoices[$optionKey];
+                                
+                                    // // Update only if content or correctness has changed
+                                    if ($existingChoice->written_response !== $optionValue || $existingChoice->is_correct !== (int)$isCorrect) {
+                                        $existingChoice->update([
+                                            'option_mcq' => $optionKey,
+                                            'written_response' => $optionValue,
+                                            'is_correct' => (int)$isCorrect,
+                                        ]); 
+                                    }
+                                    else{
+
+                                    }
+                                } 
+
+                                else 
+                                {
+                                    // // Create a new choice if it doesn't exist
+                                    $question->choices()->create([
                                         'option_mcq' => $optionKey,
                                         'written_response' => $optionValue,
                                         'is_correct' => (int)$isCorrect,
-                                    ]); 
+                                    ]);
                                 }
-                                else{
-                                    
-                                }
-                            } 
-                            
-                            else 
-                            {
-                                // // Create a new choice if it doesn't exist
+                            }
+                        
+                            // Delete choices that weren't updated or created (not present in submitted options)
+                            $choicesToDelete = $existingChoices->filter(function ($choice) use ($questionData) {
+                                return !array_key_exists($choice->option_mcq, $questionData['options']);
+                            });
+
+                            $choicesToDelete->each->delete();
+                        }
+
+                        elseif ($questionData['type'] === 'short') {
+                            // Handle short answer type
+                            $question->choices()->update([
+                                'written_response' => $questionData['answer'], 
+                            ]);
+                        }
+                    
+                        else {
+                            // Handle trueFalse question types
+                            $question->choices()->update([
+                                'written_response' => $questionData['answer'],
+                            ]);
+                        }
+                        if (!$question) {
+                            throw new \Exception('Question not found'); // Handle potential errors
+                        }
+                    } 
+
+                    else 
+                    {
+                        // Create new question
+                        $question = $quiz->questions()->create([
+                            'text' => $questionData['title'],
+                            'type' => $questionData['type'],
+                        ]);
+
+                        if ($questionData['type'] === 'mcq') {
+                            // Handle MCQ options
+                            foreach ($questionData['options'] as $optionKey => $optionValue) {
+                                $isCorrect = ($optionKey === $questionData['answer']);
+                                // Create or update the option
                                 $question->choices()->create([
                                     'option_mcq' => $optionKey,
                                     'written_response' => $optionValue,
-                                    'is_correct' => (int)$isCorrect,
+                                    'is_correct' => $isCorrect,
                                 ]);
                             }
                         }
                     
-                        // Delete choices that weren't updated or created (not present in submitted options)
-                        $choicesToDelete = $existingChoices->filter(function ($choice) use ($questionData) {
-                            return !array_key_exists($choice->option_mcq, $questionData['options']);
-                        });
-
-                        $choicesToDelete->each->delete();
-                    }
-                    
-                    elseif ($questionData['type'] === 'short') {
-                        // Handle short answer type
-                        $question->choices()->update([
-                            'written_response' => $questionData['answer'], 
-                        ]);
-                    }
-    
-                    else {
-                        // Handle trueFalse question types
-                        $question->choices()->update([
-                            'written_response' => $questionData['answer'],
-                        ]);
-                    }
-                    if (!$question) {
-                        throw new \Exception('Question not found'); // Handle potential errors
-                    }
-                } 
-                
-                else 
-                {
-                    // Create new question
-                    $question = $quiz->questions()->create([
-                        'text' => $questionData['title'],
-                        'type' => $questionData['type'],
-                    ]);
-
-                    if ($questionData['type'] === 'mcq') {
-                        // Handle MCQ options
-                        foreach ($questionData['options'] as $optionKey => $optionValue) {
-                            $isCorrect = ($optionKey === $questionData['answer']);
-                            // Create or update the option
+                        elseif ($questionData['type'] === 'short') {
+                            // Handle short answer type
                             $question->choices()->create([
-                                'option_mcq' => $optionKey,
-                                'written_response' => $optionValue,
-                                'is_correct' => $isCorrect,
+                                'written_response' => $questionData['answer'], 
                             ]);
                         }
+                    
+                        elseif ($questionData['type'] === 'truefalse') {
+                            // Handle trueFalse question types
+                            $question->choices()->create([
+                                'written_response' => $questionData['answer'],
+                            ]);
+                        }   
                     }
-    
-                    elseif ($questionData['type'] === 'short') {
-                        // Handle short answer type
-                        $question->choices()->create([
-                            'written_response' => $questionData['answer'], 
-                        ]);
-                    }
-    
-                    elseif ($questionData['type'] === 'truefalse') {
-                        // Handle trueFalse question types
-                        $question->choices()->create([
-                            'written_response' => $questionData['answer'],
-                        ]);
-                    }   
                 }
-            }
 
             // Commit the changes
             DB::commit();
+            //  dd($quiz->lecturer_course->id);
             return response()->json(['status' => 'success', 'message' => 'Quiz saved successfully.', 'lcId' => $quiz->lecturer_course->id]);
                 
         } 
