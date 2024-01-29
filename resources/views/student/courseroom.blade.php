@@ -64,8 +64,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <td><p>Assignment 1</p></td>
-                                                            <td><p>Today <span>5:30</span></p></td>
+                                                            <td><a href="#">Assignment 1</a></td>
+                                                            <td><a href="#">Today <span>5:30</span></a></td>                                                           
                                                         </tbody>
                                                     </table>
                                                 </div>
