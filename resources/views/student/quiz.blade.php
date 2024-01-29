@@ -24,11 +24,10 @@
                                     <p id="timer" class="text-danger"></p>
                                     <form id="quizForm">
                                         <div class="form-group">
-                                            <label for="question1">Question 1: What is the capital of France?</label>
+                                            <label for="question1">Question 1: Equatorial Guinea is an African country?</label>
                                             <select class="form-control" id="question1" name="question1">
-                                                <option value="paris">Paris</option>
-                                                <option value="berlin">Berlin</option>
-                                                <option value="london">London</option>
+                                                <option value="paris">Yes</option>
+                                                <option value="berlin">No</option>
                                             </select>
                                         </div>
 
