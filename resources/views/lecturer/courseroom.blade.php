@@ -7,13 +7,14 @@
     <div class="section">
         @include('layouts.error')
         <div class="row">
-            <div class="col-12 mb-4 ">
+            <div class="col-12 mb-4">
                 <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="" class="banner-img">
-                <div class="hero-inner">
+                <div class="hero-inner col-12">
                     <!-- Your content goes here -->
                     <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
                 </div>
-                <div class=" col-12 col-sm-12" id="meet-link">
+                <br>
+                <div id="meet-link">
                     <div class="d-flex justify-content-end align-items-center">
                         <a href="{{route('jitsimeeting', $lc->id)}}"
                             class="btn btn-primary btn-lg btn-icon action-button"><i
@@ -27,43 +28,36 @@
         </div>
     </div>
     <div class="section">
-        <div class="section-body">
-            <div class="row">
-                <div class="col-12 col-md-12 col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" id="stream-tab" data-toggle="tab"
-                                        href="#stream" role="tab" aria-controls="stream" aria-selected="true">STREAM</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" id="classwork-tab" data-toggle="tab"
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" id="stream-tab" data-toggle="tab" href="#stream" role="tab" aria-controls="stream" aria-selected="true">STREAM</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab" href="#submissions" role="tab" aria-controls="submissions" aria-selected="false">CLASS WORK</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="classwork-tab" data-toggle="tab"
                                         href="#classwork" role="tab" aria-controls="classwork"
-                                        aria-selected="false">CLASS WORK</a></li>
-                                <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab"
-                                        href="#submissions" role="tab" aria-controls="submissions"
-                                        aria-selected="false">SUBMISSIONS</a></li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="students-tab" data-toggle="tab" href="#students" role="tab"
-                                        aria-controls="students" aria-selected="false">
-                                        STUDENTS
-                                        <span class="badge bg-primary text-white">{{ count($er) }}</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="stream" role="tabpanel"
-                                    aria-labelledby="stream-tab">
-                                    <div class="row">
-                                        <div class="col-md-4 col-lg-4">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4>Upcoming Assignments</h4>
-                                                </div>
-                                                <div class="card-body">
-                                                    <table class="table table-striped">
-                                                        <thead>
-                                                            <tr>
+                                        aria-selected="false">NEW <span><i class="fas fa-plus"></i></span></a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="students-tab" data-toggle="tab" href="#students" role="tab" aria-controls="students" aria-selected="false">
+                                            STUDENTS
+                                            <span class="badge bg-primary text-white">{{ count($er) }}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-4">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>Upcoming Assignments</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
                                                                 <th>Assignment</th>
                                                                 <th>Due Date</th>
                                                             </tr>
@@ -271,130 +265,210 @@
                                             @endisset
 
 
-
+                                                
+                                            </div>
+                                                    
+                                                                                                              
                                         </div>
-
-
+                                    
                                     </div>
 
-                                </div>
-                                <!-- Class work tab start -->
-                                <div class="tab-pane fade" id="classwork" role="tabpanel"
-                                    aria-labelledby="classwork-tab">
+                                          
+                                    <div class="tab-pane fade" id="submissions" role="tabpanel" aria-labelledby="submissions-tab">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-7 col-lg-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-3 col-sm-12 col-md-4 col-lg-2">
+                                                                <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
+                                                                    <li class="nav-item"><a class="nav-link active" id="quizzes-lecturer" data-toggle="tab" href="#quizzes" role="tab" aria-controls="home" aria-selected="true">MY QUIZZES</a></li>
+                                                                    <li class="nav-item"><a class="nav-link" id="assignments-lecturer" data-toggle="tab" href="#assignments" role="tab" aria-controls="profile" aria-selected="false">MY ASSIGNMENTS</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-9 col-sm-12 col-md-8 col-lg-10">
+                                                            <div class="tab-content no-padding" id="myTab2Content">
+                                                                <div class="tab-pane fade show active" id="quizzes" role="tabpanel" aria-labelledby="quizzes-lecturer">
+                                                                    <div class="card">
+                                                                            <div class="card-header">
+                                                                                <h4>{{$lc->departmentcourse->course->course_code}} - QUIZZES</h4>
+                                                                            </div>
+                                                                            <div class="card-body">
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table table-bordered table-md v_center col-12">
+                                                                                        <tr>
+                                                                                            <th>#</th>
+                                                                                            <th>Quiz Title</th>
+                                                                                            <th>Created On</th>
+                                                                                            <th>Duration</th>
+                                                                                            <th>Start Date & Time</th>
+                                                                                            <th>Total Qns</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                        @isset($qz)                    
+                                                                                        @foreach ($qz as $index => $q)
+                                                                                        @php
+                                                                                            // Create a Carbon instance from the deadline
+                                                                                            $deadline = \Carbon\Carbon::parse($q->deadline);
+                                                                                                                                                                            
+                                                                                            // Subtract the time limit in minutes to get the start time
+                                                                                            $startTime = $deadline->copy()->subMinutes($q->time_limit);
+                                                                                        @endphp
+                                                                                        <tr>
+                                                                                            <td>{{ $index+1 }}</td>
+                                                                                            <td>{{ $q->title }}</td>
+                                                                                            <td>{{ $q->updated_at }}</td>
+                                                                                            <td>{{ $q->time_limit }} mins</td>
+                                                                                            <td>{{ $startTime->format('d/m/Y g:i A') }}</td>
+                                                                                            <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
+                                                                                            <td>
+                                                                                                <a href="{{route('lecturerquizdetail', $q->id)}}" class="btn btn-secondary">View</a>
+                                                                                                <a href="{{ route('lecturerdeletequiz', $q->id) }}" class="btn btn-danger"><span><i class="fas fa-trash"></i></span></a>
+                                                                                            </td>
+                                                                                        </tr>       
+                                                                                        @endforeach     
+                                                                                        @endisset
+                                                                                        
+                                                                                
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="card-footer text-right">
+                                                                                <nav class="d-inline-block">            
+                                                                                    <ul class="pagination mb-0">
+                                                                                        <!-- Button trigger modal -->
+                                                                                        <li id="add-quiz-btn" class="btn btn-success" data-toggle="modal" data-target="#addQuizModal"><i class="fas fa-plus"></i> New Quiz</li>
 
-                                    <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-6">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-primary create-btn"
-                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                        <i class="fas fa-plus"></i> Create
-                                                    </button>
-                                                    <div class="dropdown-menu pt-4">
-                                                        <a class="dropdown-item "
-                                                            href="{{ route('assignment') }}"><i
-                                                                class="fas fa-clipboard text-primary"></i> <span
-                                                                class="ml-4">Assignment</span></a>
-                                                        <a class="dropdown-item" href="#"><i
-                                                                class="fas fa-question-circle text-primary"></i> <span
-                                                                class="ml-4">Quiz</span></a>
-                                                        <a class="dropdown-item" href="#"><i
-                                                                class="fas fa-question text-primary"></i> <span
-                                                                class="ml-4">Question</span></a>
-                                                        <a class="dropdown-item" href="#"><i
-                                                                class="fas fa-file-alt text-primary"></i> <span
-                                                                class="ml-4">Learning Material</span></a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#"><i
-                                                                class="fas fa-lightbulb text-primary"></i> <span
-                                                                class="ml-4">Topic</span></a>
+                                                                                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a></li>
+                                                                                        <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                                                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                                                                                    </ul>
+                                                                                </nav>
+                                                                            </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="assignments" role="tabpanel" aria-labelledby="assignments-lecturer">
+
+                                                                    
+                                                                
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <hr>
-                                                <div class="text-center">
-                                                    <img src="{{ asset('codiepie/assets/img/bg/bg1.jpg') }}"
-                                                        alt="Vector Image" class="img-fluid">
-                                                </div>
-                                                <p class="text-center ">
-                                                    Welcome to the class workspace! This is where you can create and
-                                                    manage various assignments, quizzes, and learning materials.
-                                                    Use the <strong>Create</strong> button to start crafting engaging
-                                                    content. Feel free to attach documents, images, or any resources
-                                                    that enhance the learning experience for everyone.
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Submission tab start -->
-                                <div class="tab-pane fade" id="submissions" role="tabpanel"
-                                    aria-labelledby="submissions-tab">
+                                    <!-- Class work tab start -->
+                                    <div class="tab-pane fade" id="classwork" role="tabpanel"
+                                        aria-labelledby="classwork-tab">
 
-
-                                </div>
-
-                                <!-- Student List tab -->
-                                <div class="tab-pane fade" id="students" role="tabpanel" aria-labelledby="students-tab">
-
-                                    <div class="table-responsive">
-                                        <table class="table table-striped v_center" id="table-1">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Matric Number</th>
-                                                    <th>Students Name</th>
-                                                    <th>Group</th>
-                                                    <th>Level</th>
-                                                    <th>Email</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @isset($er)
-
-                                                @foreach ($er as $index => $e)
-
-                                                <tr>
-
-
-                                                    <td>{{$index+1}}</td>
-                                                    <td>{{$e->student->matric_no}}</td>
-                                                    <td>{{$e->student->name}}</td>
-                                                    <td>{{$e->student->group}}</td>
-                                                    <td>{{$e->student->level}}</td>
-                                                    <td>{{$e->student->email}}</td>
-
-
-                                                    <td>
-                                                        <a href="#" data-toggle="dropdown" class="dropdown btn">
-                                                            <i class="fa-solid fa-square-caret-down fa-2xl fa-beat"
-                                                                style="color: #712d9f;"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-below">
-                                                            <div class="dropdown-title">OPTIONS</div>
-                                                            <a href="features-profile.html"
-                                                                class="dropdown-item has-icon">
-                                                                <i class="fa-solid fa-pen-to-square"></i> Edit
-                                                            </a>
-                                                            <a href="features-activities.html"
-                                                                class="dropdown-item has-icon">
-                                                                <i class="fa-solid fa-trash"></i> Delete
-                                                            </a>
+                                        <div class="container">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary create-btn"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-plus"></i> Create
+                                                        </button>
+                                                        <div class="dropdown-menu pt-4">
+                                                            <a class="dropdown-item "
+                                                                href="#"><i
+                                                                    class="fas fa-clipboard text-primary"></i> <span
+                                                                    class="ml-4">Assignment</span></a>
+                                                            <a class="dropdown-item" id="add-quiz-btn" data-toggle="modal" data-target="#addQuizModal"><i class="fas fa-question-circle text-primary"></i> <span class="ml-4">Quiz</span></a>
+                                                            <a class="dropdown-item" href="#"><i
+                                                                    class="fas fa-question text-primary"></i> <span
+                                                                    class="ml-4">Question</span></a>
+                                                            <a class="dropdown-item" href="#"><i
+                                                                    class="fas fa-file-alt text-primary"></i> <span
+                                                                    class="ml-4">Learning Material</span></a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="#"><i
+                                                                    class="fas fa-lightbulb text-primary"></i> <span
+                                                                    class="ml-4">Topic</span></a>
                                                         </div>
-                                                    </td>
-
-                                                </tr>
-                                                @endforeach
-                                                @endisset
-                                            </tbody>
-                                        </table>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="text-center">
+                                                        <img src="{{ asset('codiepie/assets/img/bg/bg1.jpg') }}"
+                                                            alt="Vector Image" class="img-fluid">
+                                                    </div>
+                                                    <p class="text-center ">
+                                                        Welcome to the class workspace! This is where you can create and
+                                                        manage various assignments, quizzes, and learning materials.
+                                                        Use the <strong>Create</strong> button to start crafting engaging
+                                                        content. Feel free to attach documents, images, or any resources
+                                                        that enhance the learning experience for everyone.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
 
+                                    <div class="tab-pane fade" id="students" role="tabpanel" aria-labelledby="students-tab">
 
-                                </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped v_center" id="table-1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Matric Number</th>
+                                                        <th>Students Name</th>
+                                                        <th>Group</th>
+                                                        <th>Level</th>
+                                                        <th>Email</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @isset($er)
+                                                    
+                                                    @foreach ($er as $index => $e)
+                                                    
+                                                    <tr>
+                                                        
+                                                            
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{$e->student->matric_no}}</td>
+                                                        <td>{{$e->student->name}}</td>
+                                                        <td>{{$e->student->group}}</td>
+                                                        <td>{{$e->student->level}}</td>
+                                                        <td>{{$e->student->email}}</td>
+
+                                                        
+                                                        <td>
+                                                            <a href="#" data-toggle="dropdown" class="dropdown btn">
+                                                                <i class="fa-solid fa-square-caret-down fa-2xl fa-beat" style="color: #712d9f;"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-below">
+                                                                <div class="dropdown-title">OPTIONS</div>
+                                                                <a href="features-profile.html" class="dropdown-item has-icon">
+                                                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                                </a>
+                                                                <a href="features-activities.html" class="dropdown-item has-icon">
+                                                                    <i class="fa-solid fa-trash"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    @endforeach
+                                                    @endisset
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    
+
+
+                                    </div>
 
 
 
@@ -411,6 +485,52 @@
 
     </div>
 
+</div>
+
+
+
+<!-- Quiz Modal -->
+<div class="modal fade" id="addQuizModal" tabindex="-1" aria-labelledby="addQuizModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addQuizModalLabel">Add New Quiz</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="newQuizForm" action="{{ route('lectureraddquizform', $lc->id) }}" method="POST">
+        @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="quizTitle">Quiz Title</label>
+                  <input type="text" name="quizTitle" class="form-control" id="quizTitle" required>
+                </div>
+                <div class="form-group">
+                  <label for="quizDescription">Description (Quiz Label)</label>
+                  <textarea class="form-control" name="quizDescription" id="quizDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="quizTotalPoints">Total Points</label>
+                  <input type="number" name="quizTotalPoints" class="form-control" id="quizTotalPoints" required>
+                </div>
+                <div class="form-group">
+                  <label for="quizTime">Start Date & Time</label>
+                  <input type="datetime-local" name="quizTime" class="form-control" id="quizDeadline" required>
+                </div>
+                <div class="form-group">
+                  <label for="quizTimeLimit">Time Limit (minutes)</label>
+                  <input type="number" name="quizTimeLimit" class="form-control" id="quizTimeLimit" required>
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save Quiz</button>
+            </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 @isset($p->id)
@@ -454,6 +574,7 @@
 <script src="{{ asset('codiepie/assets/modules/codemirror/lib/codemirror.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
+<script src="{{ asset('codiepie/js/page/bootstrap-modal.js') }}"></script>
 <script type="text/javascript">
     var deletePostUrlTemplate = "{{ route('lecturerpostdelete', ['id' => ':id']) }}";
     var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable
@@ -465,6 +586,23 @@
 
         });
     });
+    $(document).ready(function() {
+        if(window.location.hash) {
+            var hash = window.location.hash;
+            if(hash == '#submissions') {
+                // Code to open the 'submissions' tab
+                $('a[href="' + hash + '"]').tab('show');
+            }
+        }
+    });
+    window.addEventListener('load', function() {
+        const anchor = sessionStorage.getItem('anchor');
+        if (anchor) {
+            window.location.hash = anchor;
+            sessionStorage.removeItem('anchor');
+        }
+    });
+
 </script>
 <script>
     $(document).on('click', '.delete-post', function (e) {

@@ -53,7 +53,7 @@
                                                         <!-- Image -->
                                                         <img id="backgroundimage" src="{{ $c->course->imgpath }}"
                                                             class="card-img-top" alt="course image"
-                                                            style="max-height: {{ (850 / count($coursedeps)) . 'px' }}">
+                                                            style="max-height: 200px;">
                                                     </div>
                                                     <!-- Hover element -->
                                                     <div class="card-img-overlay">
@@ -102,7 +102,7 @@
                                                         <!-- Image -->
                                                         <img id="backgroundimage" src="{{ $course->imgpath }}"
                                                             class="card-img-top" alt="course image"
-                                                            style="max-height: {{ (850 / count($gedscourses)) . 'px' }}">
+                                                            style="max-height: 200px;">
                                                     </div>
                                                     <!-- Hover element -->
                                                     <div class="card-img-overlay">
@@ -150,7 +150,7 @@
                                                         <!-- Image -->
                                                         <img id="backgroundimage" src="{{ $course->imgpath }}"
                                                             class="card-img-top" alt="course image"
-                                                            style="max-height: {{ (850 / count($uniquecourses)) . 'px' }}">
+                                                            style="max-height: 200px;">
                                                     </div>
                                                     <!-- Hover element -->
                                                     <div class="card-img-overlay">
