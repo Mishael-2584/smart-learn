@@ -49,7 +49,7 @@ Route::post('/student_submit', [AuthenticationController::class, 'studentssubmit
 
 Route::get('/lecturer_signup', function () { return view('auths.lecturerregister'); })->name('lecturersignup');
 Route::post('/lecturer_submit', [AuthenticationController::class, 'staffsubmit'])->name('lecturersubmit');
-Route::get('/lecturer/topic', function () { return view('lecturer.assignment'); })->name('assignment');
+Route::get('/lecturer/assignment', function () { return view('lecturer.assignment'); })->name('assignment');
 
 
 

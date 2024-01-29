@@ -64,6 +64,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <td><p>Assignment 1</p></td>
+                                                            <td><p>Today <span>5:30</span></p></td>
                                                         </tbody>
                                                     </table>
                                                 </div>
