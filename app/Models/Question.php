@@ -20,4 +20,13 @@ class Question extends Model
     {
         return $this->hasMany(Choice::class);
     }
+
+    protected static function booted()
+    {
+        static::updated(function ($question) {
+            $question->quiz->setTotalPointsAttribute(); // Recalculate total_score for the quiz
+            $question->quiz->save(); // Save the updated quiz
+        });
+    }
+
 }

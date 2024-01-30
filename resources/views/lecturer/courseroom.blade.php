@@ -226,19 +226,12 @@
                                                                 </div>
                                                                 <hr>
                                                                 
-                                                                <div class="clickable-div section-body" id="section-body-{{$p->id}}">
-                                                                   <h6>{{ $p->quiz->title }}</h6><br>
-                                                                   <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
-                                                                    <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b> 
-                                                                    <br>
-                                                                    
-                                                                    {{-- {!! $p->content !!} --}}
-                                                                    
+                                                                <div class="clickable-div section-body" data-quiz-id="{{$p->quiz->id}}" id="section-body-{{$p->id}}">
+                                                                    <h6>{{ $p->quiz->title }}</h6><br>
+                                                                    <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
+                                                                    <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b><br>
                                                                 </div>
-                                                                
-                                                                  
-                                                                  
-                                                                {{-- </a> --}}
+                                                                                            
                                                             </div>
                                                             <form id="editor-form-{{$p->id}}"
                                                                 action="{{ route('lecturerpostedit', $p->id) }}" method="post">
@@ -387,6 +380,7 @@
                                                                                             <th>Duration</th>
                                                                                             <th>Start Date & Time</th>
                                                                                             <th>Total Qns</th>
+                                                                                            <th>Total Marks</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
                                                                                         @isset($qz)                    
@@ -405,6 +399,7 @@
                                                                                             <td>{{ $q->time_limit }} mins</td>
                                                                                             <td>{{ $startTime->format('d/m/Y g:i A') }}</td>
                                                                                             <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
+                                                                                            <td><div class="badge badge-success">{{ $q->total_points }}</div></td>
                                                                                             <td>
                                                                                                 <a href="{{route('lecturerquizdetail', $q->id)}}" class="btn btn-secondary">View</a>
                                                                                                 <a href="{{ route('lecturerdeletequiz', $q->id) }}" class="btn btn-danger"><span><i class="fas fa-trash"></i></span></a>
@@ -596,7 +591,7 @@
                 </div>
                 <div class="form-group">
                   <label for="quizTotalPoints">Total Points</label>
-                  <input type="number" name="quizTotalPoints" class="form-control" id="quizTotalPoints" required>
+                  <input type="number" name="quizTotalPoints" class="form-control" id="quizTotalPoints">
                 </div>
                 <div class="form-group">
                   <label for="quizTime">Start Date & Time</label>
@@ -660,20 +655,27 @@
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
 <script src="{{ asset('codiepie/js/page/bootstrap-modal.js') }}"></script>
 <script>
-    const clickableDiv = document.querySelector('.clickable-div');
-  
-    clickableDiv.addEventListener('click', () => {
-      window.location.href = "{{route('lecturerquizredirect', $p->quiz_id)}}";
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select all elements with class "clickable-div"
+        const clickableDivs = document.querySelectorAll('.clickable-div');
+
+        clickableDivs.forEach(div => {
+            const quizId = div.getAttribute('data-quiz-id');
+
+            div.addEventListener('click', () => {
+                window.location.href = '/lecturer/lecturer/quiz/' + quizId; // Replace with the correct URL pattern
+            });
+
+            div.addEventListener('mouseover', () => {
+                div.style.backgroundColor = "#f0f0f0";
+            });
+
+            div.addEventListener('mouseout', () => {
+                div.style.backgroundColor = "";
+            });
+        });
     });
-  
-    clickableDiv.addEventListener('mouseover', () => {
-      clickableDiv.style.backgroundColor = "#f0f0f0";
-    });
-  
-    clickableDiv.addEventListener('mouseout', () => {
-      clickableDiv.style.backgroundColor = "";
-    });
-  </script>
+</script>
 <script type="text/javascript">
     var deletePostUrlTemplate = "{{ route('lecturerpostdelete', ['id' => ':id']) }}";
     var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable

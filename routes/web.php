@@ -134,6 +134,9 @@ Route::middleware('student')->group(function () {
             Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcommentstudent');
             Route::get('/getcomments/{pId}', [CommentController::class, 'getcomment'])->name('getcommentstudent');
             Route::delete('/deletecomments/{cId}', [CommentController::class, 'commentdelete'])->name('commentdelete');
+            Route::get('/quiz/{qId}', [QuizController::class, 'studentquizredirect'])->name('studentquizredirect');
+
+            Route::post('/studenttakequiz/{qId}', [QuizController::class, 'studenttakequiz'])->name('studenttakequiz'); // studenttakequiz
             
 
         });

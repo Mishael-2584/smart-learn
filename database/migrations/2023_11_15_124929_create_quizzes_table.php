@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('lecturer_course_id');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->decimal('total_points');
+            $table->decimal('total_points')->nullable();
             $table->dateTime('deadline');
             $table->dateTime('published_at')->nullable();
             $table->string('time_limit')->nullable();

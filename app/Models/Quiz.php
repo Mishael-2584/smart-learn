@@ -15,8 +15,16 @@ class Quiz extends Model
         return $this->belongsTo(LecturerCourse::class);
     }
 
+    
+    public function setTotalPointsAttribute()
+    {
+        $this->attributes['total_points'] = $this->questions()->sum('points');
+    }
+    
+
     public function questions()
     {
         return $this->hasMany(Question::class);
     }
+
 }

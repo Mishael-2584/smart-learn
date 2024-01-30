@@ -45,6 +45,7 @@ class QuizController extends Controller
                                     ];
                                 }),
                                 'answer' => $correctChoice->written_response,
+                                'points' => $question->points,
                             ];
                             
                             break;
@@ -53,6 +54,7 @@ class QuizController extends Controller
                                 'id' => $question->id,
                                 'text' => $question->text,
                                 'answer' => $question->choices->first()->written_response,
+                                'points' => $question->points,
                             ];
                             break;
                         case 'truefalse':
@@ -60,6 +62,7 @@ class QuizController extends Controller
                                 'id' => $question->id,
                                 'text' => $question->text,
                                 'answer' => $question->choices->first()->written_response,
+                                'points' => $question->points,
                             ];
                             break;
                     }
@@ -80,6 +83,66 @@ class QuizController extends Controller
         return view('lecturer.viewquiz', compact('qId'));
         
     }
+
+    public function studentquizredirect($qId){
+
+        $quiz = Quiz::find($qId);
+        $questions = Question::with('choices')->where('quiz_id', $qId)->get();
+
+        if($questions){
+                // Prepare data for each question type
+                $data = [
+                    'mcq' => [],
+                    'short' => [],
+                    'truefalse' => [],
+                ];
+            
+                foreach ($questions as $question) {
+                    switch ($question->type) {
+                        case 'mcq':
+                            $correctChoice = $question->choices->filter(function ($choice) {
+                                return $choice->is_correct;
+                            })->first();
+                            $data['mcq'][] = [
+                                'id' => $question->id,
+                                'text' => $question->text,
+                                'choices' => $question->choices->map(function ($choice) {
+                                    return [
+                                        'option' => $choice->option_mcq,
+                                        'written_response' => $choice->written_response,
+                                    ];
+                                }),
+                                'answer' => $correctChoice->written_response,
+                                'points' => $question->points,
+                            ];
+                            
+                            break;
+                        case 'short':
+                            $data['short'][] = [
+                                'id' => $question->id,
+                                'text' => $question->text,
+                                'answer' => $question->choices->first()->written_response,
+                                'points' => $question->points,
+                            ];
+                            break;
+                        case 'truefalse':
+                            $data['truefalse'][] = [
+                                'id' => $question->id,
+                                'text' => $question->text,
+                                'answer' => $question->choices->first()->written_response,
+                                'points' => $question->points,
+                            ];
+                            break;
+                    }
+                }
+
+
+        return view('student.quiz', compact('quiz', 'questions', 'data'));
+        
+        }
+    }
+
+    
 
     public function deleteQuiz($id){
 
@@ -228,6 +291,8 @@ class QuizController extends Controller
                     $questionId = $questionData['id'] ?? null; // Check for existing question ID
                     if (isset($questionId)) {
 
+                        
+
                         $existingQuestionIds = $quiz->questions()->pluck('id')->toArray();
                         $submittedQuestionIds = collect($formDataObject['questions'])
                             ->filter(function ($question) {
@@ -249,6 +314,7 @@ class QuizController extends Controller
                         $question->update([
                             'text' => $questionData['title'],
                             'type' => $questionData['type'],
+                            'points' => $questionData['points'],
                             'quiz_id' => $quizId // Assign quiz ID explicitly
                         ]);
 
@@ -319,6 +385,7 @@ class QuizController extends Controller
                         $question = $quiz->questions()->create([
                             'text' => $questionData['title'],
                             'type' => $questionData['type'],
+                            'points' => $questionData['points'],
                         ]);
 
                         if ($questionData['type'] === 'mcq') {
@@ -360,6 +427,11 @@ class QuizController extends Controller
             // DB::rollback();
             return response()->json(['error' => true, 'message' => $e->getMessage()]);
         }
+    }
+
+    public function studenttakequiz(Request $request){
+        
+
     }
 
 

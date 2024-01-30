@@ -20,49 +20,58 @@
                                 </style>
 
                                 <div class="container">
-                                    <h2 class="mt-4">Student Quiz Form</h2>
+                                    
+                                    <h2 class="mt-4">Take Quiz</h2>
                                     <p id="timer" class="text-danger"></p>
-                                    <form id="quizForm">
-                                        <div class="form-group">
-                                            <label for="question1">Question 1: Equatorial Guinea is an African country?</label>
-                                            <select class="form-control" id="question1" name="question1">
-                                                <option value="paris">Yes</option>
-                                                <option value="berlin">No</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="question2">Question 2: What is 2 + 2?</label>
-                                            <input type="number" class="form-control" id="question2" name="question2"
-                                                required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="question3">Question 3: Which is the largest planet in our solar
-                                                system?</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="question3"
-                                                    id="jupiter" value="jupiter" required>
-                                                <label class="form-check-label" for="jupiter">
-                                                    Jupiter
-                                                </label>
+                                    
+                                    @isset($quiz->questions)
+                                    <form id="quizForm" method="POST" action="{{ route('studenttakequiz', $quiz->id) }}">
+                                        @csrf
+                                    <?php $questionNo = 0; ?>
+                                    @foreach ($data as $type => $questions)
+                                    
+                                        @foreach ($questions as $questionNumber => $question)
+                                          <div class="question-group">
+                                            <input type="hidden" name="questions[{{ $questionNo + 1 }}][type]" value="{{ $type }}">
+                                            
+                                            @if ($type === 'short')
+                                              <br><div class="form-group">
+                                                <label class="question-label">Question {{ $questionNo + 1 }} (Short Answer) <strong class="text-success">{{ $question['points']}} points</strong> <br> <h6>{{ $question['text'] }}</h6></label>
+                                                <input type="hidden" name="questions[{{ $questionNo + 1 }}][id]" value="{{ $question['id'] }}">
+                                                <input type="hidden" name="questions[{{ $questionNo + 1 }}][points]" value="{{ $question['points'] }}">
+                                                <input type="text" name="questions[{{ $questionNo + 1 }}][answer]" class="form-control" required>
+                                              </div>
+                                            @elseif ($type === 'mcq')
+                                            <br>
+                                            <div class="form-group">
+                                                <label class="question-label">Question {{ $questionNo + 1 }} (Objective) <strong class="text-success">{{ $question['points']}} points</strong> <br> <h6>{{ $question['text'] }}</h6></label>
+                                                <input type="hidden" name="questions[{{ $questionNo + 1 }}][id]" value="{{ $question['id'] }}">
+                                                <input type="hidden" name="questions[{{ $questionNo + 1 }}][points]" value="{{ $question['points'] }}">
+                                            
+                                                @foreach ($question['choices'] as $choiceLetter => $choice)
+                                                    <div class="form-check">
+                                                        <input type="radio" name="questions[{{ $questionNo + 1 }}][answer]" class="form-check-input" value="{{ $choiceLetter }}" required>
+                                                        <label class="form-check-label">{{ $choice['option'] }}. {{ $choice['written_response'] }}</label>
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="question3" id="mars"
-                                                    value="mars">
-                                                <label class="form-check-label" for="mars">
-                                                    Mars
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="question3" id="venus"
-                                                    value="venus">
-                                                <label class="form-check-label" for="venus">
-                                                    Venus
-                                                </label>
-                                            </div>
-                                        </div>
-
+                                            @elseif ($type === 'truefalse')
+                                              <br><div class="form-group">
+                                                  <label class="question-label">Question {{ $questionNo + 1 }} (True/False)  <strong class="text-success">{{ $question['points']}} points</strong> <br> <h6>{{ $question['text'] }}</h6></label>
+                                                  <input type="hidden" name="questions[{{ $questionNo + 1 }}][id]" value="{{ $question['id'] }}">
+                                                  <input type="hidden" name="questions[{{ $questionNo + 1 }}][points]" value="{{ $question['points'] }}">
+                                                    <select class="form-control" id="questions[{{ $questionNo + 1 }}][answer]" name="questions[{{ $questionNo + 1 }}][answer]">
+                                                        <option value="1">True</option>
+                                                        <option value="0">False</option>
+                                                    </select>
+                                              </div>
+                                            @endif                      
+                                            
+                                            <?php $questionNo++; ?>
+                                        </div> 
+                                        @endforeach
+                                    @endforeach       
+                                @endisset
                                         <button type="button" class="btn btn-primary"
                                             onclick="calculateScore()">Submit</button>
                                     </form>
@@ -77,7 +86,7 @@
                                     src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
                                 <script>
                                     // Set the timer duration in seconds
-                                    const timerDuration = 180; // 3 minutes
+                                    const timerDuration = {{intval($quiz->time_limit) * 60}}; // 3 minutes
 
                                     // Initialize the timer value
                                     let timerValue = timerDuration;

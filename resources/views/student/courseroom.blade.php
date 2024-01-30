@@ -162,34 +162,69 @@
                                                     </div>
                                                         
                                                     @else
-                                                        
-                                                    
-                                                    <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
-                                                        <div id="info-section-{{$p->id}}" class="section">
-                                                            <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
-                                                                <div style="display: flex; align-items: center;">
-                                                                    <div class="circle">{{ $p->lecturer->initials }}</div>
-                                                                    <div style="margin-left: 8px;">
-                                                                        <strong>{{ $p->lecturer->name }}</strong>
-                                                                        <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
-                                                                            <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
-                                                                        </span><br>
-                                                                        <small>{{ $p->updated_at }}</small>
+
+                                                            @if (isset($p->quiz_id))
+                                                            <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
+                                                                <div id="info-section-{{$p->id}}" class="section">
+                                                                    <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+                                                                        <div style="display: flex; align-items: center;">
+                                                                            <div class="circle">{{ $p->lecturer->initials }}</div>
+                                                                            <div style="margin-left: 8px;">
+                                                                                <strong>{{ $p->lecturer->name }}</strong>
+                                                                                <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
+                                                                                    <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
+                                                                                </span><br>
+                                                                                <small>{{ $p->updated_at }}</small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>        
+                                                                    <hr>
+                                                                    <div class="clickable-div section-body" data-quiz-id="{{$p->quiz->id}}" id="section-body-{{$p->id}}">
+                                                                        <h6>{{ $p->quiz->title }}</h6><br>
+                                                                        <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
+                                                                        <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b><br>
                                                                     </div>
                                                                 </div>
-                                                                
-                                                            </div>        
-                                                            <hr>
-                                                            <div class="section-body" id="section-body-{{$p->id}}">
-                                                                {!! $p->content !!}
+
+                                                                <br>
+                                                                <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
+                                                                 <!-- Modal for comments -->
+
                                                             </div>
-                                                        </div>
+                                                                
+                                                            @else
+                                                            <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
+                                                                <div id="info-section-{{$p->id}}" class="section">
+                                                                    <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+                                                                        <div style="display: flex; align-items: center;">
+                                                                            <div class="circle">{{ $p->lecturer->initials }}</div>
+                                                                            <div style="margin-left: 8px;">
+                                                                                <strong>{{ $p->lecturer->name }}</strong>
+                                                                                <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
+                                                                                    <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
+                                                                                </span><br>
+                                                                                <small>{{ $p->updated_at }}</small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>        
+                                                                    <hr>
+                                                                    <div class="section-body" id="section-body-{{$p->id}}">
+                                                                        {!! $p->content !!}
+                                                                    </div>
+                                                                </div>
+
+                                                                <br>
+                                                                <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
+                                                                 <!-- Modal for comments -->
+
+                                                            </div>
+                                                                
+                                                            @endif
                                                         
-                                                        <br>
-                                                        <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
-                                                         <!-- Modal for comments -->
+                                                    
                                                             
-                                                    </div>
                                                     @endif                                                                                      
                                             </div>
                                             
@@ -324,7 +359,28 @@
 <script src="{{ asset('codiepie/assets/modules/codemirror/lib/codemirror.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select all elements with class "clickable-div"
+        const clickableDivs = document.querySelectorAll('.clickable-div');
 
+        clickableDivs.forEach(div => {
+            const quizId = div.getAttribute('data-quiz-id');
+
+            div.addEventListener('click', () => {
+                window.location.href = '/student/quiz/' + quizId; // Replace with the correct URL pattern
+            });
+
+            div.addEventListener('mouseover', () => {
+                div.style.backgroundColor = "#f0f0f0";
+            });
+
+            div.addEventListener('mouseout', () => {
+                div.style.backgroundColor = "";
+            });
+        });
+    });
+</script>
 <script type="text/javascript">
     var deletePostUrlTemplate = "{{ route('studentpostdelete', ['id' => ':id']) }}";
     var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable

@@ -60,10 +60,15 @@
                                                       <label class="form-check-label">False</label>
                                                   </div>
                                               </div>
-                                            @endif                      
+                                            @endif  
+                                            <div class="form-group">
+                                                <label for="questions[{{ $questionNo + 1 }}][points]">Points/Marks:</label>
+                                                <input type="number" class="form-control" id="questions[{{ $questionNo + 1 }}][points]" name="questions[{{ $questionNo + 1 }}][points]" value="{{ $question['points'] }}" required>
+                                            </div>                    
                                             <button type="button" class="remove-question btn btn-danger">Remove Question</button>
                                             <?php $questionNo++; ?>
                                         </div> 
+                                        
                                         @endforeach
                                     @endforeach       
                                 @endisset
@@ -181,6 +186,11 @@ $(document).ready(function() {
                             '</div>' +
                             '</div>';
         }
+
+        questionHtml += '<div class="form-group">' +
+            '<label for="questions[' + questionNumber + '][points]">Points/Marks:</label>' +
+           '<input type="number" class="form-control" id="questions[' + questionNumber + '][points]" name="questions[' + questionNumber + '][points]" required>' +
+            '</div>';
 
             // Add a remove button for each question group
         questionHtml += '<button type="button" class="remove-question btn btn-danger">Remove Question</button>';
