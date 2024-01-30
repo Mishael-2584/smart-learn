@@ -913,18 +913,15 @@
 
 
     .banner-img {
-        /* position: relative;
-       
-        background-position: center;
-        background-size: contain; */
+        
         z-index: -1;
         width: 100%;
         max-height: 200px;
-        /* Set the maximum height for the image */
         object-fit: cover;
-        filter: brightness(80%);
+        filter: brightness(40%);
         border: 1px solid purple;
         border-radius: 10px;
+        opacity: 0.8;
     }
 
     .hero-inner {
@@ -934,7 +931,6 @@
         transform: translate(-50%, -50%);
         font-size: 2.5rem;
         color: #fff;
-        opacity: 0.5;
     }
 
     .action-button {
