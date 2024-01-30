@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Models\ClassroomStreamPost;
+use App\Models\Quiz;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +16,46 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+        $schedule->call(function () {
+            // Task logic within the schedule() call
+            $quizzes = Quiz::where('deadline', '>=', now())
+                ->whereNotNull('time_limit')
+                ->whereNull('published_at') // Check if already published
+                ->get();
+       
+            foreach ($quizzes as $quiz) {
+                $deadline = Carbon::parse($quiz->deadline);      
+                $postingTime = $deadline->subMinutes($quiz->time_limit);
+                if ($postingTime->subHour(1)->isPast()) {
+                    // Create stream post and mark as published
+                    $post = ClassroomStreamPost::create([
+                        'lecturer_course_id' => $quiz->lecturer_course->id,
+                        'content' => 'Quiz available: ' . $quiz->title . '...',
+                        'quiz_id' => $quiz->id,
+                        'lecturer_id' => $quiz->lecturer_course->lecturer->id,
+                        ]);
+
+                    if($post){
+                        // Optional: Send notifications, trigger other actions
+
+                        $done = $quiz->update(['published_at' => now()->addHour(1)]); // Mark as published
+                        if($done){
+                        var_dump('Success in updating quiz');
+                        }
+                        else{
+                        var_dump('Failed to update quiz');
+                        }
+                    }
+                    else{
+                        var_dump('Failed to post');
+                    }
+                }  
+            }
+        })->everyMinute(); // Adjust frequency as needed
+        
     }
+    
 
     /**
      * Register the commands for the application.

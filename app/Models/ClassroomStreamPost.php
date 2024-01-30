@@ -9,7 +9,7 @@ class ClassroomStreamPost extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['lecturer_course_id', 'student_id', 'lecturer_id', 'content'];
+    protected $fillable = ['lecturer_course_id', 'student_id', 'lecturer_id', 'content', 'quiz_id', 'assignment_id'];
 
     public function student(){
 
@@ -29,5 +29,9 @@ class ClassroomStreamPost extends Model
     //has many relationship with comment model
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function quiz(){
+        return $this->belongsTo(Quiz::class, 'quiz_id');
     }
 }

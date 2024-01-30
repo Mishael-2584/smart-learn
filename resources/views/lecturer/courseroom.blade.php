@@ -182,81 +182,165 @@
 
                                                 </div>
 
-                                                @else
+                                                @else   
 
 
+                                                        @if (isset($p->quiz_id))
 
-
-                                                <div class="card-body" id="post-{{$p->id}}">
-                                                    <div id="info-section-{{$p->id}}" class="section">
-                                                        <div class="section-head bg-light"
-                                                            style="display: flex; justify-content: space-between; align-items: center;">
-                                                            <div style="display: flex; align-items: center;">
-                                                                <div class="circle">{{ $p->lecturer->initials }}</div>
-                                                                <div style="margin-left: 8px;">
-                                                                    <strong>{{ $p->lecturer->name }}</strong>
-                                                                    <span class="badge badge-success rounded-circle p-0"
-                                                                        style="background-color: transparent;"
-                                                                        title="Verified">
-                                                                        <i class="fa-solid fa-circle-check fa-lg"
-                                                                            style="color: #4c68d7;"></i>
-                                                                    </span>
+                                                        <div class="card-body" id="post-{{$p->id}}">
+                                                            <div id="info-section-{{$p->id}}" class="section">
+                                                                <div class="section-head bg-light"
+                                                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                                                    <div style="display: flex; align-items: center;">
+                                                                        <div class="circle">{{ $p->lecturer->initials }}</div>
+                                                                        <div style="margin-left: 8px;">
+                                                                            <strong>{{ $p->lecturer->name }}</strong>
+                                                                            <span class="badge badge-success rounded-circle p-0"
+                                                                                style="background-color: transparent;"
+                                                                                title="Verified">
+                                                                                <i class="fa-solid fa-circle-check fa-lg"
+                                                                                    style="color: #4c68d7;"></i>
+                                                                            </span>
+                                                                            <br>
+                                                                            <small>{{ $p->updated_at }}</small>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="dropdown"
+                                                                        style="padding: 4px; border-radius: 4px;">
+                                                                        <div class="dropdown" data-toggle="dropdown">
+                                                                            <i class="fa-sharp fa-solid fa-ellipsis-vertical rounded"
+                                                                                style="padding: 4px; border-radius: 4px; border: 1px solid #ccc;"></i>
+                                                                        </div>
+                                                                        <div class="dropdown-menu dropdown-menu-right"
+                                                                            id="dropdown-menu-{{$p->id}}">
+                                                                            <a href="#" class="dropdown-item has-icon"
+                                                                                id="edit-item-{{$p->id}}"
+                                                                                onclick="openEditor(event, <?php echo htmlspecialchars(json_encode($p->content)); ?>, '<?php echo $p->id; ?>'); return false;">
+                                                                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                                            </a>
+                                                                            <a class="dropdown-item delete-post"
+                                                                                id="delete-item-{{$p->id}}" href="#"><i
+                                                                                    class="fas fa-trash"></i> Delete</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                
+                                                                <div class="clickable-div section-body" id="section-body-{{$p->id}}">
+                                                                   <h6>{{ $p->quiz->title }}</h6><br>
+                                                                   <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
+                                                                    <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b> 
                                                                     <br>
-                                                                    <small>{{ $p->updated_at }}</small>
+                                                                    
+                                                                    {{-- {!! $p->content !!} --}}
+                                                                    
+                                                                </div>
+                                                                
+                                                                  
+                                                                  
+                                                                {{-- </a> --}}
+                                                            </div>
+                                                            <form id="editor-form-{{$p->id}}"
+                                                                action="{{ route('lecturerpostedit', $p->id) }}" method="post">
+                                                                @csrf
+                                                                <input id="editor-content-{{$p->id}}" type="hidden"
+                                                                    name="editcontent" id="editor-content-{{$p->id}}">
+                                                                <div id="summernote-{{$p->id}}" class="form-group row mb-4"
+                                                                    style="display: none;">
+                                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                        <input type="hidden" name="content"
+                                                                            id="editor-content-{{$p->id}}">
+                                                                        <!-- Ensure the ID here is unique and different from the DIV's ID -->
+
+                                                                    </div>
+                                                                </div>
+                                                                <button type="submit" id="save-button-{{$p->id}}"
+                                                                    class="btn btn-success edit-buttons">Save Changes</button>
+                                                                <button type="button" id="close-button-{{$p->id}}"
+                                                                    class="btn btn-secondary edit-buttons">Close</button>
+                                                            </form>
+                                                            <br>
+                                                            <a href="#commentsModal" data-toggle="modal"
+                                                                data-post-id="{{$p->id}}" data-target=".comments-modal">View
+                                                                Comments ({{ $p->comments->count() ?? '0' }})</a>
+
+                                                            <!-- Modal for comments -->
+
+                                                        </div>
+                                                            
+                                                        @else
+
+                                                        <div class="card-body" id="post-{{$p->id}}">
+                                                            <div id="info-section-{{$p->id}}" class="section">
+                                                                <div class="section-head bg-light"
+                                                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                                                    <div style="display: flex; align-items: center;">
+                                                                        <div class="circle">{{ $p->lecturer->initials }}</div>
+                                                                        <div style="margin-left: 8px;">
+                                                                            <strong>{{ $p->lecturer->name }}</strong>
+                                                                            <span class="badge badge-success rounded-circle p-0"
+                                                                                style="background-color: transparent;"
+                                                                                title="Verified">
+                                                                                <i class="fa-solid fa-circle-check fa-lg"
+                                                                                    style="color: #4c68d7;"></i>
+                                                                            </span>
+                                                                            <br>
+                                                                            <small>{{ $p->updated_at }}</small>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="dropdown"
+                                                                        style="padding: 4px; border-radius: 4px;">
+                                                                        <div class="dropdown" data-toggle="dropdown">
+                                                                            <i class="fa-sharp fa-solid fa-ellipsis-vertical rounded"
+                                                                                style="padding: 4px; border-radius: 4px; border: 1px solid #ccc;"></i>
+                                                                        </div>
+                                                                        <div class="dropdown-menu dropdown-menu-right"
+                                                                            id="dropdown-menu-{{$p->id}}">
+                                                                            <a href="#" class="dropdown-item has-icon"
+                                                                                id="edit-item-{{$p->id}}"
+                                                                                onclick="openEditor(event, <?php echo htmlspecialchars(json_encode($p->content)); ?>, '<?php echo $p->id; ?>'); return false;">
+                                                                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                                            </a>
+                                                                            <a class="dropdown-item delete-post"
+                                                                                id="delete-item-{{$p->id}}" href="#"><i
+                                                                                    class="fas fa-trash"></i> Delete</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="section-body" id="section-body-{{$p->id}}">
+                                                                    {!! $p->content !!}
                                                                 </div>
                                                             </div>
-                                                            <div class="dropdown"
-                                                                style="padding: 4px; border-radius: 4px;">
-                                                                <div class="dropdown" data-toggle="dropdown">
-                                                                    <i class="fa-sharp fa-solid fa-ellipsis-vertical rounded"
-                                                                        style="padding: 4px; border-radius: 4px; border: 1px solid #ccc;"></i>
+                                                            <form id="editor-form-{{$p->id}}"
+                                                                action="{{ route('lecturerpostedit', $p->id) }}" method="post">
+                                                                @csrf
+                                                                <input id="editor-content-{{$p->id}}" type="hidden"
+                                                                    name="editcontent" id="editor-content-{{$p->id}}">
+                                                                <div id="summernote-{{$p->id}}" class="form-group row mb-4"
+                                                                    style="display: none;">
+                                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                        <input type="hidden" name="content"
+                                                                            id="editor-content-{{$p->id}}">
+                                                                        <!-- Ensure the ID here is unique and different from the DIV's ID -->
+
+                                                                    </div>
                                                                 </div>
-                                                                <div class="dropdown-menu dropdown-menu-right"
-                                                                    id="dropdown-menu-{{$p->id}}">
-                                                                    <a href="#" class="dropdown-item has-icon"
-                                                                        id="edit-item-{{$p->id}}"
-                                                                        onclick="openEditor(event, <?php echo htmlspecialchars(json_encode($p->content)); ?>, '<?php echo $p->id; ?>'); return false;">
-                                                                        <i class="fa-solid fa-pen-to-square"></i> Edit
-                                                                    </a>
-                                                                    <a class="dropdown-item delete-post"
-                                                                        id="delete-item-{{$p->id}}" href="#"><i
-                                                                            class="fas fa-trash"></i> Delete</a>
-                                                                </div>
-                                                            </div>
+                                                                <button type="submit" id="save-button-{{$p->id}}"
+                                                                    class="btn btn-success edit-buttons">Save Changes</button>
+                                                                <button type="button" id="close-button-{{$p->id}}"
+                                                                    class="btn btn-secondary edit-buttons">Close</button>
+                                                            </form>
+                                                            <br>
+                                                            <a href="#commentsModal" data-toggle="modal"
+                                                                data-post-id="{{$p->id}}" data-target=".comments-modal">View
+                                                                Comments ({{ $p->comments->count() ?? '0' }})</a>
+
+                                                            <!-- Modal for comments -->
+
                                                         </div>
-                                                        <hr>
-                                                        <div class="section-body" id="section-body-{{$p->id}}">
-                                                            {!! $p->content !!}
-                                                        </div>
-                                                    </div>
-                                                    <form id="editor-form-{{$p->id}}"
-                                                        action="{{ route('lecturerpostedit', $p->id) }}" method="post">
-                                                        @csrf
-                                                        <input id="editor-content-{{$p->id}}" type="hidden"
-                                                            name="editcontent" id="editor-content-{{$p->id}}">
-                                                        <div id="summernote-{{$p->id}}" class="form-group row mb-4"
-                                                            style="display: none;">
-                                                            <div class="col-sm-12 col-md-12 col-lg-12">
-                                                                <input type="hidden" name="content"
-                                                                    id="editor-content-{{$p->id}}">
-                                                                <!-- Ensure the ID here is unique and different from the DIV's ID -->
-
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" id="save-button-{{$p->id}}"
-                                                            class="btn btn-success edit-buttons">Save Changes</button>
-                                                        <button type="button" id="close-button-{{$p->id}}"
-                                                            class="btn btn-secondary edit-buttons">Close</button>
-                                                    </form>
-                                                    <br>
-                                                    <a href="#commentsModal" data-toggle="modal"
-                                                        data-post-id="{{$p->id}}" data-target=".comments-modal">View
-                                                        Comments ({{ $p->comments->count() ?? '0' }})</a>
-
-                                                    <!-- Modal for comments -->
-
-                                                </div>
-
+                                                            
+                                                        @endif                   
                                                 @endif
                                             </div>
 
@@ -575,6 +659,21 @@
 <script src="{{ asset('codiepie/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
 <script src="{{ asset('codiepie/js/page/bootstrap-modal.js') }}"></script>
+<script>
+    const clickableDiv = document.querySelector('.clickable-div');
+  
+    clickableDiv.addEventListener('click', () => {
+      window.location.href = "{{route('lecturerquizredirect', $p->quiz_id)}}";
+    });
+  
+    clickableDiv.addEventListener('mouseover', () => {
+      clickableDiv.style.backgroundColor = "#f0f0f0";
+    });
+  
+    clickableDiv.addEventListener('mouseout', () => {
+      clickableDiv.style.backgroundColor = "";
+    });
+  </script>
 <script type="text/javascript">
     var deletePostUrlTemplate = "{{ route('lecturerpostdelete', ['id' => ':id']) }}";
     var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable
