@@ -20,7 +20,7 @@
                                 </style>
 
                                 <div class="container">
-                                    <h2 class="mt-4">Student Quiz Form</h2>
+                                    <h2 class="mt-4">Take quiz</h2>
                                     <p id="timer" class="text-danger"></p>
                                     <form id="quizForm">
                                         <div class="form-group">
