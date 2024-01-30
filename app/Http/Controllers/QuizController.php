@@ -75,6 +75,12 @@ class QuizController extends Controller
 
     }
 
+    public function lecturerquizredirect($qId){
+
+        return view('lecturer.viewquiz', compact('qId'));
+        
+    }
+
     public function deleteQuiz($id){
 
         $quiz = Quiz::find($id);

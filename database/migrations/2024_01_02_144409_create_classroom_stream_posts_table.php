@@ -17,7 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('student_id')->nullable();
             $table->unsignedBigInteger('lecturer_id')->nullable();
             $table->longText('content'); // HTML content from Summernote
+            $table->unsignedBigInteger('quiz_id')->nullable();
+            $table->unsignedBigInteger('assignment_id')->nullable();
             $table->timestamps();
+
 
             $table->foreign('lecturer_course_id')->references('id')->on('lecturer_courses')->onDelete('cascade');
         });

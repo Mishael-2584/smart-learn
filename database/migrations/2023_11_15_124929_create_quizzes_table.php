@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('total_points');
             $table->dateTime('deadline');
+            $table->dateTime('published_at')->nullable();
             $table->string('time_limit')->nullable();
             $table->timestamps();
 

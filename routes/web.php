@@ -190,6 +190,9 @@ Route::group(['middleware' => 'lecturer'], function () {
 
             Route::match(['get', 'post'], '/lecturerquizmanagement', [QuizController::class, 'saveQuiz'])->name('saveQuiz');
             Route::get('/lecturerdeletequiz/{qId}', [QuizController::class, 'deleteQuiz'])->name('lecturerdeletequiz');
+
+            
+            Route::get('/lecturer/quiz/{qId}', [QuizController::class, 'lecturerquizredirect'])->name('lecturerquizredirect');
             
             //create content routs
             // Route::get('/lecturer/assignment', 'ContentController@showAssignmentForm')->name('lecturer.assignment');
