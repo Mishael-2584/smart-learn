@@ -52,6 +52,7 @@ Route::get('/lecturer_signup', function () { return view('auths.lecturerregister
 Route::post('/lecturer_submit', [AuthenticationController::class, 'staffsubmit'])->name('lecturersubmit');
 Route::get('/lecturer/assignment', function () { return view('lecturer.assignment'); })->name('assignment');
 Route::get('/student/quiz', function () { return view('student.quiz'); })->name('quiz');
+Route::get('/classroom', function () { return view('classroom'); })->name('classroom');
 
 
 
