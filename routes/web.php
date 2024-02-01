@@ -14,6 +14,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Middleware\LecturerMiddleware;
 use App\Models\LecturerCourse;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,8 @@ Route::get('/lecturer/assignment', function () { return view('lecturer.assignmen
 Route::get('/student/quiz', function () { return view('student.quiz'); })->name('quiz');
 Route::get('/classroom', function () { return view('classroom'); })->name('classroom');
 
+// In routes/web.php
+// Route::get('/path-to-generate-csrf-token', [SubmissionController::class, 'generateToken'])->name('generateToken');
 
 
 
@@ -135,9 +138,12 @@ Route::middleware('student')->group(function () {
             Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcommentstudent');
             Route::get('/getcomments/{pId}', [CommentController::class, 'getcomment'])->name('getcommentstudent');
             Route::delete('/deletecomments/{cId}', [CommentController::class, 'commentdelete'])->name('commentdelete');
-            Route::get('/quiz/{qId}', [QuizController::class, 'studentquizredirect'])->name('studentquizredirect');
+            Route::match(['get', 'post'], '/quiz/{qId}', [QuizController::class, 'studentquizredirect'])->name('studentquizredirect');
 
             Route::post('/studenttakequiz/{qId}', [QuizController::class, 'studenttakequiz'])->name('studenttakequiz'); // studenttakequiz
+
+            Route::post('/storeanswers/{qId}', [SubmissionController::class, 'storeanswers'])->name('storeanswers');
+            Route::get('/calculatescore/{submissionId}', [SubmissionController::class, 'calculatescore'])->name('calculatescore');
             
 
         });

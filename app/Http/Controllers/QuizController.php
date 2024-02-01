@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Choice;
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Submission;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -84,62 +85,153 @@ class QuizController extends Controller
         
     }
 
-    public function studentquizredirect($qId){
+    // public function studentquizredirect($qId)
+    // {
+    //     $quiz = Quiz::find($qId);
+    //     $questions = Question::with('choices')->where('quiz_id', $qId)->get();
 
-        $quiz = Quiz::find($qId);
-        $questions = Question::with('choices')->where('quiz_id', $qId)->get();
+    //     if ($questions->isEmpty()) {
+    //         // Handle the case where no questions are found
+    //         return redirect()->back()->withErrors('No questions found for this quiz.');
+    //     }
 
-        if($questions){
-                // Prepare data for each question type
-                $data = [
-                    'mcq' => [],
-                    'short' => [],
-                    'truefalse' => [],
-                ];
+    //     // Prepare data for each question type
+    //     $data = [
+    //         'mcq' => [],
+    //         'short' => [],
+    //         'truefalse' => [],
+    //     ];
+
+    //     foreach ($questions as $question) {
+    //         // Prepare question data without the answer
+    //         $questionData = [
+    //             'id' => $question->id,
+    //             'text' => $question->text,
+    //             'points' => $question->points,
+    //         ];
+
+    //         // For 'mcq', include choices without the correct answer information
+    //         if ($question->type === 'mcq') {
+    //             $questionData['choices'] = $question->choices->map(function ($choice) {
+    //                 return [
+    //                     'option' => $choice->option_mcq,
+    //                     // Remove 'written_response' to not send the answer
+    //                 ];
+    //             });
+    //         }
+
+    //         // Add question data to the appropriate type
+    //         $data[$question->type][] = $questionData;
+    //     }
+
+    //     dd($data);
+    //     // Exclude 'questions' from the compact if not used in the view
+    //     return view('student.quiz', compact('quiz', 'data'));
+    // }
+
+    public function studentquizredirect($qId, Request $request){
+
+        if($request->isMethod('POST')){
             
-                foreach ($questions as $question) {
-                    switch ($question->type) {
-                        case 'mcq':
-                            $correctChoice = $question->choices->filter(function ($choice) {
-                                return $choice->is_correct;
-                            })->first();
-                            $data['mcq'][] = [
-                                'id' => $question->id,
-                                'text' => $question->text,
-                                'choices' => $question->choices->map(function ($choice) {
-                                    return [
-                                        'option' => $choice->option_mcq,
-                                        'written_response' => $choice->written_response,
-                                    ];
-                                }),
-                                'answer' => $correctChoice->written_response,
-                                'points' => $question->points,
-                            ];
-                            
-                            break;
-                        case 'short':
-                            $data['short'][] = [
-                                'id' => $question->id,
-                                'text' => $question->text,
-                                'answer' => $question->choices->first()->written_response,
-                                'points' => $question->points,
-                            ];
-                            break;
-                        case 'truefalse':
-                            $data['truefalse'][] = [
-                                'id' => $question->id,
-                                'text' => $question->text,
-                                'answer' => $question->choices->first()->written_response,
-                                'points' => $question->points,
-                            ];
-                            break;
-                    }
-                }
+            $quiz = Quiz::find($qId);
+            $questions = Question::with('choices')->where('quiz_id', $qId)->get(); 
 
+            $answers = []; // Initialize an empty array to store answers
 
-        return view('student.quiz', compact('quiz', 'questions', 'data'));
-        
+            foreach ($request->questions as $questionData) {
+                $answers[$questionData['id']] = $questionData['answer'];
+            }
+    
+            $submission = Submission::create([
+                'student_id' => session('id'),
+                'answer' => $answers, // Convert answers to JSON
+                'quiz_id' => $qId,
+                'score' => null, // Initially null, calculate later
+            ]);
+    
+            if($submission){
+                return response()->json([
+                    'success' => true,
+                    'submissionId' => $submission->id,
+                ]);
+            }
+            else{
+                return response()->json([
+                    'success' => false
+                ]);
+            }
+            
         }
+
+        else{
+
+            $quiz = Quiz::find($qId);
+            $questions = Question::with('choices')->where('quiz_id', $qId)->get();
+
+            $alreadySubmitted = Submission::where('student_id', session('id'))
+            ->where('quiz_id', $quiz->id)
+            ->exists();
+
+            if (($alreadySubmitted) == true) {
+                return back()->with('error', 'You have already submitted this quiz.');
+            } 
+            
+            else {
+                if($questions){
+                    // Prepare data for each question type
+                    $data = [
+                        'mcq' => [],
+                        'short' => [],
+                        'truefalse' => [],
+                    ];
+                
+                    foreach ($questions as $question) {
+                        switch ($question->type) {
+                            case 'mcq':
+                                $correctChoice = $question->choices->filter(function ($choice) {
+                                    return $choice->is_correct;
+                                })->first();
+                                $data['mcq'][] = [
+                                    'id' => $question->id,
+                                    'text' => $question->text,
+                                    'choices' => $question->choices->map(function ($choice) {
+                                        return [
+                                            'option' => $choice->option_mcq,
+                                            'written_response' => $choice->written_response,
+                                        ];
+                                    }),
+                                    'answer' => $correctChoice->written_response,
+                                    'points' => $question->points,
+                                ];
+                                
+                                break;
+                            case 'short':
+                                $data['short'][] = [
+                                    'id' => $question->id,
+                                    'text' => $question->text,
+                                    'answer' => $question->choices->first()->written_response,
+                                    'points' => $question->points,
+                                ];
+                                break;
+                            case 'truefalse':
+                                $data['truefalse'][] = [
+                                    'id' => $question->id,
+                                    'text' => $question->text,
+                                    'answer' => $question->choices->first()->written_response,
+                                    'points' => $question->points,
+                                ];
+                                break;
+                        }
+                    }
+    
+    
+                return view('student.quiz', compact('quiz', 'questions', 'data'));
+                    
+                }
+            }
+        }
+
+
     }
 
     
@@ -267,6 +359,7 @@ class QuizController extends Controller
             'questions.*.title' => 'required|string',
             'questions.*.type' => 'required|in:mcq,truefalse,short',
             'questions.*.answer' => 'required',
+            'questions.*.points' => 'required',
             'questions.*.options' => 'required_if:questions.*.type,mcq|array',
             'questions.*.options.*' => 'sometimes|required|string',
         ];
@@ -429,7 +522,9 @@ class QuizController extends Controller
         }
     }
 
-    public function studenttakequiz(Request $request){
+    public function studenttakequiz(Request $request, $quizId){
+
+
         
 
     }

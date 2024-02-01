@@ -23,10 +23,18 @@ class Question extends Model
 
     protected static function booted()
     {
+        static::created(function ($question) {
+            $question->quiz->setTotalPointsAttribute();
+            $question->quiz->save();
+        });
+    
         static::updated(function ($question) {
-            $question->quiz->setTotalPointsAttribute(); // Recalculate total_score for the quiz
-            $question->quiz->save(); // Save the updated quiz
+            $question->quiz->setTotalPointsAttribute();
+            $question->quiz->save();
         });
     }
+    
 
 }
+
+

@@ -10,9 +10,64 @@ class SubmissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+
+    // public function generateToken()
+    // {
+    //     dd('hello');
+    //     return response()->json(['csrfToken' => csrf_token()]);
+    // }
+
+
+    public function storeanswers(Request $request, $quizId)
     {
-        //
+        // dd($request->all());
+        
+        $answers = []; // Initialize an empty array to store answers
+
+        foreach ($request->questions as $questionData) {
+            $answers[$questionData['id']] = $questionData['answer'];
+        }
+
+        $submission = Submission::create([
+            'student_id' => session('id'),
+            'answer' => $answers, // Convert answers to JSON
+            'quiz_id' => $quizId,
+            'score' => null, // Initially null, calculate later
+        ]);
+
+        if($submission){
+            return response()->json([
+                'success' => true,
+                'submissionId' => $submission->id
+            ]);
+
+        }
+        else{
+            return response()->json([
+                'success' => false
+            ]);
+        }
+
+        
+    }
+
+    public function calculateScore($submissionId)
+    {
+        $submission = Submission::findOrFail($submissionId);
+
+        
+        $score = $submission->calculateScore();
+        $total = intval($submission->quiz->total_points);
+
+        if ($score){
+            return response()->json([
+                'success' => true,
+                'score' => $score,
+                'total' => $total,
+            ]);
+        }
+
     }
 
     /**

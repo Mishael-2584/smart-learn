@@ -43,7 +43,7 @@
                                         @if (isset($e->lecturercourse->departmentcourse))
 
 
-                                        <!-- <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                                        {{-- <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                             <article class="article @if ($e->status == 1) dim @endif">
                                                 <div class="article-header">
                                                     <div class="article-image" id="backgroundimage" data-background="{{ $e->lecturercourse->departmentcourse->course->imgpath }}" url=""></div>
@@ -70,60 +70,56 @@
                                                 
                                             </article>
                                         
-                                        </div>    -->
+                                        </div>     --}}
 
-                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                            <div class="card p-2 shadow h-100 @if ($e->status == 1) dim @endif ">
+                                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                            <div class="card p-2 shadow h-100 {{ $e->status == 1 ? 'dim' : '' }}">
                                                 <div class="rounded-top overflow-hidden">
-                                                    <div class="card-overlay-hover">
-                                                        <!-- Image -->
-                                                        <img id="backgroundimage"
-                                                            src="{{ $e->lecturercourse->departmentcourse->course->imgpath }}"
-                                                            class="card-img-top" alt="course image"
-                                                            style="max-height: 200px;">
-                                                    </div>
+                                                    <!-- Image -->
+                                                    <img id="backgroundimage"
+                                                         src="{{ $e->lecturercourse->departmentcourse->course->imgpath }}"
+                                                         class="card-img-top" alt="course image"
+                                                         style="max-height: 200px;">
                                                     <!-- Hover element -->
                                                     <div class="card-img-overlay">
-                                                        <div class="">
-                                                            @if ($e->status != 1)
-                                                            <div class="d-flex justify-content-end">
-                                                                <div class="article-cta">
+                                                        <div class="d-flex justify-content-end">
+                                                            <div class="article-cta">
+                                                                @if ($e->status != 1)
                                                                     <a href="{{route('studentopencourse', $e->id)}}"
-                                                                        class="btn btn-primary">Open</a>
-                                                                </div>
-                                                            </div>
-                                                            @else
-                                                            
-                                                            <div class="d-flex justify-content-end">
-                                                                <div class="article-cta">
+                                                                       class="btn btn-primary">Open</a>
+                                                                @else
                                                                     <button class="btn btn-primary"
-                                                                    onclick="displayErrorMessage(this)">Open </button>
-                                                                </div>
+                                                                            onclick="displayErrorMessage(this)">Open</button>
+                                                                    <div class="approval-pending">
+                                                                        <span class="pending-indicator">Pending Approval</span>
+                                                                    </div>
+                                                                @endif
                                                             </div>
-                                                            <div class="approval-pending">
-                                                                <span class="pending-indicator">Pending Approval</span>
-                                                            </div>
-
-                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- Card body -->
                                                 <div class="card-body {{ $colorClass }}">
                                                     <!-- Title -->
-                                                    <h5 id="heading" class="card-ttle"><a href="#"
-                                                            class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">
-                                                            {{$e->lecturercourse->departmentcourse->course->course_code}}</a>
+                                                    <h5 id="heading" class="card-title">
+                                                        <a href="#"
+                                                           class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">
+                                                            {{$e->lecturercourse->departmentcourse->course->course_code}}
+                                                        </a>
                                                     </h5>
                                                     <!-- Badge -->
                                                     <div class="d-flex justify-content-between align-items-center mb-0">
                                                         <a href="#" id="heading"
-                                                            class=" badge bg-purple bg-opacity-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? '' : '10' }} text-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? 'light' : 'purple' }} me-2"><i
-                                                                class="fas fa-graduation-cap small fw-bold"></i>
-                                                            {{$e->lecturercourse->departmentcourse->course->title}} </a>
+                                                           class="badge bg-purple bg-opacity-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? '' : '10' }} text-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? 'light' : 'purple' }}">
+                                                            <i class="fas fa-graduation-cap small fw-bold"></i>
+                                                            {{$e->lecturercourse->departmentcourse->course->title}}
+                                                            
+                                                        </a>
                                                     </div>
                                                     <!-- Divider -->
                                                     <hr>
+
+                                                    <P class="text bg-white"> BY: {{$e->lecturercourse->lecturer->name}}</P>
                                                 </div>
                                             </div>
                                         </div>
@@ -273,6 +269,12 @@
 </script>
 
 <style>
+    .badge {
+      white-space: normal;
+      display: inline-block; /* or block, depending on your layout */
+      padding: .5em; /* or however much padding you want */
+    }
+
     .popup {
         position: fixed;
         top: 50%;

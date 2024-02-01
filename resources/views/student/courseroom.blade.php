@@ -4,6 +4,7 @@
 
 <!-- Start app main Content -->
 <div class="main-content">
+    @include('layouts.error')
     <div class="section">
         <div class="row">
             <div class="col-12 mb-4 blurry-background">
