@@ -144,6 +144,7 @@ Route::middleware('student')->group(function () {
 
             Route::post('/storeanswers/{qId}', [SubmissionController::class, 'storeanswers'])->name('storeanswers');
             Route::get('/calculatescore/{submissionId}', [SubmissionController::class, 'calculatescore'])->name('calculatescore');
+            Route::get('studentquizdetail/{sId}', [SubmissionController::class, 'studentquizdetail'])->name('studentquizdetail');
             
 
         });

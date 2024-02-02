@@ -239,6 +239,83 @@
                                 
                                 </div>
                                 <div class="tab-pane fade" id="submissions" role="tabpanel" aria-labelledby="submissions-tab">
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-7 col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-3 col-sm-12 col-md-4 col-lg-2">
+                                                            <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
+                                                                <li class="nav-item"><a class="nav-link active" id="quizzes-lecturer" data-toggle="tab" href="#quizzes" role="tab" aria-controls="home" aria-selected="true">MY QUIZZES</a></li>
+                                                                <li class="nav-item"><a class="nav-link" id="assignments-lecturer" data-toggle="tab" href="#assignments" role="tab" aria-controls="profile" aria-selected="false">MY ASSIGNMENTS</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-9 col-sm-12 col-md-8 col-lg-10">
+                                                        <div class="tab-content no-padding" id="myTab2Content">
+                                                            <div class="tab-pane fade show active" id="quizzes" role="tabpanel" aria-labelledby="quizzes-lecturer">
+                                                                <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h4>{{$lc->departmentcourse->course->course_code}} - QUIZZES</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="table-responsive">
+                                                                                <table class="table table-bordered table-md v_center col-12">
+                                                                                    <tr>
+                                                                                        <th>#</th>
+                                                                                        <th>Quiz Title</th>
+                                                                                        <th>Posted On</th>
+                                                                                        <th>Total Qns</th>
+                                                                                        <th>Score</th>
+                                                                                        <th>Action</th>
+                                                                                    </tr>
+                                                                                    @isset($sub)                    
+                                                                                    @foreach ($sub as $index => $s)
+                                                                                    <tr>
+                                                                                        <td>{{ $index+1 }}</td>
+                                                                                        <td>{{ $s->quiz->title }}</td>
+                                                                                        <td>{{ $s->quiz->published_at }}</td>
+                                                                                        <td>{{ $s->quiz->questions->count() }}</td>
+                                                                                        <td><div class="badge badge-success">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div></td>
+                                                                                        <td>
+                                                                                            <a href="{{route('studentquizdetail', $s->id)}}" class="btn btn-secondary">View</a>
+                                                                                        </td>
+                                                                                    </tr>       
+                                                                                    @endforeach     
+                                                                                    @endisset
+                                                                                    
+                                                                            
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer text-right">
+                                                                            <nav class="d-inline-block">            
+                                                                                <ul class="pagination mb-0">
+                                                                                    <!-- Button trigger modal -->
+
+                                                                                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a></li>
+                                                                                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                                                                                </ul>
+                                                                            </nav>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="assignments" role="tabpanel" aria-labelledby="assignments-lecturer">
+
+                                                                
+                                                            
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 
 
 

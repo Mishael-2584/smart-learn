@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
+use App\Models\Quiz;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 
@@ -17,6 +19,69 @@ class SubmissionController extends Controller
     //     dd('hello');
     //     return response()->json(['csrfToken' => csrf_token()]);
     // }
+
+    public function studentquizdetail($subId){
+
+        $submission = Submission::find($subId);
+        $quiz = Quiz::find($submission->quiz_id);
+        $questions = Question::with('choices')->where('quiz_id', $submission->quiz->id)->get();
+
+        // Prepare data for each question type
+        $data = [
+            'mcq' => [],
+            'short' => [],
+            'truefalse' => [],
+        ];
+
+        foreach ($questions as $question) {
+            switch ($question->type) {
+                case 'mcq':
+                    $correctChoice = $question->choices->filter(function ($choice) {
+                        return $choice->is_correct;
+                    })->first();
+                    $studentResponse = isset($submission->answer[$question->id]) ? $submission->answer[$question->id] : null;
+                    $data['mcq'][] = [
+                        'id' => $question->id,
+                        'text' => $question->text,
+                        'choices' => $question->choices->map(function ($choice) {
+                            return [
+                                'option' => $choice->option_mcq,
+                                'written_response' => $choice->written_response,
+                            ];
+                        }),
+                        'answer' => $correctChoice->written_response,
+                        'points' => $question->points,
+                        'student_response' => $studentResponse,
+                    ];
+                    break;
+                case 'short':
+                    $studentResponse = isset($submission->answer[$question->id]) ? $submission->answer[$question->id] : null;
+                    $data['short'][] = [
+                        'id' => $question->id,
+                        'text' => $question->text,
+                        'answer' => $question->choices->first()->written_response,
+                        'points' => $question->points,
+                        'student_response' => $studentResponse,
+                    ];
+                    break;
+                case 'truefalse':
+                    $studentResponse = isset($submission->answer[$question->id]) ? $submission->answer[$question->id] : null;
+                    $data['truefalse'][] = [
+                        'id' => $question->id,
+                        'text' => $question->text,
+                        'answer' => $question->choices->first()->written_response,
+                        'points' => $question->points,
+                        'student_response' => $studentResponse,
+                    ];
+                    break;
+            }
+        }
+
+        // dd($data);
+
+        return view('student.quizdetail', compact('quiz', 'questions', 'data', 'submission'));
+
+    }
 
 
     public function storeanswers(Request $request, $quizId)
