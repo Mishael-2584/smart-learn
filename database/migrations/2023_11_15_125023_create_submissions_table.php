@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('assignment_id')->nullable();
             $table->json('answer')->nullable();
             $table->integer('score')->nullable();
+            $table->datetime('submittion_time')->nullable(); //submittion_time
+            $table->string('status')->nullable();
             $table->timestamps();
         
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');

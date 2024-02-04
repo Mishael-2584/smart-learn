@@ -267,6 +267,7 @@
                                                                                         <th>Posted On</th>
                                                                                         <th>Total Qns</th>
                                                                                         <th>Score</th>
+                                                                                        <th>Status</th>
                                                                                         <th>Action</th>
                                                                                     </tr>
                                                                                     @isset($sub)                    
@@ -276,7 +277,8 @@
                                                                                         <td>{{ $s->quiz->title }}</td>
                                                                                         <td>{{ $s->quiz->published_at }}</td>
                                                                                         <td>{{ $s->quiz->questions->count() }}</td>
-                                                                                        <td><div class="badge badge-success">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div></td>
+                                                                                        <td>@if($s->status == "on time")<div class="badge badge-success">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div> @else <div class="badge badge-danger">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div> @endif</td>
+                                                                                        <td>@if($s->status == "on time") <span class="badge badge-success">ON TIME</span> @else <span class="badge badge-danger">LATE</span> @endif</td>
                                                                                         <td>
                                                                                             <a href="{{route('studentquizdetail', $s->id)}}" class="btn btn-secondary">View</a>
                                                                                         </td>

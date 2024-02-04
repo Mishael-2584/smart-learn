@@ -9,7 +9,7 @@ class Submission extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['student_id', 'answer', 'score', 'quiz_id', 'assignment_id', 'answer'];
+    protected $fillable = ['student_id', 'answer', 'score', 'quiz_id', 'assignment_id', 'answer', 'submittion_time', 'status'];
 
 
     protected $casts = [

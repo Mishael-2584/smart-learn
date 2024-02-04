@@ -83,22 +83,41 @@ class SubmissionController extends Controller
 
     }
 
+    public function lecturerquizviewgrade($qId){
+
+        $submissions = Submission::where('quiz_id', $qId)->get();
+        $quiz = Quiz::find($qId);
+
+
+        return view('lecturer.viewgrades', compact('submissions', 'quiz'));
+
+
+    }
+
 
     public function storeanswers(Request $request, $quizId)
     {
         // dd($request->all());
+
+        $submissionTime = now()->addHour(1); // Get the current time
+        $quiz = Quiz::find($quizId);
         
         $answers = []; // Initialize an empty array to store answers
 
         foreach ($request->questions as $questionData) {
             $answers[$questionData['id']] = $questionData['answer'];
-        }
+        } // Initialize an empty array to store answers
+
+        // Check if the submission time is after the quiz deadline
+        $status = $submissionTime->subMinute(1) > $quiz->deadline ? 'late' : 'on time';
 
         $submission = Submission::create([
             'student_id' => session('id'),
             'answer' => $answers, // Convert answers to JSON
             'quiz_id' => $quizId,
             'score' => null, // Initially null, calculate later
+            'status' => $status, // Set the status based on submission time
+            'submittion_time' => $submissionTime->format('Y-m-d H:i:s'),
         ]);
 
         if($submission){

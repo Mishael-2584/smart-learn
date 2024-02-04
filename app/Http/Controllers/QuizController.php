@@ -312,14 +312,19 @@ class QuizController extends Controller
     public function lectureraddquizform($lcId, Request $request){
 
         $start_time = new DateTime($request->quizTime);
+        $deadline = new DateTime($request->quizDeadline);
 
         
 
-        $time_limit_minutes = (int) $request->quizTimeLimit; // Make sure this is an integer
-        $interval = new DateInterval("PT{$time_limit_minutes}M");
-        $deadline = $start_time->add($interval);
+        
+
+        // $time_limit_minutes = (int) $request->quizTimeLimit; // Make sure this is an integer
+        // $interval = new DateInterval("PT{$time_limit_minutes}M");
+        // $deadline = $start_time->add($interval);
 
         $deadline_formatted = $deadline->format('Y-m-d H:i:s');
+        $start_time_formatted = $start_time->format('Y-m-d H:i:s');
+
         
         
 
@@ -329,6 +334,7 @@ class QuizController extends Controller
             'description' => $request->quizDescription,
             'lecturer_course_id' => $lcId,
             'total_points' => $request->quizTotalPoints,
+            'start_time' => $start_time_formatted,
             'deadline' => $deadline_formatted,
             'time_limit' => $request->quizTimeLimit,
 

@@ -9,9 +9,9 @@
         <div class="row">
             <div class="col-12 mb-4">
                 <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="" class="banner-img">
-                <div class="hero-inner col-12">
+                <div class="col hero-inner">
                     <!-- Your content goes here -->
-                    <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
+                    <h2>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h2>
                 </div>
                 <br>
                 <div id="meet-link">
@@ -379,6 +379,7 @@
                                                                                             <th>Created On</th>
                                                                                             <th>Duration</th>
                                                                                             <th>Start Date & Time</th>
+                                                                                            <th>Deadline</th>
                                                                                             <th>Total Qns</th>
                                                                                             <th>Total Marks</th>
                                                                                             <th>Action</th>
@@ -398,11 +399,13 @@
                                                                                             <td>{{ $q->updated_at }}</td>
                                                                                             <td>{{ $q->time_limit }} mins</td>
                                                                                             <td>{{ $startTime->format('d/m/Y g:i A') }}</td>
+                                                                                            <td>{{ $deadline->format('d/m/Y g:i A') }}</td>
                                                                                             <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
                                                                                             <td><div class="badge badge-success">{{ $q->total_points }}</div></td>
                                                                                             <td>
-                                                                                                <a href="{{route('lecturerquizdetail', $q->id)}}" class="btn btn-secondary">View</a>
-                                                                                                <a href="{{ route('lecturerdeletequiz', $q->id) }}" class="btn btn-danger"><span><i class="fas fa-trash"></i></span></a>
+                                                                                                <a href="{{route('lecturerquizviewgrade', $q->id)}}" class="btn btn-secondary">View</a>
+                                                                                                <a href="{{ route('lecturerquizdetail', $q->id) }}" class="btn btn-primary"><span><i class="fas fa-edit"></i></span>Edit</a>
+                                                                                                <a href="{{ route('lecturerdeletequiz', $q->id) }}" class="btn btn-danger"><span><i class="fas fa-trash"></i></span>Delete</a>
                                                                                             </td>
                                                                                         </tr>       
                                                                                         @endforeach     
@@ -465,13 +468,6 @@
                                                             <a class="dropdown-item" href="#"><i
                                                                     class="fas fa-question text-primary"></i> <span
                                                                     class="ml-4">Question</span></a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-file-alt text-primary"></i> <span
-                                                                    class="ml-4">Learning Material</span></a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-lightbulb text-primary"></i> <span
-                                                                    class="ml-4">Topic</span></a>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -481,7 +477,7 @@
                                                     </div>
                                                     <p class="text-center ">
                                                         Welcome to the class workspace! This is where you can create and
-                                                        manage various assignments, quizzes, and learning materials.
+                                                        manage various assignments and quizzes.
                                                         Use the <strong>Create</strong> button to start crafting engaging
                                                         content. Feel free to attach documents, images, or any resources
                                                         that enhance the learning experience for everyone.
@@ -594,12 +590,16 @@
                   <input type="number" name="quizTotalPoints" class="form-control" id="quizTotalPoints">
                 </div>
                 <div class="form-group">
-                  <label for="quizTime">Start Date & Time</label>
-                  <input type="datetime-local" name="quizTime" class="form-control" id="quizDeadline" required>
+                  <label for="quizTime">Start Date & Time - (Click The Calendar)</label>
+                  <input type="datetime-local" name="quizTime" class="form-control" id="quizStartTime" required>
                 </div>
                 <div class="form-group">
                   <label for="quizTimeLimit">Time Limit (minutes)</label>
                   <input type="number" name="quizTimeLimit" class="form-control" id="quizTimeLimit" required>
+                </div>
+                <div class="form-group">
+                    <label for="quizDeadline">Submission Deadline - (Click The Calendar)</label>
+                    <input type="datetime-local" name="quizDeadline" class="form-control" id="quizDeadline" required>
                 </div>
             
             </div>
@@ -663,7 +663,7 @@
             const quizId = div.getAttribute('data-quiz-id');
 
             div.addEventListener('click', () => {
-                window.location.href = '/lecturer/lecturer/quiz/' + quizId; // Replace with the correct URL pattern
+                window.location.href = '/lecturer/lecturerquizviewgrade/' + quizId; // Replace with the correct URL pattern
             });
 
             div.addEventListener('mouseover', () => {

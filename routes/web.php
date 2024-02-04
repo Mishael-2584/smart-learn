@@ -203,6 +203,9 @@ Route::group(['middleware' => 'lecturer'], function () {
 
             
             Route::get('/lecturer/quiz/{qId}', [QuizController::class, 'lecturerquizredirect'])->name('lecturerquizredirect');
+
+            //lecturerquizviewgrade route
+            Route::get('/lecturerquizviewgrade/{qId}', [SubmissionController::class, 'lecturerquizviewgrade'])->name('lecturerquizviewgrade');
             
             //create content routs
             // Route::get('/lecturer/assignment', 'ContentController@showAssignmentForm')->name('lecturer.assignment');
