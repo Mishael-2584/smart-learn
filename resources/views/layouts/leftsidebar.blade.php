@@ -27,7 +27,7 @@
                         <li><a href="{{ route('mystudentclasses') }}"><i class="fas fa-chalkboard-teacher"></i><span>My Classes</span></a></li>
                         <li><a href="{{ route('comingsoon') }}"><i class="fas fa-calendar"></i><span>My Schedule</span></a></li>
                     </li>
-                    <li class="menu-header">Options</li>
+                    <li class="menu-header">OPTIONS</li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Profile Settings</span></a>
                         <ul class="dropdown-menu">
@@ -36,19 +36,6 @@
                         </ul>
                         <a href="{{ route('logout') }}" class="nav-link"><i class="fas fa-power-off"></i> <span>Logout</span></a>
                     </li>
-
-                    <li class="menu-header"></li>
-
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i> <span>Features</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="features-activities.html">Activities</a></li>
-                            <li><a class="nav-link" href="features-post-create.html">Post Create</a></li>
-                            <li><a class="nav-link" href="features-posts.html">Posts</a></li>
-                            <li><a class="nav-link" href="features-profile.html">Profile</a></li>
-                            <li><a class="nav-link" href="features-settings.html">Settings</a></li>
-                            <li><a class="nav-link" href="features-setting-detail.html">Setting Detail</a></li>
-                            <li><a class="nav-link" href="features-tickets.html">Tickets</a></li>
                 </ul>
             </aside>
     @elseif(Session::get('isAuthenticated')==true && Session::get('role')==3)
@@ -158,8 +145,7 @@
                             <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Students</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('adminpendingstudents') }} ">Pending Students</a></li>
-                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Editor</a></li>
-                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Validation</a></li>
+                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Other</a></li>
                             </ul>
                         </li>
                         

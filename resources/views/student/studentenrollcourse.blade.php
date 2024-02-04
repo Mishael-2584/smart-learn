@@ -75,14 +75,7 @@
                                                     <!-- Title -->
                                                     <h5 id="heading" class="card-ttle"><a href="#"
                                                             class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">
-                                                            {{$c->departmentcourse->course->course_code}}</a></h5>
-                                                    <!-- Badge -->
-                                                    <div class="d-flex justify-content-between align-items-center mb-0">
-                                                        <a href="#" id="heading" 
-                                                            class=" badge bg-purple bg-opacity-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? '' : '10' }} text-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? 'light' : 'purple' }} me-2"><i
-                                                                class="fas fa-graduation-cap small fw-bold"></i>
-                                                            {{$c->departmentcourse->course->title}} </a>
-                                                    </div>
+                                                            {{$c->departmentcourse->course->course_code}} - {{$c->departmentcourse->course->title}}</a></h5>
                                                     <!-- Divider -->
                                                     <hr>
                                                     <div>
@@ -153,14 +146,7 @@
                                                     <!-- Title -->
                                                     <h5 id="heading" class="card-ttle"><a href="#"
                                                             class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">
-                                                            {{$c->course->course_code}}</a></h5>
-                                                    <!-- Badge -->
-                                                    <div class="d-flex justify-content-between align-items-center mb-0">
-                                                        <a href="#" id="heading" 
-                                                            class=" badge bg-purple bg-opacity-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? '' : '10' }} text-{{ $colorClass == 'bg-dark' || $colorClass == 'bg-primary' ? 'light' : 'purple' }} me-2"><i
-                                                                class="fas fa-graduation-cap small fw-bold"></i>
-                                                                {{$c->course->title}} </a>
-                                                    </div>
+                                                            {{$c->course->course_code}} -  {{$c->course->title}}</a></h5>
                                                     <!-- Divider -->
                                                     <hr>
                                                     <div>
