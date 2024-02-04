@@ -6,8 +6,10 @@ use App\Models\ClassroomStreamPost;
 use App\Models\Enrollment;
 use App\Models\LecturerCourse;
 use App\Models\Major;
+use App\Models\Quiz;
 use App\Models\School;
 use App\Models\Student;
+use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -214,6 +216,12 @@ class StudentController extends Controller
 
         
         if ($lc || $er){
+            
+            
+            $sub = Submission::where('student_id', session('id'))->whereNotNull('quiz_id')->get();
+            if($sub){
+                return view('student.courseroom', compact('lc', 'er', 'en', 'po', 'sub'));
+            }
             return view('student.courseroom', compact('lc', 'er', 'en', 'po'));
         }
     }

@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
+        var_dump(now()->format('Y-m-d H:i:s'));
+
         $schedule->call(function () {
             // Task logic within the schedule() call
             $quizzes = Quiz::where('deadline', '>=', now())
@@ -25,9 +27,8 @@ class Kernel extends ConsoleKernel
                 ->get();
        
             foreach ($quizzes as $quiz) {
-                $deadline = Carbon::parse($quiz->deadline);      
-                $postingTime = $deadline->subMinutes($quiz->time_limit);
-                if ($postingTime->subHour(1)->isPast()) {
+                $start_time = Carbon::parse($quiz->start_time);      
+                if ($start_time->subHour(1)->isPast()) {
                     // Create stream post and mark as published
                     $post = ClassroomStreamPost::create([
                         'lecturer_course_id' => $quiz->lecturer_course->id,

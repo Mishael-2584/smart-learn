@@ -20,4 +20,21 @@ class Question extends Model
     {
         return $this->hasMany(Choice::class);
     }
+
+    protected static function booted()
+    {
+        static::created(function ($question) {
+            $question->quiz->setTotalPointsAttribute();
+            $question->quiz->save();
+        });
+    
+        static::updated(function ($question) {
+            $question->quiz->setTotalPointsAttribute();
+            $question->quiz->save();
+        });
+    }
+    
+
 }
+
+

@@ -9,9 +9,9 @@
         <div class="row">
             <div class="col-12 mb-4">
                 <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="" class="banner-img">
-                <div class="hero-inner col-12">
+                <div class="col hero-inner">
                     <!-- Your content goes here -->
-                    <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
+                    <h2>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h2>
                 </div>
                 <br>
                 <div id="meet-link">
@@ -226,19 +226,12 @@
                                                                 </div>
                                                                 <hr>
                                                                 
-                                                                <div class="clickable-div section-body" id="section-body-{{$p->id}}">
-                                                                   <h6>{{ $p->quiz->title }}</h6><br>
-                                                                   <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
-                                                                    <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b> 
-                                                                    <br>
-                                                                    
-                                                                    {{-- {!! $p->content !!} --}}
-                                                                    
+                                                                <div class="clickable-div section-body" data-quiz-id="{{$p->quiz->id}}" id="section-body-{{$p->id}}">
+                                                                    <h6>{{ $p->quiz->title }}</h6><br>
+                                                                    <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
+                                                                    <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b><br>
                                                                 </div>
-                                                                
-                                                                  
-                                                                  
-                                                                {{-- </a> --}}
+                                                                                            
                                                             </div>
                                                             <form id="editor-form-{{$p->id}}"
                                                                 action="{{ route('lecturerpostedit', $p->id) }}" method="post">
@@ -386,7 +379,9 @@
                                                                                             <th>Created On</th>
                                                                                             <th>Duration</th>
                                                                                             <th>Start Date & Time</th>
+                                                                                            <th>Deadline</th>
                                                                                             <th>Total Qns</th>
+                                                                                            <th>Total Marks</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
                                                                                         @isset($qz)                    
@@ -404,10 +399,13 @@
                                                                                             <td>{{ $q->updated_at }}</td>
                                                                                             <td>{{ $q->time_limit }} mins</td>
                                                                                             <td>{{ $startTime->format('d/m/Y g:i A') }}</td>
+                                                                                            <td>{{ $deadline->format('d/m/Y g:i A') }}</td>
                                                                                             <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
+                                                                                            <td><div class="badge badge-success">{{ $q->total_points }}</div></td>
                                                                                             <td>
-                                                                                                <a href="{{route('lecturerquizdetail', $q->id)}}" class="btn btn-secondary">View</a>
-                                                                                                <a href="{{ route('lecturerdeletequiz', $q->id) }}" class="btn btn-danger"><span><i class="fas fa-trash"></i></span></a>
+                                                                                                <a href="{{route('lecturerquizviewgrade', $q->id)}}" class="btn btn-secondary">View</a>
+                                                                                                <a href="{{ route('lecturerquizdetail', $q->id) }}" class="btn btn-primary"><span><i class="fas fa-edit"></i></span>Edit</a>
+                                                                                                <a href="{{ route('lecturerdeletequiz', $q->id) }}" class="btn btn-danger"><span><i class="fas fa-trash"></i></span>Delete</a>
                                                                                             </td>
                                                                                         </tr>       
                                                                                         @endforeach     
@@ -470,13 +468,6 @@
                                                             <a class="dropdown-item" href="#"><i
                                                                     class="fas fa-question text-primary"></i> <span
                                                                     class="ml-4">Question</span></a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-file-alt text-primary"></i> <span
-                                                                    class="ml-4">Learning Material</span></a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-lightbulb text-primary"></i> <span
-                                                                    class="ml-4">Topic</span></a>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -486,7 +477,7 @@
                                                     </div>
                                                     <p class="text-center ">
                                                         Welcome to the class workspace! This is where you can create and
-                                                        manage various assignments, quizzes, and learning materials.
+                                                        manage various assignments and quizzes.
                                                         Use the <strong>Create</strong> button to start crafting engaging
                                                         content. Feel free to attach documents, images, or any resources
                                                         that enhance the learning experience for everyone.
@@ -596,15 +587,19 @@
                 </div>
                 <div class="form-group">
                   <label for="quizTotalPoints">Total Points</label>
-                  <input type="number" name="quizTotalPoints" class="form-control" id="quizTotalPoints" required>
+                  <input type="number" name="quizTotalPoints" class="form-control" id="quizTotalPoints">
                 </div>
                 <div class="form-group">
-                  <label for="quizTime">Start Date & Time</label>
-                  <input type="datetime-local" name="quizTime" class="form-control" id="quizDeadline" required>
+                  <label for="quizTime">Start Date & Time - (Click The Calendar)</label>
+                  <input type="datetime-local" name="quizTime" class="form-control" id="quizStartTime" required>
                 </div>
                 <div class="form-group">
                   <label for="quizTimeLimit">Time Limit (minutes)</label>
                   <input type="number" name="quizTimeLimit" class="form-control" id="quizTimeLimit" required>
+                </div>
+                <div class="form-group">
+                    <label for="quizDeadline">Submission Deadline - (Click The Calendar)</label>
+                    <input type="datetime-local" name="quizDeadline" class="form-control" id="quizDeadline" required>
                 </div>
             
             </div>
@@ -660,20 +655,27 @@
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
 <script src="{{ asset('codiepie/js/page/bootstrap-modal.js') }}"></script>
 <script>
-    const clickableDiv = document.querySelector('.clickable-div');
-  
-    clickableDiv.addEventListener('click', () => {
-      window.location.href = "{{route('lecturerquizredirect', $p->quiz_id)}}";
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select all elements with class "clickable-div"
+        const clickableDivs = document.querySelectorAll('.clickable-div');
+
+        clickableDivs.forEach(div => {
+            const quizId = div.getAttribute('data-quiz-id');
+
+            div.addEventListener('click', () => {
+                window.location.href = '/lecturer/lecturerquizviewgrade/' + quizId; // Replace with the correct URL pattern
+            });
+
+            div.addEventListener('mouseover', () => {
+                div.style.backgroundColor = "#f0f0f0";
+            });
+
+            div.addEventListener('mouseout', () => {
+                div.style.backgroundColor = "";
+            });
+        });
     });
-  
-    clickableDiv.addEventListener('mouseover', () => {
-      clickableDiv.style.backgroundColor = "#f0f0f0";
-    });
-  
-    clickableDiv.addEventListener('mouseout', () => {
-      clickableDiv.style.backgroundColor = "";
-    });
-  </script>
+</script>
 <script type="text/javascript">
     var deletePostUrlTemplate = "{{ route('lecturerpostdelete', ['id' => ':id']) }}";
     var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable
