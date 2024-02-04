@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
        
             foreach ($quizzes as $quiz) {
                 $start_time = Carbon::parse($quiz->start_time);      
-                if ($start_time->subHour(1)->isPast()) {
+                if ($start_time->isPast()) {
                     // Create stream post and mark as published
                     $post = ClassroomStreamPost::create([
                         'lecturer_course_id' => $quiz->lecturer_course->id,
@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
                     if($post){
                         // Optional: Send notifications, trigger other actions
 
-                        $done = $quiz->update(['published_at' => now()->addHour(1)]); // Mark as published
+                        $done = $quiz->update(['published_at' => now()]); // Mark as published
                         if($done){
                         var_dump('Success in updating quiz');
                         }

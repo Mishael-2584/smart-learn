@@ -322,6 +322,10 @@ class QuizController extends Controller
         // $interval = new DateInterval("PT{$time_limit_minutes}M");
         // $deadline = $start_time->add($interval);
 
+        $interval = new DateInterval('PT1H'); // Represents a period of 1 hour
+        $start_time->sub($interval);
+        $deadline->sub($interval);
+
         $deadline_formatted = $deadline->format('Y-m-d H:i:s');
         $start_time_formatted = $start_time->format('Y-m-d H:i:s');
 
