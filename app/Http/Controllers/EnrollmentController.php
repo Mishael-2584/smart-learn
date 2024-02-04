@@ -200,7 +200,6 @@ class EnrollmentController extends Controller
 
         $er = Enrollment::where('lecturer_course_id', $lcId)->where('status', 1)->get();
         if ($er){
-
             $lc = LecturerCourse::where('id', $lcId)->first();
             return view('lecturer.pendingstudents', compact('er', 'lc'));
         }
@@ -227,6 +226,8 @@ class EnrollmentController extends Controller
 
                 $er->status = 2;
                 $saved = $er->save();
+
+                
                 
                 
                 

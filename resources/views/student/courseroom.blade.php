@@ -4,28 +4,27 @@
 
 <!-- Start app main Content -->
 <div class="main-content">
+    @include('layouts.error')
     <div class="section">
         <div class="row">
-            <div class="col-12 mb-4 blurry-background">
-                <div class="hero-inner blurry-overlay">
+            <div class="col-12 mb-4">
+                <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="" class="banner-img">
+                <div class="col hero-inner">
                     <!-- Your content goes here -->
-                    @if ($lc->departmentcourse)
-                    <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
-                    @else
-                        <h1>{{$lc->course->course_code}} - {{$lc->course->title}}</h1>
-                    @endif
-                    
-                    
-                    
+                    <h2>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h2>
+                </div>
+                <br>
+                <div id="meet-link">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <a href="{{route('jitsimeetingstudent', $en->id)}}"
+                            class="btn btn-primary btn-lg btn-icon action-button"><i
+                                class="fas fa-sharp fa-regular fa-video"></i> Join Class</a>
+                    </div>
+
                 </div>
 
             </div>
-            <div class="section-header col-12 col-sm-12" id="meet-link">
-                <div class="d-flex justify-content-end align-items-center">
-                  <a href="{{route('jitsimeetingstudent', $en->id)}}" class="btn btn-primary btn-lg btn-icon"><i class="fas fa-sharp fa-regular fa-video"></i> Join Class</a>
-                </div>
-                
-              </div>
+
         </div>
     </div>
 
@@ -64,6 +63,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <td><a href="#">Assignment 1</a></td>
+                                                            <td><a href="#">Today <span>5:30</span></a></td>                                                           
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -160,34 +161,69 @@
                                                     </div>
                                                         
                                                     @else
-                                                        
-                                                    
-                                                    <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
-                                                        <div id="info-section-{{$p->id}}" class="section">
-                                                            <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
-                                                                <div style="display: flex; align-items: center;">
-                                                                    <div class="circle">{{ $p->lecturer->initials }}</div>
-                                                                    <div style="margin-left: 8px;">
-                                                                        <strong>{{ $p->lecturer->name }}</strong>
-                                                                        <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
-                                                                            <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
-                                                                        </span><br>
-                                                                        <small>{{ $p->updated_at }}</small>
+
+                                                            @if (isset($p->quiz_id))
+                                                            <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
+                                                                <div id="info-section-{{$p->id}}" class="section">
+                                                                    <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+                                                                        <div style="display: flex; align-items: center;">
+                                                                            <div class="circle">{{ $p->lecturer->initials }}</div>
+                                                                            <div style="margin-left: 8px;">
+                                                                                <strong>{{ $p->lecturer->name }}</strong>
+                                                                                <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
+                                                                                    <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
+                                                                                </span><br>
+                                                                                <small>{{ $p->updated_at }}</small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>        
+                                                                    <hr>
+                                                                    <div class="clickable-div section-body" data-quiz-id="{{$p->quiz->id}}" id="section-body-{{$p->id}}">
+                                                                        <h6>{{ $p->quiz->title }}</h6><br>
+                                                                        <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
+                                                                        <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b><br>
                                                                     </div>
                                                                 </div>
-                                                                
-                                                            </div>        
-                                                            <hr>
-                                                            <div class="section-body" id="section-body-{{$p->id}}">
-                                                                {!! $p->content !!}
+
+                                                                <br>
+                                                                <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
+                                                                 <!-- Modal for comments -->
+
                                                             </div>
-                                                        </div>
+                                                                
+                                                            @else
+                                                            <div class="card-body custom-rounded-border" id="post-{{$p->id}}">
+                                                                <div id="info-section-{{$p->id}}" class="section">
+                                                                    <div class="section-head bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+                                                                        <div style="display: flex; align-items: center;">
+                                                                            <div class="circle">{{ $p->lecturer->initials }}</div>
+                                                                            <div style="margin-left: 8px;">
+                                                                                <strong>{{ $p->lecturer->name }}</strong>
+                                                                                <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
+                                                                                    <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
+                                                                                </span><br>
+                                                                                <small>{{ $p->updated_at }}</small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>        
+                                                                    <hr>
+                                                                    <div class="section-body" id="section-body-{{$p->id}}">
+                                                                        {!! $p->content !!}
+                                                                    </div>
+                                                                </div>
+
+                                                                <br>
+                                                                <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
+                                                                 <!-- Modal for comments -->
+
+                                                            </div>
+                                                                
+                                                            @endif
                                                         
-                                                        <br>
-                                                        <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
-                                                         <!-- Modal for comments -->
+                                                    
                                                             
-                                                    </div>
                                                     @endif                                                                                      
                                             </div>
                                             
@@ -201,6 +237,85 @@
                                 
                                 </div>
                                 <div class="tab-pane fade" id="submissions" role="tabpanel" aria-labelledby="submissions-tab">
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-7 col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-3 col-sm-12 col-md-4 col-lg-2">
+                                                            <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
+                                                                <li class="nav-item"><a class="nav-link active" id="quizzes-lecturer" data-toggle="tab" href="#quizzes" role="tab" aria-controls="home" aria-selected="true">MY QUIZZES</a></li>
+                                                                <li class="nav-item"><a class="nav-link" id="assignments-lecturer" data-toggle="tab" href="#assignments" role="tab" aria-controls="profile" aria-selected="false">MY ASSIGNMENTS</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-9 col-sm-12 col-md-8 col-lg-10">
+                                                        <div class="tab-content no-padding" id="myTab2Content">
+                                                            <div class="tab-pane fade show active" id="quizzes" role="tabpanel" aria-labelledby="quizzes-lecturer">
+                                                                <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h4>{{$lc->departmentcourse->course->course_code}} - QUIZZES</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="table-responsive">
+                                                                                <table class="table table-bordered table-md v_center col-12">
+                                                                                    <tr>
+                                                                                        <th>#</th>
+                                                                                        <th>Quiz Title</th>
+                                                                                        <th>Posted On</th>
+                                                                                        <th>Total Qns</th>
+                                                                                        <th>Score</th>
+                                                                                        <th>Status</th>
+                                                                                        <th>Action</th>
+                                                                                    </tr>
+                                                                                    @isset($sub)                    
+                                                                                    @foreach ($sub as $index => $s)
+                                                                                    <tr>
+                                                                                        <td>{{ $index+1 }}</td>
+                                                                                        <td>{{ $s->quiz->title }}</td>
+                                                                                        <td>{{ $s->quiz->published_at }}</td>
+                                                                                        <td>{{ $s->quiz->questions->count() }}</td>
+                                                                                        <td>@if($s->status == "on time")<div class="badge badge-success">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div> @else <div class="badge badge-danger">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div> @endif</td>
+                                                                                        <td>@if($s->status == "on time") <span class="badge badge-success">ON TIME</span> @else <span class="badge badge-danger">LATE</span> @endif</td>
+                                                                                        <td>
+                                                                                            <a href="{{route('studentquizdetail', $s->id)}}" class="btn btn-secondary">View</a>
+                                                                                        </td>
+                                                                                    </tr>       
+                                                                                    @endforeach     
+                                                                                    @endisset
+                                                                                    
+                                                                            
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer text-right">
+                                                                            <nav class="d-inline-block">            
+                                                                                <ul class="pagination mb-0">
+                                                                                    <!-- Button trigger modal -->
+
+                                                                                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a></li>
+                                                                                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                                                                                </ul>
+                                                                            </nav>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="assignments" role="tabpanel" aria-labelledby="assignments-lecturer">
+
+                                                                
+                                                            
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 
 
 
@@ -322,7 +437,28 @@
 <script src="{{ asset('codiepie/assets/modules/codemirror/lib/codemirror.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
 <script src="{{ asset('codiepie/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select all elements with class "clickable-div"
+        const clickableDivs = document.querySelectorAll('.clickable-div');
 
+        clickableDivs.forEach(div => {
+            const quizId = div.getAttribute('data-quiz-id');
+
+            div.addEventListener('click', () => {
+                window.location.href = '/student/quiz/' + quizId; // Replace with the correct URL pattern
+            });
+
+            div.addEventListener('mouseover', () => {
+                div.style.backgroundColor = "#f0f0f0";
+            });
+
+            div.addEventListener('mouseout', () => {
+                div.style.backgroundColor = "";
+            });
+        });
+    });
+</script>
 <script type="text/javascript">
     var deletePostUrlTemplate = "{{ route('studentpostdelete', ['id' => ':id']) }}";
     var token = "{{ csrf_token() }}"; // Ensure this line is added to define the CSRF token variable
@@ -506,6 +642,34 @@
 <style>
     #meet-link{
         margin-top: 0;
+    }
+
+    .banner-img {
+        
+        z-index: -1;
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        filter: brightness(40%);
+        border: 1px solid purple;
+        border-radius: 10px;
+        opacity: 0.8;
+    }
+
+    .hero-inner {
+        position: absolute;
+        top: 50%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        font-size: 2.5rem;
+        color: #fff;
+    }
+
+    .action-button {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .blurry-background {

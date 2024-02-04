@@ -16,8 +16,25 @@ class Question extends Model
         return $this->belongsTo(Quiz::class);
     }
 
-    public function choice()
+    public function choices()
     {
         return $this->hasMany(Choice::class);
     }
+
+    protected static function booted()
+    {
+        static::created(function ($question) {
+            $question->quiz->setTotalPointsAttribute();
+            $question->quiz->save();
+        });
+    
+        static::updated(function ($question) {
+            $question->quiz->setTotalPointsAttribute();
+            $question->quiz->save();
+        });
+    }
+    
+
 }
+
+

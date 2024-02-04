@@ -26,6 +26,13 @@
 <script src="{{ asset("codiepie/js/scripts.js") }}"></script>
 <script src="{{ asset("codiepie/js/custom.js") }}"></script>   
 
+<script>
+    $(document).ready(function() {
+        $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+            $(this).slideUp(500);
+        });
+    });
+</script>
 <!--Start of Tawk.to Script-->
 {{-- <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

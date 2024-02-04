@@ -11,8 +11,10 @@ use App\Http\Controllers\JitsiController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LecturerCourseController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Middleware\LecturerMiddleware;
 use App\Models\LecturerCourse;
 use Illuminate\Support\Facades\Route;
@@ -49,8 +51,12 @@ Route::post('/student_submit', [AuthenticationController::class, 'studentssubmit
 
 Route::get('/lecturer_signup', function () { return view('auths.lecturerregister'); })->name('lecturersignup');
 Route::post('/lecturer_submit', [AuthenticationController::class, 'staffsubmit'])->name('lecturersubmit');
+Route::get('/lecturer/assignment', function () { return view('lecturer.assignment'); })->name('assignment');
+Route::get('/student/quiz', function () { return view('student.quiz'); })->name('quiz');
 Route::get('/classroom', function () { return view('classroom'); })->name('classroom');
 
+// In routes/web.php
+// Route::get('/path-to-generate-csrf-token', [SubmissionController::class, 'generateToken'])->name('generateToken');
 
 
 
@@ -132,6 +138,13 @@ Route::middleware('student')->group(function () {
             Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcommentstudent');
             Route::get('/getcomments/{pId}', [CommentController::class, 'getcomment'])->name('getcommentstudent');
             Route::delete('/deletecomments/{cId}', [CommentController::class, 'commentdelete'])->name('commentdelete');
+            Route::match(['get', 'post'], '/quiz/{qId}', [QuizController::class, 'studentquizredirect'])->name('studentquizredirect');
+
+            Route::post('/studenttakequiz/{qId}', [QuizController::class, 'studenttakequiz'])->name('studenttakequiz'); // studenttakequiz
+
+            Route::post('/storeanswers/{qId}', [SubmissionController::class, 'storeanswers'])->name('storeanswers');
+            Route::get('/calculatescore/{submissionId}', [SubmissionController::class, 'calculatescore'])->name('calculatescore');
+            Route::get('studentquizdetail/{sId}', [SubmissionController::class, 'studentquizdetail'])->name('studentquizdetail');
             
 
         });
@@ -176,14 +189,30 @@ Route::group(['middleware' => 'lecturer'], function () {
             Route::post('/lecturerpostedit/{pId}', [ClassroomStreamPostController::class, 'lecturerpostedit'])->name('lecturerpostedit');
             
             Route::delete('/lecturer/post/{id}', [ClassroomStreamPostController::class, 'lecturerpostdelete'])->name('lecturerpostdelete');
-            //postcommentl route
+            
             Route::post('/postcomment/{pId}', [CommentController::class, 'postcomment'])->name('postcomment');
             Route::get('/getcomments/{pId}', [CommentController::class, 'getcomment'])->name('getcomment');
             Route::delete('/deletecomments/{cId}', [CommentController::class, 'commentdelete'])->name('commentdelete');
+
             
+            Route::post('/lectureraddquizform/{lcId}', [QuizController::class, 'lectureraddquizform'])->name('lectureraddquizform');
+            Route::get('/lecturerquizdetail/{qId}', [QuizController::class, 'lecturerquizdetail'])->name('lecturerquizdetail');
 
+            Route::match(['get', 'post'], '/lecturerquizmanagement', [QuizController::class, 'saveQuiz'])->name('saveQuiz');
+            Route::get('/lecturerdeletequiz/{qId}', [QuizController::class, 'deleteQuiz'])->name('lecturerdeletequiz');
 
+            
+            Route::get('/lecturer/quiz/{qId}', [QuizController::class, 'lecturerquizredirect'])->name('lecturerquizredirect');
 
+            //lecturerquizviewgrade route
+            Route::get('/lecturerquizviewgrade/{qId}', [SubmissionController::class, 'lecturerquizviewgrade'])->name('lecturerquizviewgrade');
+            
+            //create content routs
+            // Route::get('/lecturer/assignment', 'ContentController@showAssignmentForm')->name('lecturer.assignment');
+            // Route::get('/lecturer/quiz', 'ContentController@showQuizForm')->name('lecturer.quiz');
+            // Route::get('/lecturer/question', 'ContentController@showQuestionForm')->name('lecturer.question');
+            // Route::get('/lecturer/learning-material', 'ContentController@showLearningMaterialForm')->name('lecturer.learningMaterial');
+            // Route::get('/lecturer/topic', 'ContentController@showTopicForm')->name('lecturer.topic');
             
         });
 
