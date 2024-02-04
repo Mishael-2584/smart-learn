@@ -35,7 +35,7 @@
                                             <td>{{$index+1}}</td>
                                             <td>{{$qg->student->name}}</td>
                                             <td>{{ number_format($qg->score, 2) }} / {{$qg->quiz->total_points}}</td>
-                                            <td>{{ \Carbon\Carbon::parse($qg->submittion_time)->format('M d, Y g:i A') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($qg->submittion_time)->addHour()->format('M d, Y g:i A') }}</td>
                                         </tr>
                                         @endforeach
                                         @endisset

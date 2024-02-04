@@ -99,7 +99,7 @@ class SubmissionController extends Controller
     {
         // dd($request->all());
 
-        $submissionTime = now()->addHour(1); // Get the current time
+        $submissionTime = now(); // Get the current time
         $quiz = Quiz::find($quizId);
         
         $answers = []; // Initialize an empty array to store answers

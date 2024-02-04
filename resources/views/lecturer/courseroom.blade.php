@@ -202,7 +202,7 @@
                                                                                     style="color: #4c68d7;"></i>
                                                                             </span>
                                                                             <br>
-                                                                            <small>{{ $p->updated_at }}</small>
+                                                                            <small>{{ \Carbon\Carbon::parse($p->updated_at)->addHour()->format('d/m/Y g:i A') }}</small>
                                                                         </div>
                                                                     </div>
                                                                     <div class="dropdown"
@@ -229,7 +229,7 @@
                                                                 <div class="clickable-div section-body" data-quiz-id="{{$p->quiz->id}}" id="section-body-{{$p->id}}">
                                                                     <h6>{{ $p->quiz->title }}</h6><br>
                                                                     <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
-                                                                    <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b><br>
+                                                                    <b>Deadline: {{ \Carbon\Carbon::parse($p->quiz->deadline)->addHour()->format('g:i A') }}</b><br>
                                                                 </div>
                                                                                             
                                                             </div>
@@ -398,8 +398,8 @@
                                                                                             <td>{{ $q->title }}</td>
                                                                                             <td>{{ $q->updated_at }}</td>
                                                                                             <td>{{ $q->time_limit }} mins</td>
-                                                                                            <td>{{ $startTime->format('d/m/Y g:i A') }}</td>
-                                                                                            <td>{{ $deadline->format('d/m/Y g:i A') }}</td>
+                                                                                            <td>{{ \Carbon\Carbon::parse($startTime)->addHour()->format('d/m/Y g:i A') }}</td>
+                                                                                            <td>{{ \Carbon\Carbon::parse($deadline)->addHour()->format('d/m/Y g:i A') }}</td>
                                                                                             <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
                                                                                             <td><div class="badge badge-success">{{ $q->total_points }}</div></td>
                                                                                             <td>

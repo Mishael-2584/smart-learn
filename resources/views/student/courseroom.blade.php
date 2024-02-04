@@ -273,7 +273,7 @@
                                                                                     <tr>
                                                                                         <td>{{ $index+1 }}</td>
                                                                                         <td>{{ $s->quiz->title }}</td>
-                                                                                        <td>{{ $s->quiz->published_at }}</td>
+                                                                                        <td>{{ \Carbon\Carbon::parse($s->quiz->published_at)->addHour()->format('d/m/Y g:i A') }}</td>
                                                                                         <td>{{ $s->quiz->questions->count() }}</td>
                                                                                         <td>@if($s->status == "on time")<div class="badge badge-success">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div> @else <div class="badge badge-danger">{{ number_format($s->score, 2) }}/{{ $s->quiz->total_points}}</div> @endif</td>
                                                                                         <td>@if($s->status == "on time") <span class="badge badge-success">ON TIME</span> @else <span class="badge badge-danger">LATE</span> @endif</td>
