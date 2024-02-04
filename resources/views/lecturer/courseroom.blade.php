@@ -123,7 +123,7 @@
                                                                 <div style="margin-left: 8px;">
                                                                     <strong>{{ $p->student->name }}</strong>
                                                                     <br>
-                                                                    <small>{{ $p->updated_at }}</small>
+                                                                    <small>{{ \Carbon\Carbon::parse($p->updated_at)->addHour()->format('d/m/Y g:i A') }}</small>
                                                                 </div>
                                                             </div>
                                                             <div class="dropdown"
@@ -278,7 +278,7 @@
                                                                                     style="color: #4c68d7;"></i>
                                                                             </span>
                                                                             <br>
-                                                                            <small>{{ $p->updated_at }}</small>
+                                                                            <small>{{ \Carbon\Carbon::parse($p->updated_at)->addHour()->format('d/m/Y g:i A') }}</small>
                                                                         </div>
                                                                     </div>
                                                                     <div class="dropdown"

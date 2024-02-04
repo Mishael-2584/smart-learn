@@ -119,7 +119,7 @@
                                                                     <div style="margin-left: 8px;">
                                                                         <strong>{{ $p->student->name }}</strong>
                                                                         <br>
-                                                                        <small>{{ $p->updated_at }}</small>
+                                                                        <small>{{ \Carbon\Carbon::parse($p->updated_at)->addHour()->format('d/m/Y g:i A') }}</small>
                                                                     </div>
                                                                 </div>
                                                                 @if ($p->student->id == Session::get('id'))
@@ -173,7 +173,7 @@
                                                                                 <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
                                                                                     <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
                                                                                 </span><br>
-                                                                                <small>{{ $p->updated_at }}</small>
+                                                                                <small>{{ \Carbon\Carbon::parse($p->updated_at)->addHour()->format('d/m/Y g:i A') }}</small>
                                                                             </div>
                                                                         </div>
 
@@ -182,7 +182,7 @@
                                                                     <div class="clickable-div section-body" data-quiz-id="{{$p->quiz->id}}" id="section-body-{{$p->id}}">
                                                                         <h6>{{ $p->quiz->title }}</h6><br>
                                                                         <b>Total Qns: {{ $p->quiz->questions->count() }}</b><br>
-                                                                        <b>Deadline: {{ date('h:i A', strtotime($p->quiz->deadline)) }}</b><br>
+                                                                        <b>Deadline: {{ \Carbon\Carbon::parse($p->quiz->deadline)->addHour()->format('g:i A') }}</b><br>
                                                                     </div>
                                                                 </div>
 
@@ -203,7 +203,7 @@
                                                                                 <span class="badge badge-success rounded-circle p-0" style="background-color: transparent;" title="Verified">
                                                                                     <i class="fa-solid fa-circle-check fa-lg" style="color: #4c68d7;"></i>
                                                                                 </span><br>
-                                                                                <small>{{ $p->updated_at }}</small>
+                                                                                <small>{{ \Carbon\Carbon::parse($p->updated_at)->addHour()->format('d/m/Y g:i A') }}</small>
                                                                             </div>
                                                                         </div>
 
