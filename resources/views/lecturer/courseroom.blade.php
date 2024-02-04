@@ -386,20 +386,13 @@
                                                                                         </tr>
                                                                                         @isset($qz)                    
                                                                                         @foreach ($qz as $index => $q)
-                                                                                        @php
-                                                                                            // Create a Carbon instance from the deadline
-                                                                                            $deadline = \Carbon\Carbon::parse($q->deadline);
-                                                                                                                                                                            
-                                                                                            // Subtract the time limit in minutes to get the start time
-                                                                                            $startTime = $deadline->copy()->subMinutes($q->time_limit);
-                                                                                        @endphp
                                                                                         <tr>
                                                                                             <td>{{ $index+1 }}</td>
                                                                                             <td>{{ $q->title }}</td>
-                                                                                            <td>{{ $q->updated_at }}</td>
+                                                                                            <td>{{ \Carbon\Carbon::parse($q->updated_at)->addHour()->format('d/m/Y g:i A') }}</td>
                                                                                             <td>{{ $q->time_limit }} mins</td>
-                                                                                            <td>{{ \Carbon\Carbon::parse($startTime)->addHour()->format('d/m/Y g:i A') }}</td>
-                                                                                            <td>{{ \Carbon\Carbon::parse($deadline)->addHour()->format('d/m/Y g:i A') }}</td>
+                                                                                            <td>{{ \Carbon\Carbon::parse($q->start_time)->addHour()->format('d/m/Y g:i A') }}</td>
+                                                                                            <td>{{ \Carbon\Carbon::parse($q->deadline)->addHour()->format('d/m/Y g:i A') }}</td>
                                                                                             <td><div class="badge badge-success">{{ $q->questions->count() }}</div></td>
                                                                                             <td><div class="badge badge-success">{{ $q->total_points }}</div></td>
                                                                                             <td>
