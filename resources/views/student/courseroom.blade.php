@@ -7,26 +7,24 @@
     @include('layouts.error')
     <div class="section">
         <div class="row">
-            <div class="col-12 mb-4 blurry-background">
-                <div class="hero-inner blurry-overlay">
+            <div class="col-12 mb-4">
+                <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="" class="banner-img">
+                <div class="col hero-inner">
                     <!-- Your content goes here -->
-                    @if ($lc->departmentcourse)
-                    <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
-                    @else
-                        <h1>{{$lc->course->course_code}} - {{$lc->course->title}}</h1>
-                    @endif
-                    
-                    
-                    
+                    <h2>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h2>
+                </div>
+                <br>
+                <div id="meet-link">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <a href="{{route('jitsimeetingstudent', $en->id)}}"
+                            class="btn btn-primary btn-lg btn-icon action-button"><i
+                                class="fas fa-sharp fa-regular fa-video"></i> Join Class</a>
+                    </div>
+
                 </div>
 
             </div>
-            <div class="section-header col-12 col-sm-12" id="meet-link">
-                <div class="d-flex justify-content-end align-items-center">
-                  <a href="{{route('jitsimeetingstudent', $en->id)}}" class="btn btn-primary btn-lg btn-icon"><i class="fas fa-sharp fa-regular fa-video"></i> Join Class</a>
-                </div>
-                
-              </div>
+
         </div>
     </div>
 
@@ -644,6 +642,34 @@
 <style>
     #meet-link{
         margin-top: 0;
+    }
+
+    .banner-img {
+        
+        z-index: -1;
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        filter: brightness(40%);
+        border: 1px solid purple;
+        border-radius: 10px;
+        opacity: 0.8;
+    }
+
+    .hero-inner {
+        position: absolute;
+        top: 50%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        font-size: 2.5rem;
+        color: #fff;
+    }
+
+    .action-button {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .blurry-background {
