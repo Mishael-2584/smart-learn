@@ -22,15 +22,15 @@
                     <div class="card">
                         <div class="card-body">
                             <br>
-                            <form method="POST" action="{{ route('postschool') }}">
+                            <form method="POST" action="{{ route('postschool') }}" id="addSchoolForm">
                                 @csrf
                             <div class="form-group">
                                 <label>School Code</label>
-                                <input type="text" class="form-control" name="code">
+                                <input type="text" class="form-control" name="code" placeholder="For Example: CES, SMS, etc">
                             </div>
                             <div class="form-group">
                                 <label>Full Name Of School</label>
-                                <input type="text" name="name" class="form-control" required>
+                                <input type="text" name="name" class="form-control" placeholder="For Example: School Of Education" required>
                             </div>
                             <div class="section-title">OTHER</div>
                             <div class="form-group">
@@ -38,7 +38,7 @@
                                 <textarea type="text" name="description" class="form-control" cols="30" rows="10"></textarea>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
                             </div>
                             </form>
                         </div>
@@ -52,3 +52,30 @@
 
 @endsection
 
+
+
+@section('scripts')
+<!-- Include SweetAlert2 from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function submitForm() {
+        // Use SweetAlert to show the confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Please confirm that the information is correct.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form
+                document.getElementById('addSchoolForm').submit();
+            }
+        });
+    }
+</script>
+    
+@endsection

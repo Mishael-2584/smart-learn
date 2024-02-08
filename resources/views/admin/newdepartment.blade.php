@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
                             <br>
-                            <form method="POST" action="{{ route('postdepartment') }}">
+                            <form method="POST" action="{{ route('postdepartment') }}" id="addDepartmentForm">
                                 @csrf
                             <div class="form-group">
                                 <div class="section-title">Fill the form below</div>
@@ -40,10 +40,10 @@
                             </div>
                             <div class="form-group">
                                 <label>Name Of Department</label>
-                                <input type="text" name="name" class="form-control" required>
+                                <input type="text" name="name" class="form-control" placeholder="For Example: Department Of Computer Science" required>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
                             </div>
                             </form>
                         </div>
@@ -58,5 +58,27 @@
 @endsection
 
 @section('scripts')
+<!-- Include SweetAlert2 from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function submitForm() {
+        // Use SweetAlert to show the confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Please confirm that the information is correct.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form
+                document.getElementById('addDepartmentForm').submit();
+            }
+        });
+    }
+</script>
     
 @endsection

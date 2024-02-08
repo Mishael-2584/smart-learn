@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
                             <br>
-                            <form action="{{ route('postmajor') }}" method="POST">
+                            <form action="{{ route('postmajor') }}" method="POST" id="addMajorForm">
                                 @csrf
                                 <div class="form-group">
                                     <div class="section-title">Fill the form below</div>
@@ -58,7 +58,7 @@
                                         <input type="text" name="major" class="form-control" required>
                                     </div>
                                     <div class="card-footer text-right">
-                                        <button class="btn btn-primary">Submit</button>
+                                        <button type="button" onclick="submitForm()" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -92,6 +92,29 @@ $(document).ready(function () {
         });
     });
 });
+</script>
+
+<!-- Include SweetAlert2 from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function submitForm() {
+        // Use SweetAlert to show the confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Please confirm that the information is correct.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form
+                document.getElementById('addMajorForm').submit();
+            }
+        });
+    }
 </script>
     
 @endsection

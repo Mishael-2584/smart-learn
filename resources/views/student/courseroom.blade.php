@@ -11,9 +11,9 @@
                 <img id="backgroundimage" src="{{ $lc->departmentcourse->course->imgpath }}" alt="" class="banner-img">
                 <div class="hero-inner col-12">
                     @if ($lc->departmentcourse)
-                    <h1>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h1>
+                    <h2>{{$lc->departmentcourse->course->course_code}} - {{$lc->departmentcourse->course->title}}</h2>
                     @else
-                    <h1>{{$lc->course->course_code}} - {{$lc->course->title}}</h1>
+                    <h2>{{$lc->course->course_code}} - {{$lc->course->title}}</h2>
                     @endif
                 </div>
                 <br>
@@ -72,8 +72,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <td><a href="#">Assignment 1</a></td>
-                                                            <td><a href="#">Today <span>5:30</span></a></td>
+                                                            <td></td>
+                                                            <td></td>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -116,7 +116,7 @@
 
                                     <div class="row">
                                         <div class="col-12 col-lg-8 ml-auto">
-                                            @isset($po)
+                                        @isset($po)
                                                 
                                             
                                             @foreach ($po as $p)
@@ -236,8 +236,9 @@
                                                             </div>
                                                         @endif
                                                     </div>
-                                                @endforeach
-                                            @endisset
+                                                    @endif
+                                            @endforeach
+                                        @endisset
                                         </div>
                                     </div>
 

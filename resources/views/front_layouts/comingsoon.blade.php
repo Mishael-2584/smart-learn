@@ -57,8 +57,8 @@
 				<div class="overflow-hidden mt-4">
 					<p class="mb-1 h6 fw-light text-start">Launch progress</p>
 					<div class="progress progress-md progress-percent-bg bg-light">
-						<div class="progress-bar progress-bar-striped bg-blue aos" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-							<span class="progress-percent text-white">80% Completed</span>
+						<div class="progress-bar progress-bar-striped bg-blue aos" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%">
+							<span class="progress-percent text-white">90% Completed</span>
 						</div>
 					</div>
 				</div>

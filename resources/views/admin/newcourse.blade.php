@@ -28,7 +28,7 @@
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <br>
-                                                            <form action="{{ route('postcourse') }}?imgpath=" method="POST">
+                                                            <form action="{{ route('postcourse') }}?imgpath=" method="POST" id="addCourseForm">
                                                                 @csrf
                                                                 <div class="form-group">
                                                                     <div class="section-title">Fill the form below</div>
@@ -58,7 +58,7 @@
                                                                 
                                                                     <div class="form-group">
                                                                         <label>Course Code</label>
-                                                                        <input type="text" name="code" class="form-control" required>
+                                                                        <input type="text" name="code" class="form-control" placeholder="For Example: COSC-101" required>
                                                                     </div>
                                                                 
                                                                     <div class="form-group">
@@ -75,7 +75,7 @@
                                                                         <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>
                                                                     </div>
                                                                     <div class="card-footer text-right">
-                                                                        <button class="btn btn-primary">Submit</button>
+                                                                        <button type="button" onclick="submitForm()" class="btn btn-primary">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -149,7 +149,7 @@
                                                                 <textarea name="description" class="form-control" id="description3" cols="30" rows="10" required></textarea>
                                                             </div>
                                                             <div class="card-footer text-right">
-                                                                <button class="btn btn-primary">Submit</button>
+                                                                <button type="button" class="btn btn-primary">Submit</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -170,6 +170,30 @@
 @endsection
 
 @section('scripts')
+
+<!-- Include SweetAlert2 from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function submitForm() {
+        // Use SweetAlert to show the confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Please confirm that the information is correct.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form
+                document.getElementById('addCourseForm').submit();
+            }
+        });
+    }
+</script>
+
 <script>
     $(document).ready(function () {
         $('#school').change(function () {
