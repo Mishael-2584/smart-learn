@@ -30,7 +30,7 @@
                                 <div class="tab-pane fade show active" id="departmental-courses" role="tabpanel"
                                     aria-labelledby="departmental-courses-tab">
                                     <!-- Content for Departmental Courses tab -->
-                                   
+
                                     <div class="row">
                                         @php
                                         $availableColors = ['bg-primary', 'bg-success', 'bg-white', 'bg-dark'];
@@ -42,7 +42,7 @@
                                         @endphp
 
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                            <div class="card p-2 shadow h-100 @if ($lc->status == 0) dim @endif">
+                                            <div class="card p-2 shadow h-100">
                                                 <div class="rounded-top overflow-hidden">
                                                     <div class="card-overlay-hover">
                                                         <!-- Image -->
@@ -93,12 +93,13 @@
 
 
 
-                                <div class="tab-pane fade" id="general-courses" role="tabpanel"aria-labelledby="general-courses-tab">
+                                <div class="tab-pane fade" id="general-courses" role="tabpanel"
+                                    aria-labelledby="general-courses-tab">
                                     <!-- Content for General Courses tab -->
 
                                     <div class="row">
 
-                                        @foreach ($gcs as $gc)
+                                        @foreach ($gcs as $index => $gc)
                                         @if (isset($gc->course->course_code))
                                         @php
                                         $colorIndex = $index % count($availableColors);
@@ -106,7 +107,7 @@
                                         @endphp
 
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                            <div class="card p-2 shadow h-100 @if ($lc->status == 0) dim @endif">
+                                            <div class="card p-2 shadow h-100 @if ($gc->status == 0) dim @endif">
                                                 <div class="rounded-top overflow-hidden">
                                                     <div class="card-overlay-hover">
                                                         <!-- Image -->
@@ -118,15 +119,16 @@
                                                     <div class="card-img-overlay">
                                                         <div class="d-flex justify-content-end">
                                                             <div class="article-cta">
-                                                            @if ($gc->status != 0)
+                                                                @if ($gc->status != 0)
                                                                 <a href="#" class="btn btn-primary">Open</a>
-                                                            @else
-                                                               <button class="btn btn-primary"
-                                                                onclick="displayErrorMessage(this)">Open </button>
+                                                                @else
+                                                                <button class="btn btn-primary"
+                                                                    onclick="displayErrorMessage(this)">Open </button>
                                                                 <div class="approval-pending">
-                                                                    <span class="pending-indicator">Pending Approval</span>
+                                                                    <span class="pending-indicator">Pending
+                                                                        Approval</span>
                                                                 </div>
-                                                            @endif
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -147,27 +149,26 @@
                                             </div>
                                         </div>
                                         <!-- Card Item END -->
-                                            @endif
-                                            @endforeach
-                                        
+                                        @endif
+                                        @endforeach
+
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="unique-courses" role="tabpanel"
-                                    aria-labelledby="unique-courses-tab">
+                                <div class="tab-pane fade" id="unique-courses" role="tabpanel" aria-labelledby="unique-courses-tab">
                                     <!-- Content for Unique Courses tab -->
 
                                     <div class="row">
 
-                                        @foreach ($gcs as $uc)
+                                        @foreach ($gcs as $index => $uc)
                                         @if (isset($uc->course->course_code) == null)
-                                        @php
-                                        $colorIndex = $index % count($availableColors);
-                                        $colorClass = $availableColors[$colorIndex];
-                                        @endphp
+                                            @php
+                                            $colorIndex = $index % count($availableColors);
+                                            $colorClass = $availableColors[$colorIndex];
+                                            @endphp
 
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                            <div class="card p-2 shadow h-100 @if ($uc->status == 0) dim @endif">
+                                            <div class="card p-2 shadow h-100 ">
                                                 <div class="rounded-top overflow-hidden">
                                                     <div class="card-overlay-hover">
                                                         <!-- Image -->
@@ -179,16 +180,17 @@
                                                     <div class="card-img-overlay">
                                                         <div class="d-flex justify-content-end">
                                                             <div class="article-cta">
-                                                            @if ($uc->status != 0)
+                                                                @if ($uc->status != 0)
                                                                 <a href="#" class="btn btn-primary">Open</a>
-                                                            @else
+                                                                @else
                                                                 <button class="btn btn-primary"
                                                                     onclick="displayErrorMessage(this)">Open </button>
                                                                 <div class="approval-pending">
-                                                                    <span class="pending-indicator">Pending Approval</span>
+                                                                    <span class="pending-indicator">Pending
+                                                                        Approval</span>
                                                                 </div>
 
-                                                            @endif
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -197,8 +199,8 @@
                                                 <div class="card-body {{ $colorClass }}">
                                                     <!-- Title -->
                                                     <h5 id="heading" class="card-ttle"><a href="#"
-                                                            class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">{{$uc->course->course_code}}
-                                                            {{$gc->course->title}}</a></h5>
+                                                            class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }}">
+                                                            {{$uc->course->title}}</a></h5>
                                                     <!-- Badge -->
                                                     <div class="d-flex justify-content-between align-items-center mb-0">
                                                         <a href="#"
@@ -210,9 +212,9 @@
                                         </div>
                                         <!-- Card Item END -->
 
-                                            @endif
-                                            @endforeach
-                                         
+                                        @endif
+                                        @endforeach
+
                                     </div>
                                 </div>
 

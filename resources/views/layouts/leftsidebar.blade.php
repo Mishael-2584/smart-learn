@@ -53,7 +53,7 @@
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('lecturerdashboard') }}">My Dashboard</a></li>
-                            <li><a class="nav-link beep beep-sidebar" href="{{ route('status') }}">My Status</a></li>
+                            <li><a class="nav-link" href="{{ route('status') }}">My Status</a></li>
                             
                         </ul>
                     </li>

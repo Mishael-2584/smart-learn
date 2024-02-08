@@ -89,7 +89,7 @@
                                                     <!-- Divider -->
                                                     <hr>
 
-                                                    <P class="text bg-white"> BY: {{$e->lecturercourse->lecturer->name}}</P>
+                                                    <P class="text-{{ $colorClass == 'bg-white' ? 'dark' : 'light' }} "> BY: {{$e->lecturercourse->lecturer->name}}</P>
                                                 </div>
                                             </div>
                                         </div>

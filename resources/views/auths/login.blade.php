@@ -33,7 +33,7 @@
                             </li>
                         </ul>
                         <!-- Content -->
-                        <p class="mb-0 h6 fw-light ms-0 ms-sm-3">4k+ Students joined us, now it's your turn.</p>
+                        <p class="mb-0 h6 fw-light ms-0 ms-sm-3">100+ Students joined us, now it's your turn.</p>
                     </div>
                 </div>
             </div>

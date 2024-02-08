@@ -6,9 +6,11 @@ use App\Models\Course;
 use App\Models\Department;
 use App\Models\DepartmentCourse;
 use App\Models\Lecturer;
+use App\Models\LecturerCourse;
 use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 use function Laravel\Prompts\error;
@@ -49,10 +51,18 @@ class LecturerController extends Controller
 
     public function dashboard()
     {
+        // count number of lecturer_courses with lecturer_id from session('id')
+        $numberOfCourses = LecturerCourse::where('lecturer_id', session('id'))->where('status', 1)->count();
+        $studentCount = DB::table('enrollments')
+            ->join('lecturer_courses', 'enrollments.lecturer_course_id', '=', 'lecturer_courses.id')
+            ->where('lecturer_courses.lecturer_id', session('id'))
+            ->distinct('enrollments.student_id')
+            ->count('enrollments.student_id');
+
         //find lecturer by session id fron lecturer table
         $lecturer = Lecturer::where('id', session('id'))->first();
         if ($lecturer->verified == 2) {
-            return view('lecturer.dashboard', ['lecturer' => $lecturer]);
+            return view('lecturer.dashboard', ['lecturer' => $lecturer, 'numberOfCourses' => $numberOfCourses, 'studentCount' => $studentCount]);
         } else {
             return view('lecturer.status', ['lecturer' => $lecturer]);
         }

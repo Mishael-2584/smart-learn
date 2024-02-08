@@ -91,7 +91,11 @@
                                     aria-labelledby="general-courses-tab">
                                     <!-- Content for General Courses tab -->
                                     <div class="row">
-                                        @foreach ($gedscourses as $course)
+                                        @foreach ($gedscourses as $index => $course)
+                                        @php
+                                        $colorIndex = $index % count($availableColors);
+                                        $colorClass = $availableColors[$colorIndex];
+                                        @endphp
                                         @if ($course->isGEDS==1)
                                         
 
@@ -140,8 +144,11 @@
                                     aria-labelledby="unique-courses-tab">
                                     <!-- Content for Unique Courses tab -->
                                     <div class="row">
-                                        @foreach ($uniquecourses as $course)
-                                       
+                                        @foreach ($uniquecourses as $index => $course)
+                                        @php
+                                        $colorIndex = $index % count($availableColors);
+                                        $colorClass = $availableColors[$colorIndex];
+                                        @endphp
 
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                             <div class="card p-2 shadow h-100 ">
@@ -180,27 +187,6 @@
                                         </div>
                                         <!-- Card Item END -->
                                         
-                                        <!-- <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                            <article class="article">
-                                                <div class="article-header">
-
-                                                    <div class="article-image" id="backgroundimage"
-                                                        data-background="{{ $course->imgpath }}" url=""></div>
-
-                                                </div>
-                                                <div class="article-title">
-                                                    <h4 id="heading">{{$course->course_code}}</h4>
-                                                </div>
-                                                <div class="article-details">
-                                                    <p>{{$course->title}}</p>
-                                                    <div class="article-cta">
-                                                        <a href="{{ route('lecturerenrolluniquecourse', $course->id)}}"
-                                                            class="btn btn-primary">Enroll</a>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </div> -->
-
                                         @endforeach
                                     </div>
                                 </div>

@@ -129,26 +129,9 @@
 							</form>
 							<!-- Form END -->
 
-							<!-- Social buttons -->
-							<div class="row">
-								<!-- Divider with text -->
-								<div class="position-relative my-4">
-									<hr>
-									<p class="small position-absolute top-50 start-50 translate-middle bg-body px-5">Or</p>
-								</div>
-								<!-- Social btn -->
-								<div class="col-xxl-6 d-grid">
-									<a href="#" class="btn bg-google mb-2 mb-xxl-0"><i class="fab fa-fw fa-google text-white me-2"></i>Signup with Google</a>
-								</div>
-								<!-- Social btn -->
-								<div class="col-xxl-6 d-grid">
-									<a href="#" class="btn bg-facebook mb-0"><i class="fab fa-fw fa-facebook-f me-2"></i>Signup with Facebook</a>
-								</div>
-							</div>
-
 							<!-- Sign up link -->
 							<div class="mt-4 text-center">
-								<span>Already have an account?<a href="sign-in.html"> Sign in here</a></span>
+								<span>Already have an account?<a href="{{ route('login') }}"> Sign in here</a></span>
 							</div>
 						</div>
 					</div>
