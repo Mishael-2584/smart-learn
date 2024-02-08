@@ -14,8 +14,8 @@
                     <li>
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link beep beep-sidebar" href="{{ route('studentstatus') }}">My Status</a></li>
-                            
+                            <li><a class="nav-link" href="{{ route('studentdashboard') }}">My Dashboard</a></li>
+                            <li><a class="nav-link beep beep-sidebar" href="{{ route('studentstatus') }}">My Status</a></li>    
                         </ul>
                     </li>
                     <li class="menu-header">CLASSROOM</li>
@@ -52,7 +52,7 @@
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="index-0.html">Analytics</a></li>
+                            <li><a class="nav-link" href="{{ route('lecturerdashboard') }}">My Dashboard</a></li>
                             <li><a class="nav-link beep beep-sidebar" href="{{ route('status') }}">My Status</a></li>
                             
                         </ul>

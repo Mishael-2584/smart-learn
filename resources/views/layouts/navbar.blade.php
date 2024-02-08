@@ -52,11 +52,11 @@
 
     <ul class="navbar-nav navbar-right">
         @if (Session::get('isAuthenticated')==true && Session::get('role')==4)
-        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg"><i class="far fa-bell"></i></a>
         @elseif(Session::get('isAuthenticated')==true && Session::get('role')==3)
-        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg"><i class="far fa-bell"></i></a>
         @else
-        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg"><i class="far fa-bell"></i></a>
         @endif
         
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
@@ -66,20 +66,12 @@
                 </div>
             </div>
             <div class="dropdown-list-content dropdown-list-icons">
-                <a href="#" class="dropdown-item dropdown-item-unread">
+                {{-- <a href="#" class="dropdown-item dropdown-item-unread">
                 <div class="dropdown-item-icon bg-primary text-white">
                     <i class="fas fa-code"></i>
                 </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                <div class="dropdown-item-icon bg-info text-white">
-                    <i class="far fa-user"></i>
-                </div>
-                <a href="#" class="dropdown-item">
-                <div class="dropdown-item-icon bg-danger text-white">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                </a>
+                </a> --}}
+
             </div>
             <div class="dropdown-footer text-center">
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
