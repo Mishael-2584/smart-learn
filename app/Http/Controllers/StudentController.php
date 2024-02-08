@@ -11,6 +11,7 @@ use App\Models\School;
 use App\Models\Student;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -23,12 +24,21 @@ class StudentController extends Controller
         //
         //find lecturer by session id fron lecturer table
         $student = Student::where('id', session('id'))->first();
+        $lecturerCount = DB::table('enrollments')
+            ->join('lecturer_courses', 'enrollments.lecturer_course_id', '=', 'lecturer_courses.id')
+            ->where('enrollments.student_id', $student->id)
+            ->distinct('lecturer_courses.lecturer_id')
+            ->count('lecturer_courses.lecturer_id');
+
+        $courseCount = Enrollment::where('student_id', $student->id)->where('status', 2)->count();
+
+
         if ($student->status == 2) {
-            return view('student.dashboard', ['student' => $student]);
+            return view('student.dashboard', ['student' => $student, 'lecturerCount' => $lecturerCount, 'courseCount' => $courseCount]);
         } else {
             return view('student.status', ['student' => $student]);
         }
-        
+
         return back()->with('error', 'Student not found');
     }
 
