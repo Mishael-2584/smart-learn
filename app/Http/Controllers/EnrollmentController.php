@@ -141,6 +141,12 @@ class EnrollmentController extends Controller
 
     public function enrolldepartmental(Request $request, $courseId)
     {
+        // if exists redirect back with error you have already enrolled for this lecturer course
+        $exist = LecturerCourse::where('lecturer_id', session()->get('id'))->where('department_courses_id', $courseId)->first();
+        if($exist){
+            return back()->with('error', 'You have already enrolled for this lecturer course');
+        }
+
     
         $carbonSTime = Carbon::parse($request->input('start-time'));
         $start_time = $carbonSTime->format('H:i:s');

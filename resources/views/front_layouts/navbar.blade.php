@@ -46,18 +46,25 @@
                         <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Get Started</a>
                         <ul class="dropdown-menu" aria-labelledby="pagesMenu">
                             <!-- Dropdown submenu -->
-                            <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                            
+                            <li> <a class="dropdown-item" href="{{ route('login') }}">LOGIN</a></li>
+                            <!-- Dropdown submenu -->
+                            <li class="dropdown-submenu dropend">
+								<a class="dropdown-item dropdown-toggle" href="#">SIGN UP</a>
+								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+									<li> <a class="dropdown-item" href="{{ route('lecturersignup') }}">Lecturer Signup</a></li>
+									<li> <a class="dropdown-item" href="{{ route('studentssignup') }}">Student Signup</a></li>
+								</ul>
+							</li>
 
                             <!-- Dropdown submenu -->
                             <li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">About</a>
+								<a class="dropdown-item dropdown-toggle" href="#">ABOUT</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
 									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">About Us</a></li>
 									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Contact Us</a></li>
 								</ul>
 							</li>
-							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Instructor List</a></li>
+							
 							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
 						</ul>
 					</li>

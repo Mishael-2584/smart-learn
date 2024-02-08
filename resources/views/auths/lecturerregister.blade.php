@@ -74,7 +74,7 @@ Page Banner START -->
 			<div class="col-md-6">
 				<!-- Title -->
 				<h1>SignUp as Lecturer</h1>
-				<p>Satisfied conveying a dependent contented he gentleman agreeable do be. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.</p>
+				<p>Are you a lecturer and want to start teaching? Sign up now with our easy process and verification. Teach with us</p>
 				<!-- Button -->
 				<a href="#fill-instructor-form" class="btn btn-primary mb-0">Start Teaching today</a>
 			</div>
@@ -154,7 +154,7 @@ Counter START -->
 				<div class="col-sm-6 col-lg-3 text-center">
 					<div class="d-flex justify-content-center">
 						<h4 class="purecounter display-6 text-orange fw-bold mb-0" data-purecounter-start="0" data-purecounter-end="89" data-purecounter-delay="200">0</h4>
-						<span class="display-6 text-orange mb-0">K</span>
+						<span class="display-6 text-orange mb-0"></span>
 					</div>
 					<h6 class="mb-0 fw-bold">Total Students</h6>
 				</div>
@@ -163,7 +163,7 @@ Counter START -->
 				<div class="col-sm-6 col-lg-3 text-center">
 					<div class="d-flex justify-content-center">
 						<h4 class="purecounter display-6 text-orange fw-bold mb-0" data-purecounter-start="0" data-purecounter-end="25" data-purecounter-delay="200">0</h4>
-						<span class="display-6 text-orange mb-0">K</span>
+						<span class="display-6 text-orange mb-0"></span>
 					</div>	
 					<h6 class="mb-0 fw-bold">Total Instructors</h6>
 				</div>
@@ -172,18 +172,9 @@ Counter START -->
 				<div class="col-sm-6 col-lg-3 text-center">
 					<div class="d-flex justify-content-center">
 						<h4 class="purecounter display-6 text-orange fw-bold mb-0" data-purecounter-start="0" data-purecounter-end="180" data-purecounter-delay="200">0</h4>
-						<span class="display-6 text-orange mb-0">K</span>
+						<span class="display-6 text-orange mb-0"></span>
 					</div>
 					<h6 class="mb-0 fw-bold">Total Courses</h6>
-				</div>
-
-				<!-- Counter item -->
-				<div class="col-sm-6 col-lg-3 text-center">
-					<div class="d-flex justify-content-center">
-						<h4 class="purecounter display-6 text-orange fw-bold mb-0" data-purecounter-start="0" data-purecounter-end="20" data-purecounter-delay="200">0</h4>
-						<span class="display-6 text-orange mb-0">+</span>
-					</div>
-					<h6 class="mb-0 fw-bold">Languages</h6>
 				</div>
 			</div> <!-- Row END -->
 		</div>

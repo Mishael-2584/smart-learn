@@ -17,7 +17,7 @@
             <a href="#" class="search-close"><i class="fas fa-times"></i></a>
         </div>
         <div class="search-item">
-            <a href="#">Kodinger.com</a>
+            <a href="#">Register as a Lecturer/a>
             <a href="#" class="search-close"><i class="fas fa-times"></i></a>
         </div>
         <div class="search-item">
@@ -25,24 +25,12 @@
             <a href="#" class="search-close"><i class="fas fa-times"></i></a>
         </div>
         <div class="search-header">
-            Result
+            Results
         </div>
         <div class="search-item">
             <a href="#">
             <img class="mr-3 rounded" width="30" src="{{ asset('codiepie/assets/img/products/product-3-50.png') }}" alt="product">
             oPhone S9 Limited Edition
-            </a>
-        </div>
-        <div class="search-item">
-            <a href="#">
-            <img class="mr-3 rounded" width="30" src="{{ asset('codiepie/assets/img/products/product-2-50.png') }}" alt="product">
-            Drone X2 New Gen-7
-            </a>
-        </div>
-        <div class="search-item">
-            <a href="#">
-            <img class="mr-3 rounded" width="30" src="{{ asset('codiepie/assets/img/products/product-1-50.png') }}" alt="product">
-            Headphone Blitz
             </a>
         </div>
         <div class="search-header">
@@ -54,14 +42,6 @@
                 <i class="fas fa-code"></i>
             </div>
             SMARTLEARN
-            </a>
-        </div>
-        <div class="search-item">
-            <a href="#">
-            <div class="search-icon bg-primary text-white mr-3">
-                <i class="fas fa-laptop"></i>
-            </div>
-            Create a new Homepage Design
             </a>
         </div>
         </div>
@@ -95,20 +75,6 @@
                 <div class="dropdown-item-icon bg-info text-white">
                     <i class="far fa-user"></i>
                 </div>
-                <div class="dropdown-item-desc">
-                    <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-                    <div class="time">10 Hours Ago</div>
-                </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                <div class="dropdown-item-icon bg-success text-white">
-                    <i class="fas fa-check"></i>
-                </div>
-                <div class="dropdown-item-desc">
-                    <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                    <div class="time">12 Hours Ago</div>
-                </div>
-                </a>
                 <a href="#" class="dropdown-item">
                 <div class="dropdown-item-icon bg-danger text-white">
                     <i class="fas fa-exclamation-triangle"></i>
@@ -142,8 +108,6 @@
             </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-title">Logged in 5 min ago</div>
-
             @if (Session::get('isAuthenticated')==true && Session::get('role')==4)
             <a href="{{ route('studentprofileinfo') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
@@ -160,17 +124,11 @@
                 <i class="far fa-user"></i> Profile
             </a>
             <a href="{{ route('comingsoon') }}" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
-            </a>
-            <a href="{{ route('comingsoon') }}" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
             </a>
             @else
             <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
-            </a>
-            <a href="{{ route('comingsoon') }}" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
             </a>
             <a href="features-settings.html" class="dropdown-item has-icon">
                 <i class="{{ route('comingsoon') }}"></i> Settings

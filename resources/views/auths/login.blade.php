@@ -92,24 +92,6 @@
                         </form>
                         <!-- Form END -->
 
-                        <!-- Social buttons and divider -->
-                        <div class="row">
-                            <!-- Divider with text -->
-                            <div class="position-relative my-4">
-                                <hr>
-                                <p class="small position-absolute top-50 start-50 translate-middle bg-body px-5">Or</p>
-                            </div>
-
-                            <!-- Social btn -->
-                            <div class="col-xxl-6 d-grid">
-                                <a href="#" class="btn bg-google mb-2 mb-xxl-0"><i class="fab fa-fw fa-google text-white me-2"></i>Login with Google</a>
-                            </div>
-                            <!-- Social btn -->
-                            <div class="col-xxl-6 d-grid">
-                                <a href="#" class="btn bg-facebook mb-0"><i class="fab fa-fw fa-facebook-f me-2"></i>Login with Facebook</a>
-                            </div>
-                        </div>
-
                         <!-- Sign up link -->
                         <div class="mt-4 text-center">
                             <span>Don't have an account? <a href="{{ route('studentssignup') }}">Signup here</a></span>
