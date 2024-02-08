@@ -42,36 +42,6 @@
                                         @endphp
                                         @if (isset($e->lecturercourse->departmentcourse))
 
-
-                                        {{-- <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                            <article class="article @if ($e->status == 1) dim @endif">
-                                                <div class="article-header">
-                                                    <div class="article-image" id="backgroundimage" data-background="{{ $e->lecturercourse->departmentcourse->course->imgpath }}" url=""></div>
-                                                </div>
-                                                <div class="article-title">
-                                                    <h4 id="heading">{{$e->lecturercourse->departmentcourse->course->course_code}}</h4>
-                                                </div>
-                                                <div class="article-details">
-                                                    <p>{{$e->lecturercourse->departmentcourse->course->title}}</p>
-                                                    <div class="article-cta">
-                                                        @if ($e->status != 1)
-                                                            <a href="{{route('studentopencourse', $e->id)}}" class="btn btn-primary">Open</a>
-                                                        @else
-                                                            <button class="btn btn-primary" onclick="displayErrorMessage(this)">Open </button>
-                                                            <div class="approval-pending">
-                                                                <span class="pending-indicator">Pending Approval</span>
-                                                            </div>
-
-                                                        @endif       
-                                                    </div>
-                                                        
-                                                
-                                                </div>
-                                                
-                                            </article>
-                                        
-                                        </div>     --}}
-
                                         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                                             <div class="card p-2 shadow h-100 {{ $e->status == 1 ? 'dim' : '' }}">
                                                 <div class="rounded-top overflow-hidden">
