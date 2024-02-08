@@ -166,7 +166,7 @@ class EnrollmentController extends Controller
 
         if($lc){
 
-            $ct = LecturerCourse::where('department_courses_id', $courseId)->first();
+            // $ct = LecturerCourse::where('department_courses_id', $courseId)->first();
         
 
 
@@ -175,15 +175,15 @@ class EnrollmentController extends Controller
                         $room_name = uniqid(); // Generate a unique room name using PHP uniqid() function
                     
                         $meet_link = $base_url . $room_name;
-                        $ct->meet_url = $meet_link;
+                        $lc->meet_url = $meet_link;
                     
                     }
                     else{
-                     $ct->meet_url = $request->input('meet-link');
+                     $lc->meet_url = $request->input('meet-link');
                     }
 
 
-               $saved = $ct->save();
+               $saved = $lc->save();
 
                if($saved){
                 return redirect()->route('myclasses')->with('success', 'Successfully Applied, Pending Admin Approval');
