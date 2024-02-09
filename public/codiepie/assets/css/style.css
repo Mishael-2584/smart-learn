@@ -366,7 +366,6 @@ a:hover {
   border-radius: 20px;
   border: 1px solid white;
   padding: 30px;
-  /* margin-bottom: 20px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
@@ -375,8 +374,6 @@ a:hover {
 .profile-card {
   position: absolute;
   top: -20px;
-  /* left: 0; */
-  /* z-index: -1; */
 }
 
 .card-icon {
@@ -387,18 +384,20 @@ a:hover {
 .card-title {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #f8f9fa;
 }
 
 .card-total {
   font-size: 18px;
-  color: #333;
+  color: #f8f9fa;
 }
 
 .quote-popup {
+  position: fixed;
   transform: translate(-50%, -50%);
   padding: 20px;
-  margin: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
   background-color: #EAD6FB;
   border-radius: 10px;
   z-index: 9999;

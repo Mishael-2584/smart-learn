@@ -29,17 +29,20 @@
                                         </div>
                                     </div>
                                     <!-- Profile info -->
-                                    <div class="col d-md-flex justify-content-between align-items-center mt-4">
+                                    <!-- Profile info -->
+                                    <div class="col-md d-md-flex justify-content-between align-items-center mt-4">
                                         <div>
-                                            <h1 class="my-1 fs-4">Bill Medina <i
+                                            <h1 class="my-1 fs-md-4">Bill Medina <i
                                                     class="bi bi-patch-check-fill text-info small"></i></h1>
-                                            <h5 class="my-1 fs-4 text-primary">Lecturer </h5>
+                                            <h5 class="my-1 fs-md-3 text-primary">Lecturer</h5>
                                         </div>
                                         <!-- Button -->
                                         <div class="d-flex align-items-center m-2 mt-md-0">
-                                            <a href="#" class="btn btn-success mb-0">Info</a>
+                                            <a href="#" class="btn btn-success btn-sm mb-0">Info</a>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                             <!-- Profile banner END -->
@@ -75,7 +78,7 @@
                         <!-- Quote Popup -->
                         <div class="col-md-12 h-100">
                             <div id="quotePopup" class=" quote-popup p-5">
-                                <p id="quoteText" class="quote-text"></p>
+                                <p id="quoteText" class="quote-text">Hey there. Welcome back!</p>
                             </div>
                         </div>
                     </div>
