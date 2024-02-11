@@ -39,24 +39,12 @@
                     <div class="card">
                         <div class="card-body">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" id="stream-tab" data-toggle="tab"
-                                        href="#stream" role="tab" aria-controls="stream" aria-selected="true">STREAM</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab"
-                                        href="#submissions" role="tab" aria-controls="submissions"
-                                        aria-selected="false">SUBMISSIONS</a></li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="students-tab" data-toggle="tab" href="#students" role="tab"
-                                        aria-controls="students" aria-selected="false">
-                                        PEOPLE
-                                        <span class="badge bg-primary text-white"></span>
-                                    </a>
-                                </li>
+                                <li class="nav-item"><a class="nav-link active" id="stream-tab" data-toggle="tab" href="#stream" role="tab" aria-controls="stream" aria-selected="true">STREAM</a></li>
+                                <li class="nav-item"><a class="nav-link" id="submissions-tab" data-toggle="tab" href="#submissions" role="tab" aria-controls="submissions" aria-selected="false">SUBMISSIONS</a></li>
+                                <li class="nav-item"><a class="nav-link" id="students-tab" data-toggle="tab" href="#students" role="tab" aria-controls="students" aria-selected="false">PEOPLE<span class="badge bg-primary text-white"></span></a></li>
                             </ul>
-
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="stream" role="tabpanel"
-                                    aria-labelledby="stream-tab">
+                                <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
                                     <div class="row">
                                         <div class="col-md-4 col-lg-4">
                                             <div class="card">
@@ -234,9 +222,10 @@
                                                                 <br>
                                                                 <a href="#commentsModal" data-toggle="modal" data-post-id="{{$p->id}}" data-target=".comments-modal">View Comments ({{ $p->comments->count() ?? '0' }})</a>
                                                             </div>
-                                                        @endif
-                                                    </div>
+                                                            @endif
+                                                    
                                                     @endif
+                                                 </div>   
                                             @endforeach
                                         @endisset
                                         </div>
