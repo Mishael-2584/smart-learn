@@ -41,6 +41,7 @@ Route::get('/comingsoon', function () { return view('front_layouts.comingsoon');
 
 
 Route::get('/', function () { return view('front.home'); })->name('front');
+Route::get('/faqs', function () { return view('front.faqs'); })->name('faqs');
 
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 

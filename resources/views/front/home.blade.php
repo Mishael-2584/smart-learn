@@ -62,7 +62,7 @@ Main Banner END -->
 
 
 About START -->
-<section>
+<section id="about-section">
 	<div class="container">
 		<div class="row g-4 align-items-center">
 			<div class="col-lg-5">

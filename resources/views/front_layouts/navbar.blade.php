@@ -34,9 +34,10 @@
 							<!-- Dropdown submenu -->
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item" href="{{ route('comingsoon') }}">Courses</a>
+								<a class="dropdown-item" href="#about-section">About Us</a>
 							</li>
 							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Instructor List</a></li>
-							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
+							<li> <a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
 						</ul>
 					</li>
 
@@ -47,17 +48,7 @@
                         <ul class="dropdown-menu" aria-labelledby="pagesMenu">
                             <!-- Dropdown submenu -->
                             <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                            
-
-                            <!-- Dropdown submenu -->
-                            <li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">About</a>
-								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">About Us</a></li>
-									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Contact Us</a></li>
-								</ul>
-							</li>
-							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Instructor List</a></li>
+							<li> <a class="dropdown-item" href="{{ route('lecturersignup') }}">Instructor SignUp</a></li>
 							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
 						</ul>
 					</li>
