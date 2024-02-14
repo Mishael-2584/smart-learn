@@ -49,7 +49,7 @@
                             <!-- Dropdown submenu -->
                             <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
 							<li> <a class="dropdown-item" href="{{ route('lecturersignup') }}">Instructor SignUp</a></li>
-							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
+							<li> <a class="dropdown-item" href="{{ route('faqs') }}">FAQs</a></li>
 						</ul>
 					</li>
 
