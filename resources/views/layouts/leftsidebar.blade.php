@@ -25,14 +25,14 @@
                             <li><a class="nav-link" href="{{ route('studentenrollcourse') }}">Course Enrollment</a></li>
                         </ul>
                         <li><a href="{{ route('mystudentclasses') }}"><i class="fas fa-chalkboard-teacher"></i><span>My Classes</span></a></li>
-                        <li><a href="{{ route('comingsoon') }}"><i class="fas fa-calendar"></i><span>My Schedule</span></a></li>
+                        {{-- <li><a href="{{ route('comingsoon') }}"><i class="fas fa-calendar"></i><span>My Schedule</span></a></li> --}}
                     </li>
                     <li class="menu-header">OPTIONS</li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Profile Settings</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('studentprofileinfo') }}">Profile Info</a></li>
-                            <li><a class="nav-link" href="{{ route('comingsoon') }}">Profile Status</a></li>
+                            {{-- <li><a class="nav-link" href="{{ route('comingsoon') }}">Profile Status</a></li> --}}
                         </ul>
                         <a href="{{ route('logout') }}" class="nav-link"><i class="fas fa-power-off"></i> <span>Logout</span></a>
                     </li>
@@ -65,7 +65,7 @@
                         </ul>
                         <li><a href="{{ route('myclasses') }}"><i class="fas fa-chalkboard-teacher"></i> <span>My Classes</span></a></li>
                     </li>
-                    <li><a href="{{ route('comingsoon') }}"><i class="fas fa-calendar"></i><span>My Schedule</span></a></li>
+                    {{-- <li><a href="{{ route('comingsoon') }}"><i class="fas fa-calendar"></i><span>My Schedule</span></a></li> --}}
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>My Students</span></a>
                         <ul class="dropdown-menu">
@@ -77,7 +77,7 @@
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Profile Settings</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('lecturerprofileinfo') }}">Profile Info</a></li>
-                            <li><a class="nav-link" href="{{ route('comingsoon') }}">Profile Status</a></li>
+                            {{-- <li><a class="nav-link" href="{{ route('comingsoon') }}">Profile Status</a></li> --}}
                         </ul>
                         <a href="{{ route('logout') }}" class="nav-link"><i class="fas fa-power-off"></i> <span>Logout</span></a>
                     </li>
@@ -145,17 +145,16 @@
                             <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Students</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('adminpendingstudents') }} ">Pending Students</a></li>
-                                <li><a class="nav-link" href="{{ route('comingsoon')}} ">Other</a></li>
                             </ul>
                         </li>
                         
-                        <li class="dropdown">
+                        {{-- <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i> <span>Settings</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('comingsoon')}} ">Profile</a></li>
                                 <li><a class="nav-link" href="{{ route('comingsoon')}} ">Settings</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
             </aside>
     @else

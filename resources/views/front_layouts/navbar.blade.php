@@ -28,7 +28,7 @@
 					
 
 					<!-- Nav item 2 Pages -->
-					<li class="nav-item dropdown">
+					{{-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
 						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
 							<!-- Dropdown submenu -->
@@ -38,7 +38,7 @@
 							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">Instructor List</a></li>
 							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
 						</ul>
-					</li>
+					</li> --}}
 
 
 					<!-- Nav item  Get Started -->
@@ -57,7 +57,7 @@
 							</li>
 
                             <!-- Dropdown submenu -->
-                            <li class="dropdown-submenu dropend">
+                            {{-- <li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">ABOUT</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
 									<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">About Us</a></li>
@@ -65,7 +65,7 @@
 								</ul>
 							</li>
 							
-							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li>
+							<li> <a class="dropdown-item" href="{{ route('comingsoon') }}">FAQs</a></li> --}}
 						</ul>
 					</li>
 
