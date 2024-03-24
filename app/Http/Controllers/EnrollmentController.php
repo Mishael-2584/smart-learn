@@ -231,6 +231,7 @@ class EnrollmentController extends Controller
                 if ($er) {
                     $er->status = 2;
                     $saved = $er->save();
+                    dd($saved);
                     if ($saved) {
                         $successCount++;
                     }
