@@ -226,12 +226,15 @@ class EnrollmentController extends Controller
             $student = Student::find($studentId);
             
             if ($student) {
-                $er = Enrollment::where('student_id', $student->id)->first();
+                // student id where status is not euqal to 2
+                
+                $er = Enrollment::where('student_id', $student->id)
+                    ->where('status', '!=', 2)
+                    ->first();
     
                 if ($er) {
                     $er->status = 2;
                     $saved = $er->save();
-                    dd($saved);
                     if ($saved) {
                         $successCount++;
                     }
