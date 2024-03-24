@@ -218,32 +218,30 @@ class EnrollmentController extends Controller
 
 
     public function approvestudents(Request $request){
-        
-
-        
         $selectedStudentsArray = explode(',', $request->input('selectedStudents', []));
+        
+        $successCount = 0; // Track the number of successfully approved students
         
         foreach ($selectedStudentsArray as $studentId) {
             $student = Student::find($studentId);
             
             if ($student) {
-                // Update the lecturer's status to approved
                 $er = Enrollment::where('student_id', $student->id)->first();
-
-                $er->status = 2;
-                $saved = $er->save();
-
-                
-                
-                
-                
+    
+                if ($er) {
+                    $er->status = 2;
+                    $saved = $er->save();
+                    if ($saved) {
+                        $successCount++;
+                    }
+                }
             }
         }
-        if (!$saved) {
+    
+        if ($successCount > 0) {
+            return back()->with('success', $successCount . ' students approved successfully.');
+        } else {
             return back()->with('error', 'Failed to approve students.');
-        }
-        else{
-            return back()->with('success', '.'.count($selectedStudentsArray).' students approved successfully.');
         }
     }
 
